@@ -1,0 +1,32 @@
+### Angular ###
+app/dist/
+app/tmp/
+template/dist/
+template/tmp/
+# app/**/*.js
+# app/**/*.js.map
+
+# dependencies
+template/node_modules
+app/node_modules
+
+# IDEs and editors
+.idea/
+
+# misc
+.sass-cache/
+connect.lock/
+coverage/
+libpeerconnection.log/
+npm-debug.log
+testem.log
+typings/
+app/.angular/
+template/.angular/
+
+# e2e
+# app/e2e/*.js
+# app/e2e/*.map
+
+# System Files
+.DS_Store/
