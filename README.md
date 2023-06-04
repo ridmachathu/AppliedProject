@@ -22,3 +22,4 @@ Navigate back to "template" and run the following to install dependencies for th
 Start angular dev env by
 
 - `ng serve`
+- open `http://localhost:4200` on your browser
