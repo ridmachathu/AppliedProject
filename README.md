@@ -5,12 +5,16 @@ Update the project description here
 
 Install Angular CLI on the machine
 
+- `npm install -g @angular/cli`
+
 Navigate to "app" and run the following
 
+- `cd app`
 - `npm install --force`
 
-Navigate to "template" and run the following to install dependencies for the template
+Navigate back to "template" and run the following to install dependencies for the template
 
+- `cd ../template`
 - `npm install`
 
 ## Run Development environment
