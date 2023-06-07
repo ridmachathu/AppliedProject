@@ -23,3 +23,8 @@ Start angular dev env by
 
 - `ng serve`
 - open `http://localhost:4200` on your browser
+
+start template env by 
+
+- `ng serve --port 4201`
+- open your browser on `http://localhost:4201`
