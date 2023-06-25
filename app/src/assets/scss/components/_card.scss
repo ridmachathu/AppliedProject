@@ -9,6 +9,7 @@
   letter-spacing: 0.5px;
   border-radius: $card-border-radious;
   box-shadow: $card-box-shadow;
+  color: $theme-body-font-color;
 
   &:hover {
     box-shadow: $card-hover-box-shadow;
