@@ -80,24 +80,44 @@ export class NavService implements OnDestroy {
   }
 
   MENUITEMS: Menu[] = [
+   
     {
-      headTitle1: "Pages",
+      headTitle1: "General",
     },
+    { path: "/dashboard", icon: "home", title: "Dashboard", type: "link", bookmark: true },
+    { path: "/single-page", icon: "ecommerce", title: "My Shopping List", type: "link", bookmark: true },
+    { path: "/single-page", icon: "bookmark", title: "Favorites", type: "link", bookmark: true },
+    { path: "/flyers", icon: "others", title: "Flyers", type: "link", bookmark: true },
+    { path: "/single-page", icon: "task", title: "Coupons", type: "link", bookmark: true },
     {
-      title: "Simple Page",
-      icon: "home",
-      type: "sub",
-      badgeType: "light-primary",
-      badgeValue: "2",
-      active: true,
-      children: [
-        { path: "/simple-page/first-page", title: "First Page", type: "link" },
-        { path: "/simple-page/second-page", title: "Second Page", type: "link" },
-      ],
+      headTitle1: "Categories",
     },
-    { path: "/single-page", icon: "search", title: "Single Page", type: "link", bookmark: true },
+    { path: "/products", icon: "ecommerce", title: "All", type: "link", bookmark: true },
+    { path: "/single-page", icon: "bookmark", title: "Groceries", type: "link", bookmark: true },
+    { path: "/single-page", icon: "others", title: "Home & Kitchen", type: "link", bookmark: true },
+    { path: "/single-page", icon: "task", title: "Garden", type: "link", bookmark: true },
+    
   ];
 
   // Array
   items = new BehaviorSubject<Menu[]>(this.MENUITEMS);
+
+ // {
+    //   title: "Simple Page",
+    //   icon: "home",
+    //   type: "sub",
+    //   badgeType: "light-primary",
+    //   badgeValue: "2",
+    //   active: true,
+    //   children: [
+    //     { path: "/simple-page/first-page", title: "First Page", type: "link" },
+    //     { path: "/simple-page/second-page", title: "Second Page", type: "link" },
+    //   ],
+    // },
+    // { path: "/single-page", icon: "search", title: "Single Page", type: "link", bookmark: true },
+
+
+
+
+
 }
