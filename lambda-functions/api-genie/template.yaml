@@ -101,6 +101,7 @@ Resources:
       Environment:
         Variables:
           TABLE_NAME: !Ref UsersTable
+          SIGN_KEY: AppliedProject2023
       Events:
         Api:
           Type: Api
