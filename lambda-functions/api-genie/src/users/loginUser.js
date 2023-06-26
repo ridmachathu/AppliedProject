@@ -22,9 +22,16 @@ exports.handler = async (event) => {
     // Get id and name from the body of the request
     const body = JSON.parse(event.body);
 
+    const user = {
+        "id": "34a940c6-b3c0-4686-8acd-ebeeceaf8b31",
+        "createDateTime": 1687741141399,
+        "email": "jim@gmail.com",
+        "nickname": "Jim",
+        "role": "user"
+       }
     response = {
         statusCode: 200,
-        body: JSON.stringify({ "this": "working" })
+        body: JSON.stringify({ "statusCode": 200, "data": user, "message": "Credentials are correct" })
     };
 
     // const payload = {
@@ -57,7 +64,11 @@ exports.handler = async (event) => {
     //         body: "Unable to call DynamoDB. Table resource not found."
     //     };
     // }
-
+    response.headers = {
+        "Access-Control-Allow-Headers" : "Content-Type",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET"
+    }
     // All log statements are written to CloudWatch
     console.info(`response from: ${event.path} statusCode: ${response.statusCode} body: ${response.body}`);
     return response;

@@ -1,6 +1,15 @@
 {
     "configurations": [
         {
+            "name": "scraper",
+            "program": "${workspaceFolder}/lambda-functions/scraper/app.js",
+            "request": "launch",
+            "runtimeExecutable": "nodemon",
+            "type": "node",
+            "console": "integratedTerminal",
+            "cwd":"${workspaceFolder}/lambda-functions/scraper"
+        },
+        {
             "type": "aws-sam",
             "request": "direct-invoke",
             "name": "api-genie:LoginUser",

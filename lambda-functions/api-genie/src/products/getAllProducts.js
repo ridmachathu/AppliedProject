@@ -40,7 +40,11 @@ exports.handler = async (event) => {
             body: "Unable to call DynamoDB. Table resource not found."
         };
     }
-
+    response.headers = {
+        "Access-Control-Allow-Headers" : "Content-Type",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET"
+    }
     // All log statements are written to CloudWatch
     console.info(`response from: ${event.path} statusCode: ${response.statusCode} body: ${response.body}`);
     return response;
