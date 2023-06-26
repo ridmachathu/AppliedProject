@@ -19,13 +19,22 @@ exports.handler = async (event) => {
         // All log statements are written to CloudWatch
         console.info('received:', event);
 
+        const query = event.queryStringParameters.query;
+        console.info('Query to search:', query);
+
         const params = {
-            TableName: tableName
+            TableName: tableName,
+            FilterExpression: "contains (tags, :query)",
+            ExpressionAttributeValues: {
+                ':query': query
+            }
         };
         const data = await docClient.scan(params).promise();
+
+        console.log("dynamodb res: ", data);
         const items = data.Items;
 
-        return common.getAPIResponseObj(event, items, "Get all Products success", 200);
+        return common.getAPIResponseObj(event, items, "Search Products success", 200);
     } catch (error) {
         console.info(`error: `, error);
         return common.getAPIResponseObj(event, error, error.message, 400);

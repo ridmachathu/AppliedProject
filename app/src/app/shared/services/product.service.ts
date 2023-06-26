@@ -13,6 +13,10 @@ export class ProductService {
   public GetAllProducts() {
     return this.http.get("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/products");
   }
+
+  public SearchProducts(query) {
+    return this.http.get("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/products/search?query="+query);
+  }
   // public post(url: string, data: any, options?: any) {
   //   return this.http.post(url, data, options);
   // }
