@@ -24,6 +24,8 @@ import { LoginComponent } from './auth/login/login.component';
 
 import { OverlayModule } from '@angular/cdk/overlay';
 
+import { ProductService } from './shared/services/product.service'
+
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
 }
@@ -59,7 +61,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 //     // for Core use:
     LoadingBarModule
   ],
-  providers: [ CookieService],
+  providers: [CookieService, ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

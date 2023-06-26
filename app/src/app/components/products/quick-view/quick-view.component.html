@@ -1,15 +1,16 @@
 <div class="modal-header product-modal">
   <div class="product-box row">
-    <div class="product-img col-lg-6"><img class="img-fluid" src="{{ productDetail?.img }}" alt="" /></div>
+    <div class="product-img col-lg-6"><img class="img-fluid" src="{{ productDetail?.imageUrl }}" alt="" /></div>
     <div class="product-details col-lg-6 text-start">
-      <h4>{{ productDetail?.name }}</h4>
+      <h6>{{ productDetail?.brand }}</h6>
+      <h4>{{ productDetail?.title }}</h4>
       <div class="product-price">
         ${{ productDetail?.price }}
-        <del>${{ productDetail?.discountPrice }}</del>
+        <del *ngIf="productDetail?.priceBefore > 0">${{ productDetail?.priceBefore }}</del>
       </div>
       <div class="product-view">
         <h6 class="f-w-600">Product Details</h6>
-        <p class="mb-0">{{ productDetail?.discription }}</p>
+        <p class="mb-0">{{ productDetail?.category }}</p>
       </div>
       <div class="product-size">
         <ul>

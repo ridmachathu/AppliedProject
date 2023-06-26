@@ -42,7 +42,7 @@
           </div>
         </div>
         <div class="col-md-6 text-sm-end">
-          <span class="f-w-600 m-r-5">Showing Products 1 - 24 Of 200 Results</span>
+          <span class="f-w-600 m-r-5">Showing Products 1 - 24 Of {{listData.length}} Results</span>
           <div class="select2-drpdwn-product select-options d-inline-block">
             <select class="form-control btn-square" name="select">
               <option value="opt1">Featured</option>
@@ -121,9 +121,9 @@
           <div class="card">
             <div class="product-box">
               <div class="product-img">
-                <div class="ribbon ribbon-danger" *ngIf="product.status == 'sale'">{{ product.status }}</div>
-                <div class="ribbon ribbon-success ribbon-right" *ngIf="product.status == '50%'">{{ product.status }}</div>
-                <img class="img-fluid" src="{{ product.img }}" alt="" />
+                <!-- <div class="ribbon ribbon-danger" *ngIf="product.priceBefore > 0">{{ product.status }}</div> -->
+                <div class="ribbon ribbon-success ribbon-right" *ngIf="product.priceBefore > 0">${{ product.priceBefore - product.price | number : '1.2-2' }} off</div>
+                <img class="img-fluid" src="{{ product.imageUrl }}" alt="" />
                 <div class="product-hover">
                   <ul>
                     <li>
@@ -141,15 +141,15 @@
                   </ul>
                 </div>
               </div>
-              <div class="modal fade" id="exampleModalCenter16">
+              <!-- <div class="modal fade" id="exampleModalCenter16">
                 <div class="modal-dialog modal-lg modal-dialog-centered">
                   <div class="modal-content">
                     <div class="modal-header">
                       <div class="product-box row">
-                        <div class="product-img col-lg-6"><img class="img-fluid" src="{{ product.img }}" alt="" /></div>
+                        <div class="product-img col-lg-6"><img class="img-fluid" src="{{ product.imageUrl }}" alt="" /></div>
                         <div class="product-details col-lg-6 text-start">
                           <a href="e-commerce/product-page">
-                            <h4>{{ product.name }}</h4></a
+                            <h4>{{ product.title }}</h4></a
                           >
                           <div class="product-price">
                             $26.00
@@ -187,16 +187,17 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
               <div class="product-details">
+                <p>{{ product.brand }}</p>
                 <a href="ecommerce/product-page">
-                  <h4>{{ product.name }}</h4></a
+                  <h4>{{ product.title }}</h4></a
                 >
-                <p>{{ product.note }}</p>
                 <div class="product-price">
                   ${{ product.price }}
-                  <del>${{ product.discountPrice }}</del>
+                  <del *ngIf="product.priceBefore !== 0">${{ product.priceBefore }}</del>
                 </div>
+                <span>{{product.packageSize}}</span>
               </div>
             </div>
           </div>

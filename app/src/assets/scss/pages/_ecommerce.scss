@@ -489,12 +489,13 @@
     p {
       margin-bottom: 0;
       opacity: 0.8;
+      font-size: 12px;
     }
 
     h4 {
       margin-bottom: 0;
       margin-top: 5px;
-      font-size: 20px;
+      font-size: 14px;
       font-family: roboto;
     }
 
@@ -506,6 +507,7 @@
 
     span {
       color: $dark-gray;
+      font-size: 10px;
     }
 
     .rating {
@@ -673,6 +675,8 @@
 
       .product-img {
         position: relative;
+        display: flex;
+        justify-content: center;
 
         .product-hover {
           position: absolute;
@@ -737,6 +741,9 @@
 
   .product-img {
     position: relative;
+    display: flex;
+    justify-content: center;
+    padding: 30px;
 
     .product-hover {
       position: absolute;
