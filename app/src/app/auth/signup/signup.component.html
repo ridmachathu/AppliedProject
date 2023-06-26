@@ -13,18 +13,21 @@
             <div class="login-main">
               <form class="theme-form" [formGroup]="signupForm" (ngSubmit)="signUp()">
                 <h4>Sign up to account</h4>
-                <p>Register yourself</p>
                 <div class="form-group">
-                    <label class="col-form-label">Nick Name</label>
-                    <input class="form-control" type="text" required="" placeholder="Jim Perterson" formControlName="nickname" />
+                    <label class="col-form-label">First Name</label>
+                    <input class="form-control" type="text" required="" placeholder="Jim" formControlName="firstname" />
                 </div>
-                <!-- <div class="form-group">
-                    <label class="col-form-label">Mobile Number</label>
-                    <input class="form-control" type="number" required="" placeholder="+16048839237" formControlName="mobile" />
-                </div> -->
+                <div class="form-group">
+                  <label class="col-form-label">Last Name</label>
+                  <input class="form-control" type="text" required="" placeholder="Perterson" formControlName="lastname" />
+                </div>
                 <div class="form-group">
                   <label class="col-form-label">Email Address</label>
                   <input class="form-control" type="email" required="" placeholder="app@yourmail.com" formControlName="email" />
+                </div>
+                <div class="form-group">
+                  <label class="col-form-label">Mobile Number</label>
+                  <input class="form-control" type="number" required="" placeholder="+16048839237" formControlName="mobile" />
                 </div>
                 <div class="form-group">
                   <label class="col-form-label">Password</label>
