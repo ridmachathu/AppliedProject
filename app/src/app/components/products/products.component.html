@@ -109,8 +109,8 @@
           </div>
         </div>
         <div class="col-xl-9 col-md-8">
-          <form>
-            <div class="form-group m-0"><input class="form-control" type="search" placeholder="Search.." data-original-title="" title="" /><i class="fa fa-search"></i></div>
+          <form (ngSubmit)="search(searchQuery)">
+            <div class="form-group m-0"><input class="form-control" type="search" placeholder="Search.." data-original-title="" title="" [(ngModel)]="searchQuery" /><i class="fa fa-search"></i></div>
           </form>
         </div>
       </div>
@@ -141,53 +141,6 @@
                   </ul>
                 </div>
               </div>
-              <!-- <div class="modal fade" id="exampleModalCenter16">
-                <div class="modal-dialog modal-lg modal-dialog-centered">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <div class="product-box row">
-                        <div class="product-img col-lg-6"><img class="img-fluid" src="{{ product.imageUrl }}" alt="" /></div>
-                        <div class="product-details col-lg-6 text-start">
-                          <a href="e-commerce/product-page">
-                            <h4>{{ product.title }}</h4></a
-                          >
-                          <div class="product-price">
-                            $26.00
-                            <del>$35.00</del>
-                          </div>
-                          <div class="product-view">
-                            <h6 class="f-w-600">Product Details</h6>
-                            <p class="mb-0">Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo.</p>
-                          </div>
-                          <div class="product-size">
-                            <ul>
-                              <li>
-                                <button class="btn btn-outline-light" type="button">M</button>
-                              </li>
-                              <li>
-                                <button class="btn btn-outline-light" type="button">L</button>
-                              </li>
-                              <li>
-                                <button class="btn btn-outline-light" type="button">Xl</button>
-                              </li>
-                            </ul>
-                          </div>
-                          <div class="product-qnty">
-                            <h6 class="f-w-600">Quantity</h6>
-                            <fieldset>
-                              <div class="input-group">
-                                <input class="touchspin text-center" type="text" value="5" />
-                              </div>
-                            </fieldset>
-                            <div class="addcart-btn"><a class="btn btn-primary me-3" href="e-commerce/cart">Add to Cart </a><a class="btn btn-primary" href="e-commerce/product-page">View Details</a></div>
-                          </div>
-                        </div>
-                      </div>
-                      <button class="btn-close" type="button" aria-label="Close"></button>
-                    </div>
-                  </div>
-                </div>
-              </div> -->
               <div class="product-details">
                 <div class="product-price">
                   ${{ product.price }}

@@ -55,7 +55,7 @@ async function scrapeWebpage(store, url) {
       let payload = cleanseProduct(productId, title, brand, imageUrl, price, priceBefore, packageSize, store);
 
       const res = await axios.post('https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/products', payload);
-      console.log(res.data.id);
+      console.log(res.data.data.id);
       count++
     })
 
