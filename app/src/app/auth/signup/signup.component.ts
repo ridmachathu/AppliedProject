@@ -17,17 +17,17 @@ export class SignupComponent implements OnInit{
 
   ngOnInit(): void {
     this.signupForm = this.formBuilder.group({
-      // fname:[''],
+      firstname:['', Validators.required],
+      lastname:['', Validators.required],
       email:['', Validators.required],
-      nickname:['', Validators.required],
+      mobile:['', Validators.required],
       password:['', Validators.required],
-      // mobile:['']
     })
   }
 
   signUp(){
     if (this.signupForm.invalid) {
-      alert("Some fields are missing. Please enter");
+      alert("Some fields are missing");
       return;
     }
     this.http.post<any>("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/users/",this.signupForm.value)

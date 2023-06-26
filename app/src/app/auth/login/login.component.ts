@@ -35,8 +35,8 @@ export class LoginComponent implements OnInit {
         alert("Log in Success");
         localStorage.clear();
         // console.log(localStorage);
-        localStorage.setItem('nickname', res.data.nickname);
-        localStorage.setItem('role', res.data.role);
+        localStorage.setItem('firstname', res.data.user.firstname);
+        localStorage.setItem('role', res.data.user.role);
         this.loginForm.reset();
         this.router.navigate([''])
       }
@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
         alert("User not found");
       }
     },err=>{
-      alert("Something went wrong!")
+      alert("User not found")
     }
     )
   }

@@ -27,7 +27,7 @@ export class MyAccountComponent implements OnInit {
   }
 
   setCurrentUser(){
-    this.userName = localStorage.getItem("nickname");
+    this.userName = localStorage.getItem("firstname");
     this.userRole = localStorage.getItem("role");
   }
 }
