@@ -189,14 +189,14 @@
                 </div>
               </div> -->
               <div class="product-details">
-                <p>{{ product.brand }}</p>
-                <a href="ecommerce/product-page">
-                  <h4>{{ product.title }}</h4></a
-                >
                 <div class="product-price">
                   ${{ product.price }}
                   <del *ngIf="product.priceBefore !== 0">${{ product.priceBefore }}</del>
                 </div>
+                <p>{{ product.brand }}</p>
+                <a href="ecommerce/product-page">
+                  <h4>{{ product.title }}</h4></a
+                >
                 <span>{{product.packageSize}}</span>
               </div>
             </div>
