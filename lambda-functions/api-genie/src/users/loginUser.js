@@ -4,11 +4,12 @@
 const dynamodb = require('aws-sdk/clients/dynamodb');
 const docClient = new dynamodb.DocumentClient();
 const passwordHash = require('password-hash');
-const { v4: uuid } = require('uuid');
 const common = require('../../common/common');
+var jwt = require('jsonwebtoken');
 
 // Get the DynamoDB table name from environment variables
 const tableName = process.env.TABLE_NAME;
+const signKey = process.env.SIGN_KEY;
 
 /**
  * A simple example includes a HTTP post method to add one item to a DynamoDB table.
@@ -39,7 +40,17 @@ exports.handler = async (event) => {
         const user = existingUser.Items[0];
         if (passwordHash.verify(body.password, user.password)) {
             delete user.password;
-            return common.getAPIResponseObj(event, user, "User login success", 200);
+
+            var token = jwt.sign({
+                exp: Math.floor(Date.now() / 1000) + (60 * 60),
+                data: user
+            }, signKey);
+
+            let resp = {
+                token: token,
+                user: user
+            }
+            return common.getAPIResponseObj(event, resp, "User login success", 200);
         }
         return common.getAPIResponseObj(event, {}, "Invaid email or password", 400);
     } catch (error) {
