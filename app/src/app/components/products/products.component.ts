@@ -4,6 +4,7 @@ import { ProductService } from "../../shared/services/product.service";
 import * as feather from "feather-icons";
 import * as data from "../../../../../template/src/app/shared/data/ecommerce/products";
 import { QuickViewComponent } from './quick-view/quick-view.component';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-products',
@@ -36,10 +37,15 @@ export class ProductsComponent {
   public gridOptions: boolean = true;
   public active: boolean = false;
 
+  public searchQuery= "";
+  public searchForm: FormGroup;
+  public listDataBackup = [];
+
   @ViewChild("quickView") QuickView: QuickViewComponent;
   constructor(
     private modalService: NgbModal,
-    private productService: ProductService
+    private productService: ProductService,
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit() {
@@ -47,8 +53,18 @@ export class ProductsComponent {
     this.productService.GetAllProducts().subscribe(res => {
       this.listData = res['data'];
     })
+    this.searchForm = this.formBuilder.group({
+      searchField: ['']
+    })
     setTimeout(() => {
       feather.replace();
+    });
+  }
+
+  search(query){
+    this.listDataBackup = this.listData;
+    this.productService.SearchProducts(query).subscribe(res => {
+      this.listData = res['data'];
     });
   }
 

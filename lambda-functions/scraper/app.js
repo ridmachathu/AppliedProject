@@ -3,7 +3,7 @@ const cheerio = require('cheerio');
 const puppeteer = require('puppeteer');
 var HTMLParser = require('node-html-parser');
 
-async function scrapeWebpage(category, url) {
+async function scrapeWebpage(store, url) {
   try {
     // const response = await axios.get(url);
 
@@ -29,7 +29,7 @@ async function scrapeWebpage(category, url) {
 
     let root = HTMLParser.parse(selected.html());
     let count = 0;
-    asyncForEach(root.childNodes, async (child) => {
+    await asyncForEach(root.childNodes, async (child) => {
       let node = child.childNodes[0].childNodes[0];
       let brand, productId, title, packageSize, imageUrl, price, priceBefore;
 
@@ -52,10 +52,10 @@ async function scrapeWebpage(category, url) {
         priceBefore = node.childNodes[1].childNodes[1].childNodes[1].rawText.trim();
       }
 
-      let payload = cleanseProduct(productId, title, brand, imageUrl, price, priceBefore, packageSize, category);
+      let payload = cleanseProduct(productId, title, brand, imageUrl, price, priceBefore, packageSize, store);
 
       const res = await axios.post('https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/products', payload);
-      console.log(res.data.id);
+      console.log(res.data.data.id);
       count++
     })
 
@@ -66,18 +66,21 @@ async function scrapeWebpage(category, url) {
   }
 }
 
-function cleanseProduct(id, title, brand, image, price, priceBefore, packageSize, category){
-  let priceBreak, priceBeforeBreak;
+function cleanseProduct(id, title, brand, image, price, priceBefore, packageSize, store) {
+  let priceBreak, priceBeforeBreak, tags;
   priceBreak = price.split("$")[1];
 
-  if(priceBefore){
+  if (priceBefore) {
     priceBeforeBreak = priceBefore.split("$")[1];
   } else {
     priceBeforeBreak = 0;
   }
 
-  let catBreak = category.split(" ");
+  let catBreak = store.category.split(" ");
+  let nameBreak = title.split(" ");
+  let typeBreak = store.type.split(" ");
 
+  tags = [...catBreak, ...nameBreak, ...typeBreak, store.class]
 
   return {
     id: id,
@@ -87,8 +90,11 @@ function cleanseProduct(id, title, brand, image, price, priceBefore, packageSize
     price: parseFloat(priceBreak),
     priceBefore: parseFloat(priceBeforeBreak),
     packageSize: packageSize,
-    category: category,
-    tags: catBreak
+    tags: tags,
+    store: store.store,
+    class: store.class,
+    type: store.type,
+    category: store.category,
   }
 }
 
@@ -109,4 +115,40 @@ const page = {
 };
 // const url = 'https://www.walmart.ca/search?q=apple%20juice';
 
-scrapeWebpage(page.category, page.url);
+const weblinks = [
+  {
+    "store": "superstore",
+    "class": "food",
+    "type":"fruits vegetables",
+    "category":"fresh vegetables",
+    "links":[
+      "https://www.realcanadiansuperstore.ca/food/fruits-vegetables/fresh-vegetables/c/28195?page=1",
+      "https://www.realcanadiansuperstore.ca/food/fruits-vegetables/fresh-vegetables/c/28195?page=2",
+      "https://www.realcanadiansuperstore.ca/food/fruits-vegetables/fresh-vegetables/c/28195?page=3",
+      "https://www.realcanadiansuperstore.ca/food/fruits-vegetables/fresh-vegetables/c/28195?page=4",
+      "https://www.realcanadiansuperstore.ca/food/fruits-vegetables/fresh-vegetables/c/28195?page=5",
+    ]
+  },
+  {
+    "store": "superstore",
+    "class": "food",
+    "type":"fruits vegetables",
+    "category":"fresh fruites",
+    "links":[
+      "https://www.realcanadiansuperstore.ca/food/fruits-vegetables/fresh-fruits/c/28194?page=1",
+      "https://www.realcanadiansuperstore.ca/food/fruits-vegetables/fresh-fruits/c/28194?page=2",
+      "https://www.realcanadiansuperstore.ca/food/fruits-vegetables/fresh-fruits/c/28194?page=3"
+    ]
+  }
+];
+
+async function main() {
+  console.log("Starting the webscraper...");
+  await asyncForEach(weblinks, async (store) => {
+    await asyncForEach(store.links, async (storeLink) => {
+      await scrapeWebpage(store, storeLink);
+    })
+  });
+}
+
+main();
