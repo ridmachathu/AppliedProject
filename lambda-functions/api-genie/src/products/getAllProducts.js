@@ -30,9 +30,10 @@ exports.handler = async (event) => {
         const data = await docClient.scan(params).promise();
         const items = data.Items;
 
+        let resp = { "statusCode": 200, "data": items, "message": "Get all products is a success" };
         response = {
             statusCode: 200,
-            body: JSON.stringify(items)
+            body: JSON.stringify(resp)
         };
     } catch (ResourceNotFoundException) {
         response = {

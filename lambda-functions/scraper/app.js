@@ -3,7 +3,7 @@ const cheerio = require('cheerio');
 const puppeteer = require('puppeteer');
 var HTMLParser = require('node-html-parser');
 
-async function scrapeWebpage(url) {
+async function scrapeWebpage(category, url) {
   try {
     // const response = await axios.get(url);
 
@@ -52,7 +52,7 @@ async function scrapeWebpage(url) {
         priceBefore = node.childNodes[1].childNodes[1].childNodes[1].rawText.trim();
       }
 
-      let payload = cleanseProduct(productId, title, brand, imageUrl, price, priceBefore, packageSize);
+      let payload = cleanseProduct(productId, title, brand, imageUrl, price, priceBefore, packageSize, category);
 
       const res = await axios.post('https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/products', payload);
       console.log(res.data.id);
@@ -66,7 +66,7 @@ async function scrapeWebpage(url) {
   }
 }
 
-function cleanseProduct(id, title, brand, image, price, priceBefore, packageSize){
+function cleanseProduct(id, title, brand, image, price, priceBefore, packageSize, category){
   let priceBreak, priceBeforeBreak;
   priceBreak = price.split("$")[1];
 
@@ -76,6 +76,9 @@ function cleanseProduct(id, title, brand, image, price, priceBefore, packageSize
     priceBeforeBreak = 0;
   }
 
+  let catBreak = category.split(" ");
+
+
   return {
     id: id,
     title: title,
@@ -83,7 +86,9 @@ function cleanseProduct(id, title, brand, image, price, priceBefore, packageSize
     imageUrl: image,
     price: parseFloat(priceBreak),
     priceBefore: parseFloat(priceBeforeBreak),
-    packageSize: packageSize
+    packageSize: packageSize,
+    category: category,
+    tags: catBreak
   }
 }
 
@@ -94,7 +99,14 @@ async function asyncForEach(array, callback) {
 }
 
 // Replace the URL with your desired webpage
-const url = 'https://www.realcanadiansuperstore.ca/food/fruits-vegetables/fresh-vegetables/c/28195?page=1';
+// const page = {
+//   category: "Fresh Vegetables",
+//   url: 'https://www.realcanadiansuperstore.ca/food/fruits-vegetables/fresh-vegetables/c/28195?page=5'
+// };
+const page = {
+  category: "Fresh Fruits",
+  url: 'https://www.realcanadiansuperstore.ca/food/fruits-vegetables/fresh-fruits/c/28194?page=3'
+};
 // const url = 'https://www.walmart.ca/search?q=apple%20juice';
 
-scrapeWebpage(url);
+scrapeWebpage(page.category, page.url);

@@ -1,7 +1,9 @@
 import { Component, Input, Output, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ProductService } from "../../shared/services/product.service";
 import * as feather from "feather-icons";
 import * as data from "../../../../../template/src/app/shared/data/ecommerce/products";
+import { QuickViewComponent } from './quick-view/quick-view.component';
 
 @Component({
   selector: 'app-products',
@@ -12,8 +14,8 @@ export class ProductsComponent {
   @Input("icon") public icon;
   @Output() productDetail: any;
 
-  public listData = data.product;
-  // public listData = [];
+  // public listData = data.product;
+  public listData = [];
   openSidebar: boolean = false;
   OpenFilter: Boolean = false;
 
@@ -34,10 +36,17 @@ export class ProductsComponent {
   public gridOptions: boolean = true;
   public active: boolean = false;
 
-  // @ViewChild("quickView") QuickView: QuickViewComponent;
-  constructor(private modalService: NgbModal) {}
+  @ViewChild("quickView") QuickView: QuickViewComponent;
+  constructor(
+    private modalService: NgbModal,
+    private productService: ProductService
+  ) {}
 
   ngOnInit() {
+    this.grid6s();
+    this.productService.GetAllProducts().subscribe(res => {
+      this.listData = res['data'];
+    })
     setTimeout(() => {
       feather.replace();
     });

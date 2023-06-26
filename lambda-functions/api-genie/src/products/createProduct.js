@@ -29,6 +29,8 @@ exports.handler = async (event) => {
         price: body.price,
         priceBefore: body.priceBefore,
         packageSize: body.packageSize,
+        tags: body.tags,
+        category: body.category,
         lateUpdatedDateTime: Date.now()
     }
 
