@@ -1,0 +1,6 @@
+{
+    "/api": {
+      "target": "https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/",
+      "secure": false
+    }
+}

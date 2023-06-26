@@ -1,0 +1,45 @@
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import {FormGroup,FormBuilder, Validators} from '@angular/forms'
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.scss']
+})
+export class SignupComponent implements OnInit{
+
+  public signupForm : FormGroup;
+  constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router) {
+
+  }
+
+  ngOnInit(): void {
+    this.signupForm = this.formBuilder.group({
+      // fname:[''],
+      email:['', Validators.required],
+      nickname:['', Validators.required],
+      password:['', Validators.required],
+      // mobile:['']
+    })
+  }
+
+  signUp(){
+    if (this.signupForm.invalid) {
+      alert("Some fields are missing. Please enter");
+      return;
+    }
+    this.http.post<any>("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/users/",this.signupForm.value)
+    .subscribe(res=>{
+      alert("SignUp Successfully");
+      this.signupForm.reset();
+      this.router.navigate(['auth/login']);
+    },err=>{
+      alert("Something went wrong!")
+      console.log(err);
+    }
+    )
+  }
+}
+

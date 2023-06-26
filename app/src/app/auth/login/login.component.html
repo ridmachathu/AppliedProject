@@ -10,8 +10,8 @@
             </a>
           </div>
           <div class="login-main">
-            <form class="theme-form" [formGroup]="loginForm">
-              <h4>Sign in to account</h4>
+            <form class="theme-form" [formGroup]="loginForm" (ngSubmit)="login()">
+              <h4>Log in to account</h4>
               <p>Enter your email & password to login</p>
               <div class="form-group">
                 <label class="col-form-label">Email Address</label>
@@ -31,22 +31,22 @@
                   <input id="checkbox1" type="checkbox" />
                   <label class="text-muted" for="checkbox1">Remember password</label>
                 </div>
-                <a [routerLink]="'/authentication/forgot-password'" class="link">Forgot password?</a>
+                <a [routerLink]="'/auth/forget-password'" class="link">Forgot password?</a>
                 <div class="text-end mt-3">
-                  <button class="btn btn-primary d-block w-100" [disabled]="!loginForm.valid" (click)="login()" type="button"><span>Sign in</span></button>
+                  <button class="btn btn-primary d-block w-100" type="submit"><span>Log in</span></button>
                 </div>
               </div>
-              <h6 class="text-muted mt-4 or">Or Sign in with</h6>
-              <div class="social mt-4">
+              <!-- <h6 class="text-muted mt-4 or">Or Sign in with</h6> -->
+              <!-- <div class="social mt-4">
                 <div class="btn-showcase">
                   <a class="btn btn-light" target="_blank"> <app-feather-icons [icon]="'log-in'" class="txt-google"></app-feather-icons>Google + </a>
                   <a class="btn btn-light" target="_blank"> <app-feather-icons [icon]="'facebook'" class="txt-fb"></app-feather-icons>Facebook </a>
                   <a class="btn btn-light" target="_blank"> <app-feather-icons [icon]="'twitter'" class="txt-twitter"></app-feather-icons>twitter </a>
                 </div>
-              </div>
+              </div> -->
               <p class="mt-4 mb-0">
                 Don't have account?
-                <a [routerLink]="'/authentication/register/simple'" class="ms-2">Create Account</a>
+                <a [routerLink]="'/auth/signup'" class="ms-2">Create Account</a>
               </p>
             </form>
           </div>

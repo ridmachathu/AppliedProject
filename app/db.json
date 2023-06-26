@@ -1,0 +1,25 @@
+{
+  "SignUpUsers": [
+    {
+      "fname": "Tajini Hemanga Punchihewa",
+      "email": "tajini94@gmail.com",
+      "password": "Test@1234",
+      "mobile": 6047714402,
+      "id": 1
+    },
+    {
+      "fname": "Jim Peterson",
+      "email": "jim@gmail.com",
+      "password": "Connect@1234",
+      "mobile": 6047762297,
+      "id": 2
+    },
+    {
+      "fname": "Ridma",
+      "email": "ridma@gmail.com",
+      "password": "12345",
+      "mobile": 6047738832,
+      "id": 3
+    }
+  ]
+}
