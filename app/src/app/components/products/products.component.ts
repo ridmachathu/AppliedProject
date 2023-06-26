@@ -62,10 +62,18 @@ export class ProductsComponent {
   }
 
   search(query){
-    this.listDataBackup = this.listData;
-    this.productService.SearchProducts(query).subscribe(res => {
-      this.listData = res['data'];
-    });
+    if(query !== ""){
+      this.listDataBackup = this.listData;
+      this.productService.SearchProducts(query).subscribe(res => {
+        this.listData = res['data'];
+      });
+    }
+  }
+
+  onSearchChange(event: any){
+    if(event.target.value.length == 0){
+      this.listData = this.listDataBackup;
+    }
   }
 
   toggleListView(val) {
