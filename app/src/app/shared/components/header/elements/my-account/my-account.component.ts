@@ -8,19 +8,26 @@ import { Router } from "@angular/router";
 })
 export class MyAccountComponent implements OnInit {
   public userName: string;
+  public userRole: string;
   public profileImg: "assets/images/dashboard/profile.jpg";
 
   constructor(public router: Router) {
-    if (JSON.parse(localStorage.getItem("user"))) {
-      console.log("true");
-    } else {
-      console.log("NO ");
-    }
+    // if (JSON.parse(localStorage.getItem("user"))) {
+    //   console.log("true");
+    // } else {
+    //   console.log("NO ");
+    // }
+    this.setCurrentUser();
   }
 
   ngOnInit() {}
 
   logoutFunc() {
     this.router.navigateByUrl('auth/login');
+  }
+
+  setCurrentUser(){
+    this.userName = localStorage.getItem("nickname");
+    this.userRole = localStorage.getItem("role");
   }
 }
