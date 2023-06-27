@@ -32,10 +32,10 @@ export class LoginComponent implements OnInit {
       console.log(res);
       const resCode = res.statusCode;
       if(resCode == 200){
-        alert("Log in Success");
+        //alert("Log in Success");
         localStorage.clear();
         // console.log(localStorage);
-        localStorage.setItem('firstname', res.data.user.firstname);
+        localStorage.setItem('userName', res.data.user.firstname);
         localStorage.setItem('role', res.data.user.role);
         this.loginForm.reset();
         this.router.navigate([''])
