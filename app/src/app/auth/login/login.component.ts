@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
         // console.log(localStorage);
         localStorage.setItem('userName', res.data.user.firstname);
         localStorage.setItem('role', res.data.user.role);
+        localStorage.setItem('authUser', JSON.stringify(res.data.user));
         this.loginForm.reset();
         this.router.navigate([''])
       }
