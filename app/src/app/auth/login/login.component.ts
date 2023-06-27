@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   // public user: firebase.User;
   public loginForm: FormGroup;
   public show: boolean = false
-  public errorMessage: any;
+  public errorMessage = "";
 
   constructor(private formBuilder: FormBuilder, public router: Router, private http: HttpClient) {
     
@@ -32,7 +32,6 @@ export class LoginComponent implements OnInit {
       console.log(res);
       const resCode = res.statusCode;
       if(resCode == 200){
-        //alert("Log in Success");
         localStorage.clear();
         // console.log(localStorage);
         localStorage.setItem('userName', res.data.user.firstname);
@@ -42,10 +41,10 @@ export class LoginComponent implements OnInit {
         this.router.navigate([''])
       }
       else{
-        alert("User not found");
+        this.errorMessage = "Invalid email or password"
       }
     },err=>{
-      alert("User not found")
+      this.errorMessage = err.error.message
     }
     )
   }
