@@ -9,6 +9,7 @@ import { SharedModule } from "./shared/shared.module";
 import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
+import { AdminGuard } from './shared/guard/admin.guard';
 
 // // for HttpClient import:
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
@@ -63,7 +64,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 //     // for Core use:
     LoadingBarModule
   ],
-  providers: [CookieService, ProductService],
+  providers: [CookieService, AdminGuard, ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

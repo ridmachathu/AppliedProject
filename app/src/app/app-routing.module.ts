@@ -7,12 +7,15 @@ import { full } from "./shared/routes/full.routes";
 import { content } from "./shared/routes/routes";
 import { SignupComponent } from "./auth/signup/signup.component";
 import { ForgetPasswordComponent } from "./auth/forget-password/forget-password.component";
+import { AdminGuard } from './shared/guard/admin.guard';
+
 
 const routes: Routes = [
   {
     path: "",
     redirectTo: "dashboard",
     pathMatch: "full",
+    canActivate:[AdminGuard]
   },
   {
     path: 'auth/login',
@@ -29,15 +32,14 @@ const routes: Routes = [
   {
     path: "",
     component: ContentComponent,
-    children: content
-
+    children: content,
+    canActivate:[AdminGuard]
   },
   {
     path: "",
     component: FullComponent,
-    children: full
-
-
+    children: full,
+    canActivate:[AdminGuard]
   },
   {
     path: "**",
