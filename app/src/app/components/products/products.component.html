@@ -153,7 +153,7 @@
                   <del *ngIf="product.priceBefore !== 0">${{ product.priceBefore }}</del>
                 </div>
                 <p>{{ product.brand }}</p>
-                <a href="ecommerce/product-page">
+                <a [routerLink]="['/products/details', product.id]">
                   <h4>{{ product.title }}</h4></a
                 >
                 <span>{{product.packageSize}}</span>
