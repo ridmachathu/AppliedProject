@@ -92,8 +92,8 @@ function cleanseProduct(id, title, brand, image, price, priceBefore, packageSize
     packageSize: packageSize,
     tags: tags,
     store: store.store,
-    class: store.class,
-    type: store.type,
+    productClass: store.class,
+    productType: store.type,
     category: store.category,
   }
 }

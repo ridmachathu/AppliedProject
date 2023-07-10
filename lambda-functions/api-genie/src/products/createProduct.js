@@ -52,8 +52,8 @@ exports.handler = async (event) => {
             packageSize: body.packageSize,
             tags: tags,
             store: body.store,
-            class: body.class,
-            type: body.type,
+            productClass: body.productClass,
+            productType: body.productType,
             category: body.category,
             lateUpdatedDateTime: Date.now()
         }
@@ -80,9 +80,9 @@ function _validateBody(body) {
         isValid = false;
     } else if (body.store === undefined || body.store === "") {
         isValid = false;
-    } else if (body.class === undefined || body.class === "") {
+    } else if (body.productClass === undefined || body.productClass === "") {
         isValid = false;
-    } else if (body.type === undefined || body.type === "") {
+    } else if (body.productType === undefined || body.productType === "") {
         isValid = false;
     } else if (body.category === undefined || body.category === "") {
         isValid = false;
