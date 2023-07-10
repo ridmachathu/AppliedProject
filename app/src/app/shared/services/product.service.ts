@@ -17,6 +17,11 @@ export class ProductService {
   public SearchProducts(query) {
     return this.http.get("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/products/search?query="+query);
   }
+
+  public GetProductById(id) {
+    return this.http.get("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/products/"+id);
+  }
+
   // public post(url: string, data: any, options?: any) {
   //   return this.http.post(url, data, options);
   // }
