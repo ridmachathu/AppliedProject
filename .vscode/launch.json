@@ -1,8 +1,17 @@
 {
     "configurations": [
         {
-            "name": "scraper",
-            "program": "${workspaceFolder}/lambda-functions/scraper/app.js",
+            "name": "superstore",
+            "program": "${workspaceFolder}/lambda-functions/scraper/superstore.js",
+            "request": "launch",
+            "runtimeExecutable": "nodemon",
+            "type": "node",
+            "console": "integratedTerminal",
+            "cwd":"${workspaceFolder}/lambda-functions/scraper"
+        },
+        {
+            "name": "saveonfoods",
+            "program": "${workspaceFolder}/lambda-functions/scraper/saveonfoods.js",
             "request": "launch",
             "runtimeExecutable": "nodemon",
             "type": "node",

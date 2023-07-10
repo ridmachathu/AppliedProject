@@ -139,6 +139,18 @@ const weblinks = [
       "https://www.realcanadiansuperstore.ca/food/fruits-vegetables/fresh-fruits/c/28194?page=2",
       "https://www.realcanadiansuperstore.ca/food/fruits-vegetables/fresh-fruits/c/28194?page=3"
     ]
+  },
+  {
+    "store": "superstore",
+    "class": "food",
+    "type":"meat",
+    "category":"bacon sausages hot dogs",
+    "links":[
+      "https://www.realcanadiansuperstore.ca/food/meat/bacon-sausages-hot-dogs/c/28170",
+      "https://www.realcanadiansuperstore.ca/food/meat/bacon-sausages-hot-dogs/c/28170?page=2",
+      "https://www.realcanadiansuperstore.ca/food/meat/bacon-sausages-hot-dogs/c/28170?page=3",
+      "https://www.realcanadiansuperstore.ca/food/meat/bacon-sausages-hot-dogs/c/28170?page=4"
+    ]
   }
 ];
 
