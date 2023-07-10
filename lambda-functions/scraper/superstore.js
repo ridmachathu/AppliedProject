@@ -92,8 +92,8 @@ function cleanseProduct(id, title, brand, image, price, priceBefore, packageSize
     packageSize: packageSize,
     tags: tags,
     store: store.store,
-    class: store.class,
-    type: store.type,
+    productClass: store.class,
+    productType: store.type,
     category: store.category,
   }
 }
@@ -138,6 +138,18 @@ const weblinks = [
       "https://www.realcanadiansuperstore.ca/food/fruits-vegetables/fresh-fruits/c/28194?page=1",
       "https://www.realcanadiansuperstore.ca/food/fruits-vegetables/fresh-fruits/c/28194?page=2",
       "https://www.realcanadiansuperstore.ca/food/fruits-vegetables/fresh-fruits/c/28194?page=3"
+    ]
+  },
+  {
+    "store": "superstore",
+    "class": "food",
+    "type":"meat",
+    "category":"bacon sausages hot dogs",
+    "links":[
+      "https://www.realcanadiansuperstore.ca/food/meat/bacon-sausages-hot-dogs/c/28170",
+      "https://www.realcanadiansuperstore.ca/food/meat/bacon-sausages-hot-dogs/c/28170?page=2",
+      "https://www.realcanadiansuperstore.ca/food/meat/bacon-sausages-hot-dogs/c/28170?page=3",
+      "https://www.realcanadiansuperstore.ca/food/meat/bacon-sausages-hot-dogs/c/28170?page=4"
     ]
   }
 ];

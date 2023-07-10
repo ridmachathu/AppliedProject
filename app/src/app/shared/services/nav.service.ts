@@ -94,10 +94,52 @@ export class NavService implements OnDestroy {
       headTitle1: "Categories",
     },
     { path: "/products", icon: "ecommerce", title: "All", type: "link", bookmark: true },
-    { path: "/single-page", icon: "bookmark", title: "Groceries", type: "link", bookmark: true },
-    { path: "/single-page", icon: "others", title: "Home & Kitchen", type: "link", bookmark: true },
-    { path: "/single-page", icon: "task", title: "Garden", type: "link", bookmark: true },
-    
+    {
+      title: "Forms",
+      icon: "form",
+      type: "sub",
+      active: false,
+      children: [
+        {
+          title: "Form Controls",
+          icon: "file-text",
+          type: "sub",
+          active: false,
+          children: [
+            { path: "/form/form-controls/validation", title: "Form Validation", type: "link" },
+            { path: "/form/form-controls/inputs", title: "Base Inputs", type: "link" },
+            { path: "/form/form-controls/checkbox-radio", title: "Checkbox & Radio", type: "link" },
+            { path: "/form/form-controls/input-groups", title: "Input Groups", type: "link" },
+            { path: "/form/form-controls/mega-options", title: "Mega Options", type: "link" },
+          ],
+        },
+        {
+          title: "Form Widgets",
+          icon: "file-text",
+          type: "sub",
+          active: false,
+          children: [
+            { path: "/form/form-widgets/touchspin", title: "Touchspin", type: "link" },
+            { path: "/form/form-widgets/ngselect", title: "Ng-Select", type: "link" },
+            { path: "/form/form-widgets/switch", title: "Switch", type: "link" },
+            { path: "/form/form-widgets/clipboard", title: "Clipboard", type: "link" },
+          ],
+        },
+        {
+          title: "Form Layout",
+          icon: "file-text",
+          type: "sub",
+          active: false,
+          children: [
+            { path: "/form/form-layout/default-form", title: "Default Forms", type: "link" },
+            { path: "/form/form-layout/form-wizard", title: "Form Wizard 1", type: "link" },
+            { path: "/form/form-layout/form-wizard-two", title: "Form Wizard 2", type: "link" },
+            { path: "/form/form-layout/form-wizard-three", title: "Form Wizard 3", type: "link" },
+            { path: "/form/form-layout/form-wizard-four", title: "Form Wizard 4", type: "link" },
+          ],
+        },
+      ],
+    },
   ];
 
   // Array
