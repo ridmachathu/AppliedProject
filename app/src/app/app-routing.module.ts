@@ -1,3 +1,4 @@
+import { ProfileComponent } from "./components/profile/profile.component";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { LoginComponent } from "./auth/login/login.component";
@@ -8,6 +9,7 @@ import { content } from "./shared/routes/routes";
 import { SignupComponent } from "./auth/signup/signup.component";
 import { ForgetPasswordComponent } from "./auth/forget-password/forget-password.component";
 import { AdminGuard } from './shared/guard/admin.guard';
+import { NewListComponent } from "./components/single-page/create-new/new-list/new-list.component";
 
 
 const routes: Routes = [
@@ -28,6 +30,16 @@ const routes: Routes = [
   {
     path: 'auth/forget-password',
     component: ForgetPasswordComponent
+  },
+  {
+    path: 'components/profile',
+    component: ProfileComponent,
+    canActivate:[AdminGuard]
+  },
+  {
+    path: 'components/single-page/create-new/new-list',
+    component: NewListComponent,
+    // canActivate:[AdminGuard]
   },
   {
     path: "",

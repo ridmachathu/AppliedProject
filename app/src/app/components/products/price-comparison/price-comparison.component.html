@@ -1,0 +1,69 @@
+<app-breadcrumb [title]="'Smart Comparison'" [items]="['Apps', 'Ecommerce']" [active_item]="'Smart comparison'"></app-breadcrumb>
+<!-- Container-fluid starts-->
+<div class="container-fluid product-wrapper" [class.sidebaron]="openSidebar">
+  <div class="row">
+    <!-- Individual column searching (text inputs) Starts-->
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <!-- <span>Search your product from here..</span> -->
+          <div class="row">
+            <!-- <div class="col-xl-9 col-md-8">
+              <form>
+                <div class="form-group m-0"><input class="form-control" type="search" placeholder="Search your product from here.." data-original-title="" title="" /></div>
+              </form>
+            </div> -->
+            <div class="col-xl-9 col-md-8">
+              <form (ngSubmit)="search(searchQuery)">
+                <div class="form-group m-0"><input class="form-control" type="search" placeholder="Search.." data-original-title="" title="" [(ngModel)]="searchQuery" (change)="onSearchChange($event)" /></div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="product-list-custom custom-datatable">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <!-- <th scope="col"></th> -->
+                    <th scope="col">Item</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Store</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let product of products; index as i">
+                    <!-- <td>
+                      <img [src]="product.img" class="me-2 img-fluid" />
+                    </td> -->
+                    <td>
+                      <h6>{{ product.name }}</h6>
+                      <span>{{ product.desc }}</span>
+                    </td>
+                    <td>${{ product.amount }}</td>
+                    <td>{{ product.store }}</td>
+                    <td>
+                      <div [ngClass]="{ 'font-success': product.stock === 'In Stock', 'font-danger': product.stock === 'out of stock', 'font-primary': product.stock === 'No Signal' }">{{ product.stock }}</div>
+                    </td>
+                    <td>
+                      <div class="m-t-10 btn-showcase">
+                        <button class="btn btn-primary btn-sm" type="button" title=""><i class="fa fa-shopping-basket me-1"></i>Add To Shopping List</button>
+                        <button class="btn btn-secondary btn-sm" type="button"> <i class="fa fa-heart me-1"></i>Add To WishList</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Individual column searching (text inputs) Ends-->
+  </div>
+</div>
+<!-- Container-fluid Ends-->
+

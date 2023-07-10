@@ -20,5 +20,9 @@ export const content: Routes = [
   {
     path: "products",
     loadChildren: () => import("../../components/products/products.module").then((m) => m.ProductsModule),
-  }
+  },
+  // {
+  //   path: "price-comparison",
+  //   loadChildren: () => import("../../components/products/price-comparison/price-comparison.module").then((m) => m.PriceComparisonModule),
+  // }
 ];
