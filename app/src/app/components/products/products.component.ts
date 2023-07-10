@@ -2,7 +2,6 @@ import { Component, Input, Output, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProductService } from "../../shared/services/product.service";
 import * as feather from "feather-icons";
-import * as data from "../../../../../template/src/app/shared/data/ecommerce/products";
 import { QuickViewComponent } from './quick-view/quick-view.component';
 import { FormBuilder, FormGroup } from '@angular/forms';
 

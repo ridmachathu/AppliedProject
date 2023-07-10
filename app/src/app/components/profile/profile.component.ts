@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import {
   ButtonsConfig,
   ButtonsStrategy,
@@ -27,8 +26,6 @@ import {
 })
 export class ProfileComponent implements OnInit {
 
-  public userName: any;
-  public userRole: any;
   public url: any;
 
   images: Image[] = [
@@ -48,15 +45,7 @@ export class ProfileComponent implements OnInit {
       })
   ]
 
-  constructor(private modalGalleryService: ModalGalleryService, public router: Router) {
-    this.setCurrentUser();
-  }
-
-  setCurrentUser(){
-    console.log(localStorage);
-    this.userName = localStorage.getItem("userName");
-    this.userRole = localStorage.getItem("role");
-  }
+  constructor(private modalGalleryService: ModalGalleryService) {}
 
   libConfigPlainGalleryRow: PlainLibConfig = {
     plainGalleryConfig: {
