@@ -6,18 +6,23 @@ import { ProductsComponent } from './products.component';
 import { PriceComparisonComponent } from './price-comparison/price-comparison.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { QuickViewComponent } from './quick-view/quick-view.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
+
+import { GalleryModule } from '@ks89/angular-modal-gallery';
 
 
 @NgModule({
   declarations: [
     ProductsComponent,
     QuickViewComponent,
-    PriceComparisonComponent
+    PriceComparisonComponent,
+    ProductDetailsComponent
   ],
   imports: [
     CommonModule,
     ProductsRoutingModule,
-    SharedModule
+    SharedModule,
+    GalleryModule
   ]
 })
 export class ProductsModule { }
