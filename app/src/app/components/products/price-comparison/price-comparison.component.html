@@ -15,13 +15,15 @@
             </div> -->
             <div class="col-xl-9 col-md-8">
               <form (ngSubmit)="search(searchQuery)">
+                <p class="mt-4 mb-0">Search the product</p>
                 <div class="form-group m-0"><input class="form-control" type="search" placeholder="Search.." data-original-title="" title="" [(ngModel)]="searchQuery" (change)="onSearchChange($event)" /></div>
               </form>
             </div>
           </div>
         </div>
-        <div class="card-body">
+        <div class="card-body" [style.visibility]="isDivVisible ? 'visible' : 'hidden'">
           <div class="product-list-custom custom-datatable">
+            <p><b>Lowest price :</b> {{ minPrice }} <b>Store :</b> {{ minStore }}</p>
             <div class="table-responsive">
               <table class="table">
                 <thead>
@@ -30,24 +32,22 @@
                     <th scope="col">Item</th>
                     <th scope="col">Price</th>
                     <th scope="col">Store</th>
-                    <th scope="col">Stock</th>
-                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let product of products; index as i">
+                  <tr *ngFor="let product of listData; index as i">
                     <!-- <td>
                       <img [src]="product.img" class="me-2 img-fluid" />
                     </td> -->
                     <td>
-                      <h6>{{ product.name }}</h6>
-                      <span>{{ product.desc }}</span>
+                      <h6>{{ product.title }}</h6>
+                      <span>{{ product.brand }}</span>
                     </td>
-                    <td>${{ product.amount }}</td>
+                    <td>${{ product.price }}</td>
                     <td>{{ product.store }}</td>
-                    <td>
+                    <!-- <td>
                       <div [ngClass]="{ 'font-success': product.stock === 'In Stock', 'font-danger': product.stock === 'out of stock', 'font-primary': product.stock === 'No Signal' }">{{ product.stock }}</div>
-                    </td>
+                    </td> -->
                     <td>
                       <div class="m-t-10 btn-showcase">
                         <button class="btn btn-primary btn-sm" type="button" title=""><i class="fa fa-shopping-basket me-1"></i>Add To Shopping List</button>

@@ -27,8 +27,9 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { SignupComponent } from './auth/signup/signup.component';
 
 import { ProductService } from './shared/services/product.service';
-import { NewListComponent } from './components/single-page/create-new/new-list/new-list.component';
-import { NgxDropzoneModule } from 'ngx-dropzone';
+// import { NewListComponent } from './components/single-page/create-new/new-list/new-list.component';
+// import { NgxDropzoneModule } from 'ngx-dropzone';
+// import { ProfileComponent } from './components/profile/profile.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
@@ -39,7 +40,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     LoginComponent,
     SignupComponent,
-    NewListComponent,
+    // NewListComponent,
+    // ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
-    NgxDropzoneModule,
+    // NgxDropzoneModule,
     ToastrModule.forRoot(),
     TranslateModule.forRoot({
       loader: {

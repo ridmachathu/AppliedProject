@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 export class SignupComponent implements OnInit{
 
   public signupForm : FormGroup;
+  public errorMessage = "";
+  public successMessage = "";
   constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router) {
 
   }
@@ -27,16 +29,18 @@ export class SignupComponent implements OnInit{
 
   signUp(){
     if (this.signupForm.invalid) {
-      alert("Some fields are missing");
+      // alert("Some fields are missing");
+      this.errorMessage = "Some fields are missing"
       return;
     }
     this.http.post<any>("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/users/",this.signupForm.value)
     .subscribe(res=>{
-      alert("SignUp Successfully");
+      // alert("SignUp Successfully");
+      this.successMessage = "User registration is successful!"
       this.signupForm.reset();
       this.router.navigate(['auth/login']);
     },err=>{
-      alert("Something went wrong!")
+      this.errorMessage = err.error.message
       console.log(err);
     }
     )

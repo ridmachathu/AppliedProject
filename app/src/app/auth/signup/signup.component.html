@@ -16,28 +16,48 @@
                 <div class="form-group">
                     <label class="col-form-label">First Name</label>
                     <input class="form-control" type="text" required="" placeholder="Jim" formControlName="firstname" />
+                    <div *ngIf="signupForm.controls.firstname.touched && signupForm.controls.firstname.errors?.required"
+                      class="text text-danger mt-1">First Name is required</div>
                 </div>
                 <div class="form-group">
                   <label class="col-form-label">Last Name</label>
                   <input class="form-control" type="text" required="" placeholder="Perterson" formControlName="lastname" />
+                  <div *ngIf="signupForm.controls.lastname.touched && signupForm.controls.lastname.errors?.required"
+                      class="text text-danger mt-1">Last Name is required</div>
                 </div>
                 <div class="form-group">
                   <label class="col-form-label">Email Address</label>
                   <input class="form-control" type="email" required="" placeholder="app@yourmail.com" formControlName="email" />
+                  <div *ngIf="signupForm.controls.email.touched && signupForm.controls.email.errors?.required"
+                      class="text text-danger mt-1">Email Address is required</div>
                 </div>
                 <div class="form-group">
                   <label class="col-form-label">Mobile Number</label>
                   <input class="form-control" type="number" required="" placeholder="+16048839237" formControlName="mobile" />
+                  <div *ngIf="signupForm.controls.mobile.touched && signupForm.controls.mobile.errors?.required"
+                      class="text text-danger mt-1">Mobile Number</div>
                 </div>
                 <div class="form-group">
                   <label class="col-form-label">Password</label>
                   <input class="form-control" type="password" formControlName="password" required="" placeholder="*********" />
+                  <div *ngIf="signupForm.controls.email.touched && signupForm.controls.email.errors?.required"
+                      class="text text-danger mt-1">Password is required</div>
                 </div>
                 <div class="form-group mb-0">
                   <div class="text-end mt-3">
                     <button class="btn btn-primary d-block w-100" type="submit"><span>Sign Up</span></button>
                   </div>
                 </div>
+                <p class="mt-4 mb-0">
+                  Already a user?
+                  <a [routerLink]="'/auth/login'" class="ms-2">Login</a>
+                </p>
+                <ngb-alert class="login-alert" *ngIf="errorMessage !== ''" [type]="'danger'" [dismissible]="false">
+                  {{ errorMessage }}
+                </ngb-alert>
+                <ngb-alert class="login-alert" *ngIf="successMessage !== ''" [type]="'success'" [dismissible]="false">
+                  {{ successMessage }}
+                </ngb-alert>
               </form>
             </div>
           </div>
