@@ -1,0 +1,107 @@
+<app-breadcrumb [title]="'Profile'" [items]="['Apps', 'User']" [active_item]="'Profile'"></app-breadcrumb>
+<div class="container-fluid">
+  <div class="user-profile">
+    <section class="h-100 gradient-custom-2">
+      <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col col-xl-9 col-xl-7">
+            <div class="card">
+              <div class="rounded-top text-white d-flex flex-row" style="background-color: #7366ff; height:200px;">
+                <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
+                  <img src="assets/images/user/3.png"
+                    alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
+                    style="width: 150px; z-index: 1">
+                </div>
+                <div class="ms-3" style="margin-top: 130px;">
+                  <h5>{{ obj.firstname }} {{ obj.lastname }}</h5>
+                  <p>{{ userRole }}</p>
+                </div>
+              </div>
+              <div class="p-4 text-black" style="background-color: #f8f9fa;">
+                <div class="d-flex justify-content-end text-center py-1">
+                </div>
+              </div>
+              <div class="card-body p-4 text-black">
+                <div class="mb-5">
+                  <p class="lead fw-normal mb-1">About</p>
+                  <div class="p-4" style="background-color: #f8f9fa;">
+                    <!-- <p class="font-italic mb-1">Web Developer</p>
+                    <p class="font-italic mb-1">Lives in New York</p>
+                    <p class="font-italic mb-0">Photographer</p> -->
+                    <form class="theme-form" [formGroup]="profileUpdateForm" (ngSubmit)="updateUser()">
+                      <div class="form-group">
+                        <div class="row mb-3">
+                          <div class="col-sm-5">
+                            <h6 class="mb-0">First Name</h6>
+                          </div>
+                          <div class="col-sm-6 text-secondary">
+                            <input type="text" class="form-control" value="{{ fname }}" formControlName="firstname">
+                          </div>
+                        </div>
+                        <!-- <div *ngIf="profileUpdateForm.controls.firstname.touched && profileUpdateForm.controls.firstname.errors?.required"
+                            class="text text-danger mt-1">First Name is required</div> -->
+                      </div>
+                      <div class="form-group">
+                        <div class="row mb-3">
+                          <div class="col-sm-5">
+                            <h6 class="mb-0">Last Name</h6>
+                          </div>
+                          <div class="col-sm-6 text-secondary">
+                            <input type="text" class="form-control" value="{{ lname }}" formControlName="lastname">
+                          </div>
+                        </div>
+                        <!-- <div *ngIf="profileUpdateForm.controls.lastname.touched && profileUpdateForm.controls.lastname.errors?.required"
+                            class="text text-danger mt-1">Last Name is required</div> -->
+                      </div>
+                      <div class="form-group">
+                        <div class="row mb-3">
+                          <div class="col-sm-5">
+                            <h6 class="mb-0">Email</h6>
+                          </div>
+                          <div class="col-sm-6 text-secondary">
+                            <input type="text" class="form-control" value="{{ useremail }}" formControlName="email">
+                          </div>
+                        </div>
+                        <!-- <div *ngIf="profileUpdateForm.controls.email.touched && profileUpdateForm.controls.email.errors?.required"
+                            class="text text-danger mt-1">Email Address is required</div> -->
+                      </div>
+                      <div class="form-group">
+                        <div class="row mb-3">
+                          <div class="col-sm-5">
+                            <h6 class="mb-0">Phone</h6>
+                          </div>
+                          <div class="col-sm-6 text-secondary">
+                            <input type="text" class="form-control" value="{{ phone }}" formControlName="mobile">
+                          </div>
+                        </div>
+                        <!-- <div *ngIf="profileUpdateForm.controls.mobile.touched && profileUpdateForm.controls.mobile.errors?.required"
+                            class="text text-danger mt-1">Mobile Number</div> -->
+                      </div>
+                      <div class="form-group mb-0">
+                        <div class="row">
+                          <div class="col-sm-8"></div>
+                          <div class="col-sm-6 text-secondary">
+                            <!-- <button type="submit" class="btn btn-primary px-4"><span>Save Changes</span></button> -->
+                            <button type="button" type="submit" class="btn btn-primary px-4" data-mdb-ripple-color="dark"style="z-index: 1;">
+                              Save Changes
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <ngb-alert class="login-alert" *ngIf="errorMessage !== ''" [type]="'danger'" [dismissible]="false">
+                        {{ errorMessage }}
+                      </ngb-alert>
+                      <ngb-alert class="login-alert" *ngIf="successMessage !== ''" [type]="'success'" [dismissible]="false">
+                        {{ successMessage }}
+                      </ngb-alert>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

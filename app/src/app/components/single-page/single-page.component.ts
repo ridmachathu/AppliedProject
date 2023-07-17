@@ -14,4 +14,8 @@ export class SinglePageComponent {
 		config.readonly = true;
    }
 
+  //  btnnewlist () {
+  //   this.router.navigateByUrl('/single-page/newlist');
+  //  };
+
 }

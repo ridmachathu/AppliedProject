@@ -14,9 +14,14 @@ export class PriceComparisonComponent {
   public listData = [];
   public listDataBackup = [];
   public searchQuery= "";
+  public minPrice: string;
+  public minStore: string;
+  isDivVisible = false;
+  public searchTerm: string;
+  public caseSensitive = false;
 
   sidebaron: boolean = false;
-  public products = PRODUCT;
+  // public products = PRODUCT;
   active = 1;
 
   // sidebarToggle() {
@@ -33,7 +38,18 @@ export class PriceComparisonComponent {
     if(query !== ""){
       this.listDataBackup = this.listData;
       this.productService.SearchProducts(query).subscribe(res => {
+        //console.log(res['data'][0])
         this.listData = res['data'];
+        this.isDivVisible = true;
+        this.minPrice = res['data'][0]['price']
+        this.minStore = res['data'][0]['store']
+        for (let i = 0; i < res['data'].length; i++) {
+          if(this.minPrice > res['data'][i]['price']) {
+            this.minPrice = res['data'][i]['price'];
+            this.minStore = res['data'][i]['store']
+          }
+        }
+        this.searchTerm = this.minPrice;
       });
     }
   }
@@ -45,60 +61,3 @@ export class PriceComparisonComponent {
   }
 }
 
-export interface Product {
-  id: number;
-  img?: string;
-  name: string;
-  desc: string;
-  amount: number;
-  stock: string;
-  store: string;
-}
-
-export const PRODUCT: Product[] = [
-  {
-    id: 1,
-    img: "assets/images/ecommerce/product-table-1.png",
-    name: "Men's Shirt",
-    desc: "Vida Loca - Blue Denim Fit Men's Casual Shirt.",
-    amount: 10,
-    stock: "In Stock",
-    store: "Walmart",
-  },
-  {
-    id: 2,
-    img: "assets/images/ecommerce/product-table-2.png",
-    name: "Red Shirt",
-    desc: "Wild West - Red Cotton Blend Regular Fit Men's Formal Shirt.",
-    amount: 7,
-    stock: "out of stock",
-    store: "Safeway",
-  },
-  {
-    id: 3,
-    img: "assets/images/ecommerce/product-table-3.png",
-    name: "Brown Dress",
-    desc: "aask - Brown Polyester Blend Women's Fit & Flare Dress.",
-    amount: 14,
-    stock: "In Stock",
-    store: "Save on foods",
-  },
-  {
-    id: 4,
-    img: "assets/images/ecommerce/product-table-4.png",
-    name: "Red Skirt",
-    desc: "R L F - Red Cotton Blend Women's A-Line Skirt.",
-    amount: 8,
-    stock: "Low Stock",
-    store: "Costco",
-  },
-  {
-    id: 5,
-    img: "assets/images/ecommerce/product-table-5.png",
-    name: "Jeans Jacket",
-    desc: "The Dry State - Blue Denim Regular Fit Men's Denim Jacket.",
-    amount: 8,
-    stock: "In Stock",
-    store: "Super store"
-  }
-];

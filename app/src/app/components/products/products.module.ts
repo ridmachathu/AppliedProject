@@ -9,6 +9,7 @@ import { QuickViewComponent } from './quick-view/quick-view.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 
 import { GalleryModule } from '@ks89/angular-modal-gallery';
+import { HighlightDirective } from './highlight/highlight.directive';
 
 
 @NgModule({
@@ -16,13 +17,15 @@ import { GalleryModule } from '@ks89/angular-modal-gallery';
     ProductsComponent,
     QuickViewComponent,
     PriceComparisonComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    HighlightDirective
   ],
   imports: [
     CommonModule,
     ProductsRoutingModule,
     SharedModule,
     GalleryModule
-  ]
+  ],
+  exports: [HighlightDirective]
 })
 export class ProductsModule { }
