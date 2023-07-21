@@ -81,7 +81,7 @@ export class SidebarComponent {
   }
 
   // Click Toggle menu
-  toggletNavActive(item) {
+  toggletNavActive(item, parentItem) {
     if (!item.active) {
       this.menuItems.forEach(a => {
         if (this.menuItems.includes(item)) {
@@ -94,6 +94,7 @@ export class SidebarComponent {
           }
         });
       });
+      this.loadTypesForClass(item, parentItem);
     }
     item.active = !item.active;
   }
@@ -122,5 +123,14 @@ export class SidebarComponent {
     }
   }
 
-
+  loadTypesForClass(menuItem, parentItem) {
+    if (menuItem.isDynamic) {
+      if(menuItem.menuType === 'class'){
+        this.navServices.GetAllTypesForClass(menuItem.title);
+      }
+      if(menuItem.menuType === 'type'){
+        this.navServices.GetAllCategoriesForType(menuItem.title, parentItem);
+      }
+    }
+  }
 }
