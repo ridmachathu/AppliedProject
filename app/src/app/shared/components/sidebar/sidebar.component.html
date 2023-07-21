@@ -106,7 +106,7 @@
                       <ul class="nav-sub-childmenu submenu-content" *ngIf="childrenItem.children" [ngClass]="{ active: childrenItem.active }" [ngClass]="{ 'menu-open': childrenItem.active, 'menu-close': !childrenItem.active }" [style.display]="childrenItem.active ? 'block' : 'none'">
                         <li *ngFor="let childrenSubItem of childrenItem.children" [ngClass]="{ active: childrenSubItem.active }">
                           <!-- Link -->
-                          <a [routerLink]="!childrenSubItem.type ? null : [childrenSubItem.path]" *ngIf="childrenSubItem.type === 'link'" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                          <a [routerLink]="!childrenSubItem.type ? null : [childrenSubItem.path, childrenSubItem.title]" *ngIf="childrenSubItem.type === 'link'" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                             {{ childrenSubItem.title | translate }}
                           </a>
                           <!-- External Link -->

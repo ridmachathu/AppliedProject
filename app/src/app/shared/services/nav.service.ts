@@ -49,7 +49,7 @@ export class NavService implements OnDestroy {
   constructor(
     private router: Router,
     private productService: ProductService,
-    ) {
+  ) {
     this.setScreenWidth(window.innerWidth);
     fromEvent(window, "resize")
       .pipe(debounceTime(1000), takeUntil(this.unsubscriber))
@@ -82,19 +82,19 @@ export class NavService implements OnDestroy {
     })
   }
 
-  private getClassMenuItem(title){
+  private getClassMenuItem(title) {
     return {
       title: title,
       isDynamic: true,
       menuType: 'class',
-      icon: "form",
+      icon: "ecommerce",
       type: "sub",
       active: false,
       children: []
     }
   }
 
-  private getTypeMenuItem(title){
+  private getTypeMenuItem(title) {
     return {
       title: title,
       isDynamic: true,
@@ -103,6 +103,16 @@ export class NavService implements OnDestroy {
       type: "sub",
       active: false,
       children: []
+    }
+  }
+
+  private getCategoryMenuItem(title) {
+    return {
+      isDynamic: true,
+      menuType: 'type',
+      path: "/products/category",
+      title: title,
+      type: "link"
     }
   }
 
@@ -118,9 +128,9 @@ export class NavService implements OnDestroy {
   public GetAllTypesForClass(productClass) {
     this.productService.GetProductTypesForClass(productClass).subscribe(res => {
       let productTypes = res['data'];
-      productTypes.forEach(productType => {
-        this.MENUITEMS.forEach(menuItem => {
-          if(menuItem.title === productClass && menuItem.children.length !== productTypes.length){
+      this.MENUITEMS.forEach(menuItem => {
+        productTypes.forEach(productType => {
+          if (menuItem.title === productClass && menuItem.children.length !== productTypes.length) {
             menuItem.children.push(this.getTypeMenuItem(productType))
           }
         });
@@ -129,24 +139,24 @@ export class NavService implements OnDestroy {
   }
 
   public GetAllCategoriesForType(productType, parentItem) {
-    alert("Parent: "+parentItem.title)
     this.productService.GetProductCategoriesForType(productType).subscribe(res => {
       let productCategories = res['data'];
-      productCategories.forEach(productCategory => {
-        this.MENUITEMS.forEach(menuItem => {
-          if(menuItem.title === parentItem.title){
-            debugger
-          }
-          // if(menuItem.title === productClass && menuItem.children.length !== productTypes.length){
-          //   menuItem.children.push(this.getTypeMenuItem(productType))
-          // }
-        });
+      this.MENUITEMS.forEach(menuItem => {
+        if (menuItem.title === parentItem.title) {
+          menuItem.children.forEach(childMenuItem => {
+            productCategories.forEach(productCategory => {
+              if (childMenuItem.title === productType && childMenuItem.children.length !== productCategories.length) {
+                childMenuItem.children.push(this.getCategoryMenuItem(productCategory))
+              }
+            });
+          });
+        }
       });
     })
   }
 
   MENUITEMS: Menu[] = [
-   
+
     {
       headTitle1: "General",
     },
@@ -159,71 +169,25 @@ export class NavService implements OnDestroy {
     {
       headTitle1: "Categories",
     },
-    { path: "/products", icon: "ecommerce", title: "All", type: "link", bookmark: true },
-    {
-      title: "Forms",
-      icon: "form",
-      type: "sub",
-      active: false,
-      children: [
-        {
-          title: "Form Controls",
-          icon: "file-text",
-          type: "sub",
-          active: false,
-          children: [
-            { path: "/form/form-controls/validation", title: "Form Validation", type: "link" },
-            { path: "/form/form-controls/inputs", title: "Base Inputs", type: "link" },
-            { path: "/form/form-controls/checkbox-radio", title: "Checkbox & Radio", type: "link" },
-            { path: "/form/form-controls/input-groups", title: "Input Groups", type: "link" },
-            { path: "/form/form-controls/mega-options", title: "Mega Options", type: "link" },
-          ],
-        },
-        {
-          title: "Form Widgets",
-          icon: "file-text",
-          type: "sub",
-          active: false,
-          children: [
-            { path: "/form/form-widgets/touchspin", title: "Touchspin", type: "link" },
-            { path: "/form/form-widgets/ngselect", title: "Ng-Select", type: "link" },
-            { path: "/form/form-widgets/switch", title: "Switch", type: "link" },
-            { path: "/form/form-widgets/clipboard", title: "Clipboard", type: "link" },
-          ],
-        },
-        {
-          title: "Form Layout",
-          icon: "file-text",
-          type: "sub",
-          active: false,
-          children: [
-            { path: "/form/form-layout/default-form", title: "Default Forms", type: "link" },
-            { path: "/form/form-layout/form-wizard", title: "Form Wizard 1", type: "link" },
-            { path: "/form/form-layout/form-wizard-two", title: "Form Wizard 2", type: "link" },
-            { path: "/form/form-layout/form-wizard-three", title: "Form Wizard 3", type: "link" },
-            { path: "/form/form-layout/form-wizard-four", title: "Form Wizard 4", type: "link" },
-          ],
-        },
-      ],
-    },
+    { path: "/products", icon: "bonus-kit", title: "All", type: "link", bookmark: true }
   ];
 
   // Array
   items = new BehaviorSubject<Menu[]>(this.MENUITEMS);
 
- // {
-    //   title: "Simple Page",
-    //   icon: "home",
-    //   type: "sub",
-    //   badgeType: "light-primary",
-    //   badgeValue: "2",
-    //   active: true,
-    //   children: [
-    //     { path: "/simple-page/first-page", title: "First Page", type: "link" },
-    //     { path: "/simple-page/second-page", title: "Second Page", type: "link" },
-    //   ],
-    // },
-    // { path: "/single-page", icon: "search", title: "Single Page", type: "link", bookmark: true },
+  // {
+  //   title: "Simple Page",
+  //   icon: "home",
+  //   type: "sub",
+  //   badgeType: "light-primary",
+  //   badgeValue: "2",
+  //   active: true,
+  //   children: [
+  //     { path: "/simple-page/first-page", title: "First Page", type: "link" },
+  //     { path: "/simple-page/second-page", title: "Second Page", type: "link" },
+  //   ],
+  // },
+  // { path: "/single-page", icon: "search", title: "Single Page", type: "link", bookmark: true },
 
 
 
