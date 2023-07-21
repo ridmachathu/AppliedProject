@@ -18,6 +18,10 @@ export class ProductService {
     return this.http.get("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/products/search?query=" + query);
   }
 
+  public GetProductsByCategory(category){
+    return this.http.get("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/products/category/" + category);
+  }
+
   public GetProductById(id) {
     return this.http.get("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/products/" + id);
   }

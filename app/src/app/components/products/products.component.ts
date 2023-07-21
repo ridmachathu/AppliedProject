@@ -4,6 +4,7 @@ import { ProductService } from "../../shared/services/product.service";
 import * as feather from "feather-icons";
 import { QuickViewComponent } from './quick-view/quick-view.component';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -36,7 +37,7 @@ export class ProductsComponent {
   public gridOptions: boolean = true;
   public active: boolean = false;
 
-  public searchQuery= "";
+  public searchQuery = "";
   public searchForm: FormGroup;
   public listDataBackup = [];
 
@@ -44,24 +45,38 @@ export class ProductsComponent {
   constructor(
     private modalService: NgbModal,
     private productService: ProductService,
-    private formBuilder: FormBuilder
-  ) {}
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
     this.grid6s();
-    this.productService.GetAllProducts().subscribe(res => {
-      this.listData = res['data'];
-    })
     this.searchForm = this.formBuilder.group({
       searchField: ['']
     })
     setTimeout(() => {
       feather.replace();
     });
+
+
+    this.route.params.subscribe(
+      (params: { category: string }) => {
+        if (params.category) {
+          this.productService.GetProductsByCategory(params.category).subscribe(res => {
+            this.listData = res['data'];
+          });
+        } else {
+          this.productService.GetAllProducts().subscribe(res => {
+            this.listData = res['data'];
+          })
+        }
+      }
+    );
+
   }
 
-  search(query){
-    if(query !== ""){
+  search(query) {
+    if (query !== "") {
       this.listDataBackup = this.listData;
       this.productService.SearchProducts(query).subscribe(res => {
         this.listData = res['data'];
@@ -69,8 +84,8 @@ export class ProductsComponent {
     }
   }
 
-  onSearchChange(event: any){
-    if(event.target.value.length == 0){
+  onSearchChange(event: any) {
+    if (event.target.value.length == 0) {
       this.listData = this.listDataBackup;
     }
   }

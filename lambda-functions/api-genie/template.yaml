@@ -131,6 +131,29 @@ Resources:
             Path: /products/categories/{type}
             Method: GET
 
+  GetProductsForCategory:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/products/getProductsForCategory.handler
+      Runtime: nodejs18.x
+      Architectures:
+        - x86_64
+      MemorySize: 128
+      Timeout: 100
+      Description: Use this function to get products for category
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ProductsTable
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref ProductsTable
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /products/category/{category}
+            Method: GET
+
   SearchProducts:
     Type: AWS::Serverless::Function
     Properties:
