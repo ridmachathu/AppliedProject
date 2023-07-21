@@ -26,6 +26,9 @@ exports.handler = async (event) => {
 
         let items = [...new Set(data.Items.map(record => record.class))];
 
+        // filter null values
+        items = items.filter(val => val);
+
         return common.getAPIResponseObj(event, items, "Get all Products classes is success", 200);
     } catch (error) {
         console.info(`error: `, error);

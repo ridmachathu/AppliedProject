@@ -23,12 +23,15 @@ exports.handler = async (event) => {
 
         const params = {
             TableName: tableName,
-            FilterExpression : 'productClass = :productClass',
-            ExpressionAttributeValues : {':productClass' : productClass}
+            FilterExpression: 'productClass = :productClass',
+            ExpressionAttributeValues: { ':productClass': productClass }
         };
         const data = await docClient.scan(params).promise();
 
-        let items = [...new Set(data.Items.map(record => record.type))];
+        let items = [...new Set(data.Items.map(record => record.productType))];
+
+        // filter null values
+        items = items.filter(val => val);
 
         return common.getAPIResponseObj(event, items, "Get all Products types for class is success", 200);
     } catch (error) {
