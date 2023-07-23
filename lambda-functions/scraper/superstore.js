@@ -127,6 +127,7 @@ const weblinks = [
       "https://www.realcanadiansuperstore.ca/food/fruits-vegetables/fresh-vegetables/c/28195?page=3",
       "https://www.realcanadiansuperstore.ca/food/fruits-vegetables/fresh-vegetables/c/28195?page=4",
       "https://www.realcanadiansuperstore.ca/food/fruits-vegetables/fresh-vegetables/c/28195?page=5",
+      "https://www.realcanadiansuperstore.ca/food/fruits-vegetables/fresh-vegetables/c/28195?page=6"
     ]
   },
   {
@@ -151,7 +152,100 @@ const weblinks = [
       "https://www.realcanadiansuperstore.ca/food/meat/bacon-sausages-hot-dogs/c/28170?page=3",
       "https://www.realcanadiansuperstore.ca/food/meat/bacon-sausages-hot-dogs/c/28170?page=4"
     ]
+  },
+  {
+    "store": "superstore",
+    "class": "food",
+    "type":"meat",
+    "category":"chicken and turkey",
+    "links":[
+      "https://www.realcanadiansuperstore.ca/food/meat/chicken-turkey/c/28214",
+      "https://www.realcanadiansuperstore.ca/food/meat/chicken-turkey/c/28214?page=2",
+      "https://www.realcanadiansuperstore.ca/food/meat/chicken-turkey/c/28214?page=3",
+      "https://www.realcanadiansuperstore.ca/food/meat/chicken-turkey/c/28214?page=4"
+    ]
+  },
+  {
+    "store": "superstore",
+    "class": "food",
+    "type":"meat",
+    "category":"pork",
+    "links":[
+      "https://www.realcanadiansuperstore.ca/food/meat/pork/c/28215",
+      "https://www.realcanadiansuperstore.ca/food/meat/pork/c/28215?page=2"
+    ]
+  },
+  {
+    "store": "superstore",
+    "class": "food",
+    "type":"meat",
+    "category":"beef",
+    "links":[
+      "https://www.realcanadiansuperstore.ca/food/meat/beef/c/28174",
+      "https://www.realcanadiansuperstore.ca/food/meat/beef/c/28174?page=2",
+      "https://www.realcanadiansuperstore.ca/food/meat/beef/c/28174?page=3"
+    ]
+  },
+  {
+    "store": "superstore",
+    "class": "food",
+    "type":"dairy and eggs",
+    "category":"egg and egg substitutes",
+    "links":[
+      "https://www.realcanadiansuperstore.ca/food/dairy-eggs/egg-egg-substitutes/c/28222"
+    ]
+  },
+  {
+    "store": "superstore",
+    "class": "food",
+    "type":"dairy and eggs",
+    "category":"milk and cream",
+    "links":[
+      "https://www.realcanadiansuperstore.ca/food/dairy-eggs/milk-cream/c/28224",
+      "https://www.realcanadiansuperstore.ca/food/dairy-eggs/milk-cream/c/28224?page=2",
+      "https://www.realcanadiansuperstore.ca/food/dairy-eggs/milk-cream/c/28224?page=3",
+      "https://www.realcanadiansuperstore.ca/food/dairy-eggs/milk-cream/c/28224?page=4"
+    ]
+  },
+  {
+    "store": "superstore",
+    "class": "food",
+    "type":"natural foods",
+    "category":"condiments and sauces",
+    "links":[
+      "https://www.realcanadiansuperstore.ca/food/dairy-eggs/milk-cream/c/28224"
+    ]
+  },
+  {
+    "store": "superstore",
+    "class": "food",
+    "type":"natural foods",
+    "category":"oil and vinegar",
+    "links":[
+      "https://www.realcanadiansuperstore.ca/food/natural-foods/oil-vinegar/c/29926"
+    ]
+  },
+  {
+    "store": "superstore",
+    "class": "food",
+    "type":"bakery",
+    "category":"Bagels Buns Rolls",
+    "links":[
+      "https://www.realcanadiansuperstore.ca/food/bakery/bagels-buns-rolls/c/28147",
+      "https://www.realcanadiansuperstore.ca/food/bakery/bagels-buns-rolls/c/28147?page=2"
+    ]
+  },
+  {
+    "store": "superstore",
+    "class": "food",
+    "type":"bakery",
+    "category":"breakfast",
+    "links":[
+      "https://www.realcanadiansuperstore.ca/food/bakery/breakfast/c/28149",
+      "https://www.realcanadiansuperstore.ca/food/bakery/breakfast/c/28149?page=2"
+    ]
   }
+
 ];
 
 async function main() {
