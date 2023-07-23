@@ -1,91 +1,106 @@
-<!-- <app-breadcrumb [title]="'Create New'" [items]="['Apps', 'Project']" [active_item]="'Create New'"></app-breadcrumb> -->
-<!-- Container-fluid starts-->
-<!-- <div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-12">
+<app-breadcrumb [title]="'Smart Shopping List'" [items]="['Apps', 'Lists']"
+  [active_item]="'Create new list'"></app-breadcrumb>
+<div class="container-fluid">
+  <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col col-xl-9 col-xl-7">
       <div class="card">
+        <div class="rounded-top text-white d-flex flex-row"
+          style="background-image: url('assets/images/shopping-cart1.jpg'); height:200px;">
+        </div>
         <div class="card-body">
-          <div class="form theme-form"> -->
-<app-breadcrumb [title]="'Create new list'" [items]="['Apps', 'Lists']" [active_item]="'Create new list'"></app-breadcrumb>
-  <div class="container-fluid">
-    <div class="row d-flex justify-content-center align-items-center h-100"> 
-      <div class="col col-xl-9 col-xl-7"> 
-        <div class="card">
-          <div class="rounded-top text-white d-flex flex-row" style="background-image: url('assets/images/shopping-cart1.jpg'); height:200px;">
-          </div>
-          <div class="card-body">
-            <div class="form theme-form">
-                  <div class="row">
-                    <div class="col-sm-4">
-                      <div class="mb-3">
-                        <label>List Type</label>
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="mb-3">
-                        <select class="form-control digits">
-                          <option>Shopping List</option>
-                          <option>Wish List</option>
-                        </select>
-                      </div>
+          <div class="form theme-form">
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="mb-3">
+                  <label>
+                    <h5>Create new list</h5>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <form class="theme-form" [formGroup]="newListForm" (ngSubmit)="createList()">
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-sm-4">
+                    <div class="mb-3">
+                      <label>List Type</label>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-sm-4">
-                      <div class="mb-3">
-                        <label>List Name</label>
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="mb-3">
-                        <input class="form-control" type="text" placeholder="Name of the list" />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-sm-4">
-                      <div class="mb-3">
-                        <label>Enter items</label>
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="mb-3">
-                        <textarea class="form-control" id="exampleFormControlTextarea4" rows="3"></textarea>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-sm-4">
-                      <div class="mb-3">
-                        <label>Upload a note</label>
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="mb-3">
-                        <ngx-dropzone (change)="onSelect($event)" [multiple]="true">
-                          <ngx-dropzone-label>
-                            <div class="dz-message needsclick">
-                              <i class="icon-cloud-up"></i>
-                              <h6>Drop files here or click to upload.</h6>
-                            </div>
-                          </ngx-dropzone-label>
-                          <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
-                            <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-                          </ngx-dropzone-preview>
-                        </ngx-dropzone>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-sm-8">
-                      <div class="text-end"><a class="btn btn-primary me-3" href="#">Create</a><a class="btn btn-danger" href="/single-page">Cancel</a></div>
+                  <div class="col-sm-6">
+                    <div class="mb-3">
+                      <select class="form-control digits" formControlName="listtype">
+                        <option>Shopping List</option>
+                        <option>Wish List</option>
+                      </select>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-sm-4">
+                    <div class="mb-3">
+                      <label>List Name</label>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="mb-3">
+                      <input class="form-control" type="text" placeholder="Name of the list"
+                        formControlName="listname" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-sm-4">
+                    <div class="mb-3">
+                      <label>Enter items</label>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="mb-3">
+                      <textarea class="form-control" id="exampleFormControlTextarea4" rows="3"
+                        formControlName="items"></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="row">
+              <div class="col-sm-4">
+                <div class="mb-3">
+                  <label>Upload a note</label>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="mb-3">
+                  <ngx-dropzone (change)="onSelect($event)" [multiple]="true">
+                    <ngx-dropzone-label>
+                      <div class="dz-message needsclick">
+                        <i class="icon-cloud-up"></i>
+                        <h6>Drop files here or click to upload.</h6>
+                      </div>
+                    </ngx-dropzone-label>
+                    <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                      <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                    </ngx-dropzone-preview>
+                  </ngx-dropzone>
+                </div>
+              </div>
+            </div> -->
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-sm-8">
+                    <!-- <button class="btn btn-primary d-block w-100" type="submit"><span>Create</span></button> -->
+                    <div class="text-end"><button type="submit" class="btn btn-primary me-3" href="#">Create</button><a class="btn btn-danger"
+                        href="/single-page">Cancel</a></div>
+                  </div>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
+      </div>
     </div>
-
-
+  </div>
+</div>
