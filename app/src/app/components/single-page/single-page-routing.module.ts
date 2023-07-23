@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { SinglePageComponent } from "./single-page.component";
 import { NewListComponent } from "./create-new/new-list/new-list.component";
+import { ListItemComponent } from "./list-item/list-item.component";
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: "newlist",
     component: NewListComponent,
+  },
+  {
+    path: "listitem",
+    component: ListItemComponent,
   }
 ];
 

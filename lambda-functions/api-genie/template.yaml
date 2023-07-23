@@ -107,6 +107,52 @@ Resources:
           Properties:
             Path: /products
             Method: POST
+  
+  getAllShoppingLists:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/shopping-list/getAllShoppingLists.handler
+      Runtime: nodejs18.x
+      Architectures:
+        - x86_64
+      MemorySize: 128
+      Timeout: 100
+      Description: Use this function to get shopping lists saved in the DB
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ShoppingListsTable
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref ShoppingListsTable
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /shoppinglists
+            Method: GET
+  
+  createShoppingList:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/shopping-list/createShoppingList.handler
+      Runtime: nodejs18.x
+      Architectures:
+        - x86_64
+      MemorySize: 128
+      Timeout: 100
+      Description: Use this function to create new shopping list
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ShoppingListsTable
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref ShoppingListsTable
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /shoppinglists
+            Method: POST
 
   CreateUser:
     Type: AWS::Serverless::Function
@@ -166,6 +212,16 @@ Resources:
         WriteCapacityUnits: 2
 
   UsersTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      PrimaryKey:
+        Name: id
+        Type: String
+      ProvisionedThroughput:
+        ReadCapacityUnits: 2
+        WriteCapacityUnits: 2
+
+  ShoppingListsTable:
     Type: AWS::Serverless::SimpleTable
     Properties:
       PrimaryKey:

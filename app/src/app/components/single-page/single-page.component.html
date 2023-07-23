@@ -62,38 +62,22 @@
                       </ul>
                       <h6>Recently opened lists</h6>
                       <ul class="files">
-                        <li class="file-box me-1">
+                        <li class="file-box me-1" *ngFor="let slist of shoppingListData">
                           <div class="file-top"><i class="fa fa-file-text-o txt-info"></i><i class="fa fa-ellipsis-v f-14 ellips"></i></div>
                           <div class="file-bottom">
-                            <h6>grocery list 1</h6>
+                            <a [routerLink]="'/single-page/listitem'" class="ms-2"><h6>{{ slist.listname }}</h6></a>
                             <!-- <p class="mb-1">0.90 KB</p> -->
                             <p><b>last open : </b>1 hour ago</p>
                           </div>
                         </li>
-                        <li class="file-box me-1">
-                          <div class="file-top"><i class="fa fa-file-text-o txt-info"></i><i class="fa fa-ellipsis-v f-14 ellips"></i></div>
-                          <div class="file-bottom">
-                            <h6>grocery list 2</h6>
-                            <!-- <p class="mb-1">0.90 KB</p> -->
-                            <p><b>last open : </b>1 hour ago</p>
-                          </div>
-                        </li>
-                        <li class="file-box me-1">
+                        <li class="file-box me-1" *ngFor="let wlist of wishListData">
                           <div class="file-top"><i class="fa fa-file-text-o txt-primary"></i><i class="fa fa-ellipsis-v f-14 ellips"></i></div>
                           <div class="file-bottom">
-                            <h6>wish list 1</h6>
+                            <a [routerLink]="'/single-page/listitem'" class="ms-2"><h6>{{ wlist.listname }}</h6></a>
                             <!-- <p class="mb-1">2.0 MB</p> -->
                             <p><b>last open : </b>1 hour ago</p>
                           </div>
-                        </li>
-                        <li class="file-box me-1">
-                          <div class="file-top"><i class="fa fa-file-text-o txt-primary"></i><i class="fa fa-ellipsis-v f-14 ellips"></i></div>
-                          <div class="file-bottom">
-                            <h6>wish list 2</h6>
-                            <!-- <p class="mb-1">2.0 MB</p> -->
-                            <p><b>last open : </b>1 hour ago</p>
-                          </div>
-                        </li>
+                        </li> 
                       </ul>
                     </div>
                   </div>
@@ -153,18 +137,10 @@
                       </ul>
                       <h6>All shopping lists</h6>
                       <ul class="files">
-                        <li class="file-box me-1">
+                        <li class="file-box me-1" *ngFor="let slist of shoppingListData">
                           <div class="file-top"><i class="fa fa-file-text-o txt-info"></i><i class="fa fa-ellipsis-v f-14 ellips"></i></div>
                           <div class="file-bottom">
-                            <h6>grocery list 1</h6>
-                            <!-- <p class="mb-1">0.90 KB</p> -->
-                            <p><b>last open : </b>1 hour ago</p>
-                          </div>
-                        </li>
-                        <li class="file-box me-1">
-                          <div class="file-top"><i class="fa fa-file-text-o txt-info"></i><i class="fa fa-ellipsis-v f-14 ellips"></i></div>
-                          <div class="file-bottom">
-                            <h6>grocery list 2</h6>
+                            <a [routerLink]="'/single-page/listitem'" class="ms-2"><h6>{{ slist.listname }}</h6></a>
                             <!-- <p class="mb-1">0.90 KB</p> -->
                             <p><b>last open : </b>1 hour ago</p>
                           </div>
@@ -210,18 +186,10 @@
                       </ul>
                       <h6>All wish lists</h6>
                       <ul class="files">
-                        <li class="file-box me-1">
+                        <li class="file-box me-1" *ngFor="let wlist of wishListData">
                           <div class="file-top"><i class="fa fa-file-text-o txt-primary"></i><i class="fa fa-ellipsis-v f-14 ellips"></i></div>
                           <div class="file-bottom">
-                            <h6>wish list 1</h6>
-                            <!-- <p class="mb-1">2.0 MB</p> -->
-                            <p><b>last open : </b>1 hour ago</p>
-                          </div>
-                        </li>
-                        <li class="file-box me-1">
-                          <div class="file-top"><i class="fa fa-file-text-o txt-primary"></i><i class="fa fa-ellipsis-v f-14 ellips"></i></div>
-                          <div class="file-bottom">
-                            <h6>wish list 2</h6>
+                            <a [routerLink]="'/single-page/listitem'" class="ms-2"><h6>wish list 1</h6></a>
                             <!-- <p class="mb-1">2.0 MB</p> -->
                             <p><b>last open : </b>1 hour ago</p>
                           </div>
@@ -233,7 +201,7 @@
               </div>
             </ng-template>
           </li>
-          <li [ngbNavItem]="4">
+          <!-- <li [ngbNavItem]="4">
             <a ngbNavLink>Deleted</a>
             <ng-template ngbNavContent>
               <div class="col-xl-12 col-md-12 box-col-12">
@@ -244,7 +212,6 @@
                         <div class="file-top"><i class="fa fa-file-text-o txt-primary"></i><i class="fa fa-ellipsis-v f-14 ellips"></i></div>
                         <div class="file-bottom">
                           <h6>camping items</h6>
-                          <!-- <p class="mb-1">2.0 MB</p> -->
                           <p><b>deleted: </b>3 months ago</p>
                         </div>
                       </li>
@@ -252,7 +219,6 @@
                         <div class="file-top"><i class="fa fa-file-text-o txt-info"></i><i class="fa fa-ellipsis-v f-14 ellips"></i></div>
                         <div class="file-bottom">
                           <h6>grocery list Jan</h6>
-                          <!-- <p class="mb-1">0.90 KB</p> -->
                           <p><b>deleted: </b>1 month ago</p>
                         </div>
                       </li>
@@ -261,7 +227,7 @@
                 </div>
               </div>
             </ng-template>
-          </li>
+          </li> -->
         </ul>
         <div [ngbNavOutlet]="nav" class="mt-2"></div>
       </div>
