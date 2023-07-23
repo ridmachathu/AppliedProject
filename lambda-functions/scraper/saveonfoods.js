@@ -30,11 +30,14 @@ async function scrapeWebpage(store, url) {
     let root = HTMLParser.parse(selected.html());
     let count = 0;
     await asyncForEach(root.childNodes[3].childNodes, async (child) => {
-      let node = child.childNodes[0];
+      let article = child.childNodes[0];
       let brand, productId, title, packageSize, imageUrl, price, priceBefore;
 
-      imageUrl = node.childNodes[0].childNodes[0].rawAttributes.src;
-      price = node.childNodes[1].childNodes[1].childNodes[0].rawText.trim();
+      imageUrl = article.childNodes[4].childNodes[0].childNodes[0].rawAttributes.src;
+      title = article.childNodes[7].childNodes[0].childNodes[0].rawText.trim();
+
+      // imageUrl = node.childNodes[0].childNodes[0].rawAttributes.src;
+      // price = node.childNodes[1].childNodes[1].childNodes[0].rawText.trim();
 
       productId = node.childNodes[1].childNodes[2].childNodes[0].childNodes[0].id.trim();
       if (productId === '') {
