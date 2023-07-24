@@ -127,7 +127,7 @@
           <div class="card">
             <div class="product-box">
               <div class="product-img">
-                <!-- <div class="ribbon ribbon-danger" *ngIf="product.priceBefore > 0">{{ product.status }}</div> -->
+                <div *ngIf="areSearchResults" class="ribbon ribbon-bookmark ribbon-primary">{{ product.store }}</div>
                 <div class="ribbon ribbon-success ribbon-right" *ngIf="product.priceBefore > 0">${{ product.priceBefore - product.price | number : '1.2-2' }} off</div>
                 <img class="img-fluid" src="{{ product.imageUrl }}" alt="" />
                 <div class="product-hover">

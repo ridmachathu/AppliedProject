@@ -40,6 +40,7 @@ export class ProductsComponent {
   public searchQuery = "";
   public searchForm: FormGroup;
   public listDataBackup = [];
+  areSearchResults: boolean = false;
 
   @ViewChild("quickView") QuickView: QuickViewComponent;
   constructor(
@@ -79,6 +80,7 @@ export class ProductsComponent {
     if (query !== "") {
       this.listDataBackup = this.listData;
       this.productService.SearchProducts(query).subscribe(res => {
+        this.areSearchResults = true;
         this.listData = res['data'];
       });
     }
@@ -87,6 +89,7 @@ export class ProductsComponent {
   onSearchChange(event: any) {
     if (event.target.value.length == 0) {
       this.listData = this.listDataBackup;
+      this.areSearchResults = false;
     }
   }
 
