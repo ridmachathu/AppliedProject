@@ -1,4 +1,4 @@
-<app-breadcrumb [title]="'Smart Shopping List'" [items]="['Sample page']" [active_item]="'Single Page'"></app-breadcrumb>
+<app-breadcrumb [title]="'Shopping List'" [items]="['Sample page']" [active_item]="'Single Page'"></app-breadcrumb>
 <div class="container-fluid">
   <div class="card">
     <div class="row product-page-main">
@@ -100,6 +100,7 @@
                           </div>
                         </form>
                         <div class="media-body text-end">
+                          <!-- <input type="button" value="Open a Popup Window" onclick="window.open('/single-page/newlist','popUpWindow','height=650,width=850,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no, status=yes');"> -->
                           <button class="btn btn-primary me-2" [routerLink]="'/single-page/newlist'"><i data-feather="plus-square"></i>Add New</button>                            
                         </div>
                       </div>
@@ -189,7 +190,7 @@
                         <li class="file-box me-1" *ngFor="let wlist of wishListData">
                           <div class="file-top"><i class="fa fa-file-text-o txt-primary"></i><i class="fa fa-ellipsis-v f-14 ellips"></i></div>
                           <div class="file-bottom">
-                            <a [routerLink]="'/single-page/listitem'" class="ms-2"><h6>wish list 1</h6></a>
+                            <a [routerLink]="'/single-page/listitem'" class="ms-2"><h6>{{ wlist.listname }}</h6></a>
                             <!-- <p class="mb-1">2.0 MB</p> -->
                             <p><b>last open : </b>1 hour ago</p>
                           </div>

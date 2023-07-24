@@ -31,8 +31,7 @@ export class NewListComponent implements OnInit{
   ngOnInit() : void {
     this.newListForm = this.formBuilder.group({
       listtype:['', Validators.required],
-      listname:['', Validators.required],
-      items:['', Validators.required]
+      listname:['', Validators.required]
     })
   }
 

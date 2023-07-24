@@ -21,14 +21,14 @@ exports.handler = async (event) => {
         const body = JSON.parse(event.body);
 
         if (!_validateBody(body)) {
-            throw new Error(`Please fill the required fields: listtype, listname, items`);
+            throw new Error(`Please fill the required fields: listtype, listname`);
         }
 
         const payload = {
             id: uuid(),
             listtype: body.listtype,
             listname: body.listname,
-            items: body.items,
+            items: "",
             createDateTime: Date.now()
         }
 
@@ -52,12 +52,6 @@ function _validateBody(body) {
         isValid = false;
     } else if (body.listname === undefined || body.listname === "") {
         isValid = false;
-    } else if (body.items === undefined || body.items === "") {
-        isValid = false;
-    // } else if (body.mobile === undefined || body.mobile === "") {
-    //     isValid = false;
-    // } else if (body.password === undefined || body.password === "") {
-    //     isValid = false;
     }
     return isValid;
 }
