@@ -22,9 +22,8 @@ exports.handler = async (event) => {
         // filter items with deals
         const params = {
             TableName: tableName,
-            "KeyConditionExpression":"priceBefore > :v0",
-            //"ExpressionAttributeNames":{"#n0":"priceBefore"},
-            "ExpressionAttributeValues":{":v0":{"N":"0"}}
+            FilterExpression: 'priceBefore <> :zero',
+            ExpressionAttributeValues: {':zero': 0,},
         };
 
         const data = await docClient.scan(params).promise();
