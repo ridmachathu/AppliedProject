@@ -257,7 +257,7 @@ const weblinks = [
   {
     "store": "superstore",
     "class": "home and kitchen",
-    "type":"Bath",
+    "type":"bath",
     "category":"toilet accessories",
     "links":[
       "https://www.realcanadiansuperstore.ca/home-kitchen/bath/toilet-accessories/c/28285",

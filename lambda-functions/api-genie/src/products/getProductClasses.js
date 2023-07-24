@@ -24,7 +24,7 @@ exports.handler = async (event) => {
         };
         const data = await docClient.scan(params).promise();
 
-        let items = [...new Set(data.Items.map(record => record.class))];
+        let items = [...new Set(data.Items.map(record => record.productClass))];
 
         // filter null values
         items = items.filter(val => val);
