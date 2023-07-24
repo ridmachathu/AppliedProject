@@ -11,24 +11,29 @@
                 <div class="file-content">
                   <div class="card">
                     <div class="card-header">
-                      <div class="media">
+                      <!-- <div class="media">
                         <form class="form-inline" action="#" method="get">
                           <div class="form-group mb-0">
                             <i class="fa fa-search"></i>
                             <input class="form-control-plaintext" type="text" placeholder="Search..." />
                           </div>
                         </form>
+                      </div> -->
+                      <div class="col-xl-9 col-md-8">
+                        <form (ngSubmit)="search(searchQuery)">
+                          <div class="form-group m-0"><input class="form-control" type="search" placeholder="Search.." data-original-title="" title="" [(ngModel)]="searchQuery" (change)="onSearchChange($event)" /></div>
+                          <!-- <i class="fa fa-search"></i> -->
+                        </form>
                       </div>
                     </div>
                     <div class="card-body file-manager">
-                      <h6 class="mt-4">Folders</h6>
+                      <!-- <h6 class="mt-4">Folders</h6>
                       <ul class="folder">
                         <li class="folder-box me-1">
                           <div class="media">
                             <i class="fa fa-folder f-36 txt-warning"></i>
                             <div class="media-body ms-3">
                               <h6 class="mb-0">Groceries</h6>
-                              <!-- <p>101 files, 10mb</p> -->
                             </div>
                           </div>
                         </li>
@@ -37,7 +42,6 @@
                             <i class="fa fa-folder f-36 txt-warning"></i>
                             <div class="media-body ms-3">
                               <h6 class="mb-0">Home Decor</h6>
-                              <!-- <p>108 files, 5mb</p> -->
                             </div>
                           </div>
                         </li>
@@ -46,7 +50,6 @@
                             <i class="fa fa-folder f-36 txt-warning"></i>
                             <div class="media-body ms-3">
                               <h6 class="mb-0">Gardening</h6>
-                              <!-- <p>108 files, 5mb</p> -->
                             </div>
                           </div>
                         </li>
@@ -55,11 +58,10 @@
                             <i class="fa fa-folder f-36 txt-warning"></i>
                             <div class="media-body ms-3">
                               <h6 class="mb-0">Summer picks</h6>
-                              <!-- <p>108 files, 5mb</p> -->
                             </div>
                           </div>
                         </li>
-                      </ul>
+                      </ul> -->
                       <h6>Recently opened lists</h6>
                       <ul class="files">
                         <li class="file-box me-1" *ngFor="let slist of shoppingListData">
@@ -106,14 +108,13 @@
                       </div>
                     </div>
                     <div class="card-body file-manager">
-                      <h6 class="mt-4">Folders</h6>
+                      <!-- <h6 class="mt-4">Folders</h6>
                       <ul class="folder">
                         <li class="folder-box me-1">
                           <div class="media">
                             <i class="fa fa-folder f-36 txt-warning"></i>
                             <div class="media-body ms-3">
                               <h6 class="mb-0">Groceries</h6>
-                              <!-- <p>101 files, 10mb</p> -->
                             </div>
                           </div>
                         </li>
@@ -122,7 +123,6 @@
                             <i class="fa fa-folder f-36 txt-warning"></i>
                             <div class="media-body ms-3">
                               <h6 class="mb-0">Home Decor</h6>
-                              <!-- <p>108 files, 5mb</p> -->
                             </div>
                           </div>
                         </li>
@@ -131,11 +131,10 @@
                             <i class="fa fa-folder f-36 txt-warning"></i>
                             <div class="media-body ms-3">
                               <h6 class="mb-0">Gardening</h6>
-                              <!-- <p>108 files, 5mb</p> -->
                             </div>
                           </div>
                         </li>
-                      </ul>
+                      </ul> -->
                       <h6>All shopping lists</h6>
                       <ul class="files">
                         <li class="file-box me-1" *ngFor="let slist of shoppingListData">
@@ -173,18 +172,17 @@
                       </div>
                     </div>
                     <div class="card-body file-manager">
-                      <h6 class="mt-4">Folders</h6>
+                      <!-- <h6 class="mt-4">Folders</h6>
                       <ul class="folder">
                         <li class="folder-box me-1">
                           <div class="media">
                             <i class="fa fa-folder f-36 txt-warning"></i>
                             <div class="media-body ms-3">
                               <h6 class="mb-0">Summer picks</h6>
-                              <!-- <p>101 files, 10mb</p> -->
                             </div>
                           </div>
                         </li>
-                      </ul>
+                      </ul> -->
                       <h6>All wish lists</h6>
                       <ul class="files">
                         <li class="file-box me-1" *ngFor="let wlist of wishListData">

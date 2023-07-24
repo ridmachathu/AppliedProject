@@ -246,6 +246,29 @@ Resources:
             Path: /shoppinglists
             Method: GET
   
+  searchShoppingLists:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/shopping-list/searchShoppingLists.handler
+      Runtime: nodejs18.x
+      Architectures:
+        - x86_64
+      MemorySize: 128
+      Timeout: 100
+      Description: Use this function to search products saved in the DB
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ShoppingListsTable
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref ShoppingListsTable
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /shoppinglists/search
+            Method: GET
+  
   createShoppingList:
     Type: AWS::Serverless::Function
     Properties:
