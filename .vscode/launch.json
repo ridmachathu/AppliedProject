@@ -1,13 +1,27 @@
 {
     "configurations": [
         {
+            "type": "aws-sam",
+            "request": "direct-invoke",
+            "name": "api-genie:getAllShoppingLists",
+            "invokeTarget": {
+                "target": "template",
+                "templatePath": "${workspaceFolder}/lambda-functions/api-genie/template.yaml",
+                "logicalId": "getAllShoppingLists"
+            },
+            "lambda": {
+                "payload": {},
+                "environmentVariables": {}
+            }
+        },
+        {
             "name": "superstore",
             "program": "${workspaceFolder}/lambda-functions/scraper/superstore.js",
             "request": "launch",
             "runtimeExecutable": "nodemon",
             "type": "node",
             "console": "integratedTerminal",
-            "cwd":"${workspaceFolder}/lambda-functions/scraper"
+            "cwd": "${workspaceFolder}/lambda-functions/scraper"
         },
         {
             "name": "saveonfoods",
@@ -16,7 +30,7 @@
             "runtimeExecutable": "nodemon",
             "type": "node",
             "console": "integratedTerminal",
-            "cwd":"${workspaceFolder}/lambda-functions/scraper"
+            "cwd": "${workspaceFolder}/lambda-functions/scraper"
         },
         {
             "type": "aws-sam",

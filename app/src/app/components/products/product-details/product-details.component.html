@@ -28,8 +28,8 @@
               <li class="bg-info"></li>
               <li class="bg-warning"></li>
             </ul> -->
-            <hr />
-            <p>This section will load the product details when the data is available.</p>
+            <hr *ngIf="product?.description" />
+            <p *ngIf="product?.description">{{ product?.description }}</p>
             <hr />
             <div>
               <table class="product-page-width">

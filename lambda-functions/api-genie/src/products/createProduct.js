@@ -55,6 +55,7 @@ exports.handler = async (event) => {
             productClass: body.productClass,
             productType: body.productType,
             category: body.category,
+            description: body.description,
             lateUpdatedDateTime: Date.now()
         }
         const params = {
