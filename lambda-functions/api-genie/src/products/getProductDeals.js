@@ -19,21 +19,17 @@ exports.handler = async (event) => {
         // All log statements are written to CloudWatch
         console.info('received:', event);
 
-        const productClass = decodeURIComponent(event.pathParameters.class);
-
+        // filter items with deals
         const params = {
             TableName: tableName,
-            FilterExpression: 'productClass = :productClass',
-            ExpressionAttributeValues: { ':productClass': productClass }
+            "KeyConditionExpression":"priceBefore > :v0",
+            //"ExpressionAttributeNames":{"#n0":"priceBefore"},
+            "ExpressionAttributeValues":{":v0":{"N":"0"}}
         };
+
         const data = await docClient.scan(params).promise();
 
-        let items = [...new Set(data.Items.map(record => record.productType))];
-
-        // filter null values
-        items = items.filter(val => val);
-
-        return common.getAPIResponseObj(event, items, "Get all Products types for class is success", 200);
+        return common.getAPIResponseObj(event, data.Items, "Get all deals for products is success", 200);
     } catch (error) {
         console.info(`error: `, error);
         return common.getAPIResponseObj(event, error, error.message, 400);
