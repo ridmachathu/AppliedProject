@@ -244,8 +244,91 @@ const weblinks = [
       "https://www.realcanadiansuperstore.ca/food/bakery/breakfast/c/28149",
       "https://www.realcanadiansuperstore.ca/food/bakery/breakfast/c/28149?page=2"
     ]
+  },
+  {
+    "store": "superstore",
+    "class": "home and kitchen",
+    "type":"appliances",
+    "category":"air conditioners and fans",
+    "links":[
+      "https://www.realcanadiansuperstore.ca/home-kitchen/appliances/air-conditioners-fans/c/28254"
+    ]
+  },
+  {
+    "store": "superstore",
+    "class": "home and kitchen",
+    "type":"Bath",
+    "category":"toilet accessories",
+    "links":[
+      "https://www.realcanadiansuperstore.ca/home-kitchen/bath/toilet-accessories/c/28285",
+      "https://www.realcanadiansuperstore.ca/home-kitchen/bath/toilet-accessories/c/28285?page=2",
+      "https://www.realcanadiansuperstore.ca/home-kitchen/bath/toilet-accessories/c/28285?page=3"
+    ]
+  },
+  {
+    "store": "superstore",
+    "class": "home and kitchen",
+    "type":"kitchen",
+    "category":"cookware",
+    "links":[
+      "https://www.realcanadiansuperstore.ca/home-kitchen/kitchen/cookware/c/28362",
+      "https://www.realcanadiansuperstore.ca/home-kitchen/kitchen/cookware/c/28362?page=2"
+    ]
+  },
+  {
+    "store": "superstore",
+    "class": "baby",
+    "type":"diapers and potty training",
+    "category":"diapers",
+    "links":[
+      "https://www.realcanadiansuperstore.ca/baby/diapers-potty-training/diapers/c/28159",
+      "https://www.realcanadiansuperstore.ca/baby/diapers-potty-training/diapers/c/28159?page=2",
+      "https://www.realcanadiansuperstore.ca/baby/diapers-potty-training/diapers/c/28159?page=3",
+      "https://www.realcanadiansuperstore.ca/baby/diapers-potty-training/diapers/c/28159?page=4"
+    ]
+  },
+  {
+    "store": "superstore",
+    "class": "health and beauty",
+    "type":"health care",
+    "category":"cough and cold",
+    "links":[
+      "https://www.realcanadiansuperstore.ca/health-beauty/health-care/cough-cold/c/29363",
+      "https://www.realcanadiansuperstore.ca/health-beauty/health-care/cough-cold/c/29363?page=2",
+      "https://www.realcanadiansuperstore.ca/health-beauty/health-care/cough-cold/c/29363?page=3"
+    ]
+  },
+  {
+    "store": "superstore",
+    "class": "health and beauty",
+    "type":"bath and body",
+    "category":"bathing accessories",
+    "links":[
+      "https://www.realcanadiansuperstore.ca/health-beauty/bath-body/bathing-accessories/c/29348"
+    ]
+  },
+  {
+    "store": "superstore",
+    "class": "pet food and supplies",
+    "type":"dogs",
+    "category":"dog dry food",
+    "links":[
+      "https://www.realcanadiansuperstore.ca/pet-food-supplies/dogs/dog-dry-food/c/31164",
+      "https://www.realcanadiansuperstore.ca/pet-food-supplies/dogs/dog-dry-food/c/31164?page=2",
+      "https://www.realcanadiansuperstore.ca/pet-food-supplies/dogs/dog-dry-food/c/31164?page=3"
+    ]
+  },
+  {
+    "store": "superstore",
+    "class": "pet food and supplies",
+    "type":"cats",
+    "category":"cat dry food",
+    "links":[
+      "https://www.realcanadiansuperstore.ca/pet-food-supplies/cats/cat-dry-food/c/31073",
+      "https://www.realcanadiansuperstore.ca/pet-food-supplies/cats/cat-dry-food/c/31073?page=2",
+      "https://www.realcanadiansuperstore.ca/pet-food-supplies/cats/cat-dry-food/c/31073?page=3"
+    ]
   }
-
 ];
 
 async function main() {
