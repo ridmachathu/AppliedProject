@@ -21,6 +21,10 @@ const routes: Routes = [
     path: "category/:category",
     component: ProductsComponent,
   },
+  {
+    path: "deals",
+    component: ProductsComponent,
+  },
 ];
 
 @NgModule({

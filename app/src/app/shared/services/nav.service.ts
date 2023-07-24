@@ -165,7 +165,7 @@ export class NavService implements OnDestroy {
     { path: "/single-page", icon: "bookmark", title: "Favorites", type: "link", bookmark: true },
     { path: "/flyers", icon: "others", title: "Flyers", type: "link", bookmark: true },
     { path: "/products/comparison", icon: "ecommerce", title: "Compare", type: "link", bookmark: true },
-    { path: "/single-page", icon: "task", title: "Coupons", type: "link", bookmark: true },
+    { path: "/products/deals", icon: "task", title: "Deals", type: "link", bookmark: true },
     {
       headTitle1: "Categories",
     },

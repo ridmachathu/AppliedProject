@@ -14,6 +14,10 @@ export class ProductService {
     return this.http.get("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/products");
   }
 
+  public GetProductsDeals() {
+    return this.http.get("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/products/deals");
+  }
+
   public SearchProducts(query) {
     return this.http.get("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/products/search?query=" + query);
   }

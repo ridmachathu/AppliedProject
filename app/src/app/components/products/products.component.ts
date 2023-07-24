@@ -4,7 +4,7 @@ import { ProductService } from "../../shared/services/product.service";
 import * as feather from "feather-icons";
 import { QuickViewComponent } from './quick-view/quick-view.component';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -47,7 +47,8 @@ export class ProductsComponent {
     private modalService: NgbModal,
     private productService: ProductService,
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -67,9 +68,20 @@ export class ProductsComponent {
             this.listData = res['data'];
           });
         } else {
-          this.productService.GetAllProducts().subscribe(res => {
-            this.listData = res['data'];
-          })
+          // implement logic to decide if to load all or product deals
+          // debugger
+          // console.log(window.location.href);
+          // console.log(this.router.url); 
+
+          if (this.router.url==="/products/deals") {
+            this.productService.GetProductsDeals().subscribe(res => {
+              this.listData = res['data'];
+            })
+          }else{
+            this.productService.GetAllProducts().subscribe(res => {
+              this.listData = res['data'];
+            })
+          }
         }
       }
     );
