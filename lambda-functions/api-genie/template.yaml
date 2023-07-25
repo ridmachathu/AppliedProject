@@ -255,7 +255,7 @@ Resources:
         - x86_64
       MemorySize: 128
       Timeout: 100
-      Description: Use this function to search products saved in the DB
+      Description: Use this function to search shopping list by name
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref ShoppingListsTable
@@ -313,6 +313,29 @@ Resources:
           Type: Api
           Properties:
             Path: /users
+            Method: POST
+
+  UpdateUser:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/users/updateUser.handler
+      Runtime: nodejs18.x
+      Architectures:
+        - x86_64
+      MemorySize: 128
+      Timeout: 100
+      Description: Use this function to update a user in the system
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref UsersTable
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref UsersTable
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /users/update
             Method: POST
 
   LoginUser:
