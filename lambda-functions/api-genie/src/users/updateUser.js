@@ -15,63 +15,51 @@ const tableName = process.env.TABLE_NAME;
  */
 exports.handler = async (event) => {
     try {
-        if (event.httpMethod !== 'GET') {
-            throw new Error(`getUserById only accept GET method, you tried: ${event.httpMethod}`);
+        if (event.httpMethod !== 'POST') {
+            throw new Error(`updateUser only accept POST method, you tried: ${event.httpMethod}`);
         }
         // All log statements are written to CloudWatch
-        console.info('received:', event);
-
-        const id = event.pathParameters.id;
-
-        const params = {
-            TableName: tableName,
-            Key: { id: id },
-        };
-        const data = await docClient.get(params).promise();
-        const item = data.Item;
-
-        if (event.httpMethod !== 'POST') {
-            throw new Error(`postMethod only accepts POST method, you tried: ${event.httpMethod} method.`);
-        }
         console.info('received:', event);
         const body = JSON.parse(event.body);
 
         if (!_validateBody(body)) {
-            throw new Error(`Please fill the required fields: firstname, lastname, email, mobile and password`);
+            throw new Error(`Please fill the required fields: firstname, lastname, mobile`);
         }
+
+        // const id = event.pathParameters.id;
 
         const getparams = {
             TableName: tableName,
-            FilterExpression: 'email = :this_user',
-            ExpressionAttributeValues: { ':this_user': body.email }
+            Key: { id: body.id },
         };
-        const existingUser = await docClient.scan(getparams).promise();
-        if (existingUser.Items !== undefined && existingUser.Items?.length > 0) {
-            throw new Error(`A user witht the same email is already in the system`);
-        }
+        const data = await docClient.get(getparams).promise();
+        const item = data.Item;
 
-        var hashedPassword = passwordHash.generate(body.password);
+        item.firstname = body.firstname;
+        item.lastname = body.lastname;
+        item.mobile = body.mobile;
 
-        const payload = {
-            id: uuid(),
-            email: body.email,
-            firstname: body.firstname,
-            lastname: body.lastname,
-            mobile: body.mobile,
-            password: hashedPassword,
-            role: "user",
-            createDateTime: Date.now()
-        }
+        // const payload = {
+        //     id: id,
+        //     email: item.email,
+        //     firstname: body.firstname,
+        //     lastname: body.lastname,
+        //     mobile: body.mobile,
+        //     password: item.password,
+        //     role: "user",
+        //     createDateTime: item.createDateTime
+        // }
 
         const paramsUpdate = {
             TableName: tableName,
-            Item: payload
+            Item: item
         };
 
         const result = await docClient.put(paramsUpdate).promise();
-        delete payload.password;
+        item.password = "";
+        // delete payload.password;
 
-        return common.getAPIResponseObj(event, payload, "User creation success", 200);
+        return common.getAPIResponseObj(event, item, "User update success", 200);
     } catch (error) {
         console.info(`error: `, error);
         return common.getAPIResponseObj(event, error, error.message, 400);
@@ -84,12 +72,12 @@ function _validateBody(body) {
         isValid = false;
     } else if (body.lastname === undefined || body.lastname === "") {
         isValid = false;
-    } else if (body.email === undefined || body.email === "") {
-        isValid = false;
+    // } else if (body.email === undefined || body.email === "") {
+    //     isValid = false;
     } else if (body.mobile === undefined || body.mobile === "") {
         isValid = false;
-    } else if (body.password === undefined || body.password === "") {
-        isValid = false;
+    // } else if (body.password === undefined || body.password === "") {
+    //     isValid = false;
     }
     return isValid;
 }

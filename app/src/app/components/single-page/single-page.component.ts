@@ -29,7 +29,7 @@ export class SinglePageComponent {
   }
 
   public SearchShoppingLists(query) {
-    return this.http.get("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/shoppinglists/search");
+    return this.http.get("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/shoppinglists/search?query=" + query);
   }
 
   search(query) {
@@ -38,6 +38,7 @@ export class SinglePageComponent {
       this.SearchShoppingLists(query).subscribe(res => {
         // this.areSearchResults = true;
         this.listData = res['data'];
+        console.log(this.listData);
       });
     }
   }
@@ -54,7 +55,7 @@ export class SinglePageComponent {
     //   searchField: ['']
     // })
     this.GetAllShoppingLists().subscribe(res => {
-      //this.listData = res['data'];
+      this.listData = res['data'];
       for (let i = 0; i < res['data'].length; i++) {
         if(res['data'][i]['listtype'] == 'Shopping List') {
           this.shoppingListData.push(res['data'][i]);
