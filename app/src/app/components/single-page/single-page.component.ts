@@ -64,6 +64,7 @@ export class SinglePageComponent {
           this.wishListData.push(res['data'][i]);
         }
       }
+      console.log(this.shoppingListData.length);
       // for (let item in this.listData) {
       //   if (item.listtype )
       // }

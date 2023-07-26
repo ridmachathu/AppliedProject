@@ -70,7 +70,7 @@
                         <li class="file-box me-1" *ngFor="let list of listData">
                           <div class="file-top"><i class="fa fa-file-text-o"></i><i class="fa fa-ellipsis-v f-14 ellips"></i></div>
                           <div class="file-bottom">
-                            <a [routerLink]="'/single-page/listitem'" class="ms-2"><h6>{{ list.listname }}</h6></a>
+                            <a [routerLink]="['/single-page/listitem', list.id]" class="ms-2"><h6>{{ list.listname }}</h6></a>
                             <!-- <p class="mb-1">0.90 KB</p> -->
                             <p><b>last open : </b>1 hour ago</p>
                           </div>
