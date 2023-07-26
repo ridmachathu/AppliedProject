@@ -27,6 +27,9 @@
             <div class="table-responsive">
               <table class="table">
                 <thead>
+                  <tr *ngIf="listData.length == 0" class="card no-products">
+                    <th>No products found for your search</th>
+                  </tr>
                   <tr>
                     <!-- <th scope="col"></th> -->
                     <th scope="col">Item</th>

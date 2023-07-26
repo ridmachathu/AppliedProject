@@ -15,34 +15,22 @@ export class ProfileComponent implements OnInit {
   public profileUpdateForm : FormGroup;
   public errorMessage = "";
   public successMessage = "";
-  public fname: string;
-  public lname: string;
-  public useremail: string;
-  public phone: string;
-
-  // public url: any;
 
   constructor(private formBuilder: FormBuilder, private http: HttpClient, public router: Router) {
-    this.setCurrentUser()
+    this.userInfo = localStorage.getItem("authUser");
+    this.userRole = localStorage.getItem("role");
+    this.obj = JSON.parse(this.userInfo);
+    console.log(this.obj);
   }
 
   ngOnInit(): void {
     this.profileUpdateForm = this.formBuilder.group({
-      // firstname:['', Validators.required],
-      // lastname:['', Validators.required],
-      // email:['', Validators.required],
-      // mobile:['', Validators.required]
+      firstname:[this.obj.firstname, Validators.required],
+      lastname:[this.obj.lastname, Validators.required],
+      email:[this.obj.email, Validators.required],
+      mobile:[this.obj.mobile, Validators.required],
+      id:[this.obj.id]
     })
-  }
-
-  setCurrentUser(){
-    this.userInfo = localStorage.getItem("authUser");
-    this.userRole = localStorage.getItem("role");
-    this.obj = JSON.parse(this.userInfo);
-    this.fname = this.obj.firstname;
-    this.lname = this.obj.lastname;
-    this.useremail = this.obj.email;
-    this.phone = this.obj.mobile;
   }
 
   updateUser(){
@@ -51,13 +39,17 @@ export class ProfileComponent implements OnInit {
       this.errorMessage = "Some fields are missing"
       return;
     }
-    this.http.post<any>("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/users/",this.profileUpdateForm.value)
+    this.http.post<any>("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/users/update",this.profileUpdateForm.value)
     .subscribe(res=>{
       // alert("SignUp Successfully");
       console.log(res);
+      // localStorage.clear();
+      // localStorage.setItem('userName', res.data.user.firstname);
+      // localStorage.setItem('role', res.data.user.role);
+      // localStorage.setItem('authUser', JSON.stringify(res.data.user));
       this.successMessage = "Successful!"
-      this.profileUpdateForm.reset();
-      this.router.navigate(['']);
+      //this.profileUpdateForm.reset();
+      this.router.navigate(['/dashboard/profile']);
     },err=>{
       this.errorMessage = err.error.message
       console.log(err);

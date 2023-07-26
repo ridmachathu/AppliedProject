@@ -39,27 +39,27 @@ exports.handler = async (event) => {
         item.lastname = body.lastname;
         item.mobile = body.mobile;
 
-        // const payload = {
-        //     id: id,
-        //     email: item.email,
-        //     firstname: body.firstname,
-        //     lastname: body.lastname,
-        //     mobile: body.mobile,
-        //     password: item.password,
-        //     role: "user",
-        //     createDateTime: item.createDateTime
-        // }
+        const payload = {
+            id: item.id,
+            email: item.email,
+            firstname: item.firstname,
+            lastname: item.lastname,
+            mobile: item.mobile,
+            password: item.password,
+            role: "user",
+            createDateTime: item.createDateTime
+        }
 
         const paramsUpdate = {
             TableName: tableName,
-            Item: item
+            Item: payload
         };
 
         const result = await docClient.put(paramsUpdate).promise();
-        item.password = "";
-        // delete payload.password;
+        //item.password = "";
+        delete payload.password;
 
-        return common.getAPIResponseObj(event, item, "User update success", 200);
+        return common.getAPIResponseObj(event, payload, "User update success", 200);
     } catch (error) {
         console.info(`error: `, error);
         return common.getAPIResponseObj(event, error, error.message, 400);
