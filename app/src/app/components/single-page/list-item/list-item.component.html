@@ -1,4 +1,4 @@
-<app-breadcrumb [title]="'Smart Shopping List'" [items]="['Apps', 'Ecommerce']" [active_item]="'Invoice'"></app-breadcrumb>
+<app-breadcrumb [title]="'Shopping List'" [items]="['Apps', 'Shopping List']" [active_item]="'List Item'"></app-breadcrumb>
 <div class="container">
   <div class="row">
     <div class="col-sm-12">
@@ -12,7 +12,7 @@
                     <div class="media">
                       <div class="media-left"><img class="media-object img-60" src="assets/images/shopping-cart1.jpg" alt="" /></div>
                       <div class="media-body m-l-20">
-                        <h5 class="media-heading">Shopping List</h5>
+                        <h5 class="media-heading">Type: {{listtype}}</h5>
                         <!-- <p>hello@Cuba.in<br /><span>289-335-6503</span></p> -->
                       </div>
                     </div>
@@ -20,7 +20,7 @@
                   </div>
                   <div class="col-sm-6">
                     <div class="text-md-end">
-                      <h5>grocery list 1</h5>
+                      <h5>Name: {{listname}}</h5>
                       <!-- <p>
                         Issued: May<span> 27, 2022</span><br />
                         Payment Due: June <span>27, 2022</span>
@@ -39,57 +39,36 @@
                     <tbody>
                       <tr>
                         <td class="item">
-                          <h6 class="mb-0">Item Description</h6>
+                          <h5 class="mb-0">Item Description</h5>
                         </td>
-                        <!-- <td class="Hours">
-                          <h6 class="mb-0">Quantity</h6>
+                        <td class="Hours">
+                          <h5 class="mb-0">Store</h5>
                         </td>
-                        <td class="Rate">
-                          <h6 class="mb-0">Rate</h6>
-                        </td> -->
                         <td class="subtotal">
-                          <h6 class="mb-0">Sub-total</h6>
+                          <h5 class="mb-0">Price</h5>
                         </td>
                       </tr>
-                      <ng-container *ngFor="let i of invoice">
+                      <ng-container *ngFor="let i of plist">
                         <tr>
                           <td>
-                            <label>{{ i.itemDesc }}</label>
-                            <p class="m-0">{{ i.subDesc }}</p>
-                          </td>
-                          <!-- <td>
-                            <p class="itemtext">{{ i.Qty }}</p>
+                            <label><h6>{{ i.title }}</h6></label>
+                            <p class="m-0">{{ i.packageSize }}</p>
                           </td>
                           <td>
-                            <p class="itemtext">${{ i.rate }}</p>
-                          </td> -->
+                            <p class="itemtext">{{ i.store }}</p>
+                          </td>
                           <td>
-                            <p class="itemtext">${{ i.subTotal }}</p>
+                            <p class="itemtext">${{ i.price }}</p>
                           </td>
                         </tr>
                       </ng-container>
-                      <!-- <tr>
-                        <td>
-                          <p class="itemtext"></p>
-                        </td>
-                        <td>
-                          <p class="m-0">HST</p>
-                        </td>
-                        <td>
-                          <p class="m-0">13%</p>
-                        </td>
-                        <td>
-                          <p class="m-0">$419.25</p>
-                        </td>
-                      </tr> -->
                       <tr>
-                        <!-- <td></td> -->
-                        <!-- <td></td> -->
+                        <td></td>
                         <td class="Rate">
                           <h6 class="mb-0 p-2">Total</h6>
                         </td>
                         <td class="payment">
-                          <h6 class="mb-0 p-2">$14.11</h6>
+                          <!-- <h6 class="mb-0 p-2">$14.11</h6> -->
                         </td>
                       </tr>
                     </tbody>

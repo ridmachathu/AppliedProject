@@ -14,7 +14,7 @@ const routes: Routes = [
     component: NewListComponent,
   },
   {
-    path: "listitem",
+    path: "listitem/:id",
     component: ListItemComponent,
   }
 ];
