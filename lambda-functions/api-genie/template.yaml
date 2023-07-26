@@ -315,6 +315,52 @@ Resources:
             Path: /shoppinglists
             Method: POST
 
+  updateShoppingListItems:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/shopping-list/updateShoppingListItems.handler
+      Runtime: nodejs18.x
+      Architectures:
+        - x86_64
+      MemorySize: 128
+      Timeout: 100
+      Description: Use this function to add items to a shopping list in the system
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ShoppingListsTable
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref ShoppingListsTable
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /shoppinglists/update
+            Method: POST
+
+  deleteShoppingListItem:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/shopping-list/deleteShoppingListItem.handler
+      Runtime: nodejs18.x
+      Architectures:
+        - x86_64
+      MemorySize: 128
+      Timeout: 100
+      Description: Use this function to delete an item from shopping list in the system
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ShoppingListsTable
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref ShoppingListsTable
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /shoppinglists/deleteItem
+            Method: POST
+
   CreateUser:
     Type: AWS::Serverless::Function
     Properties:
