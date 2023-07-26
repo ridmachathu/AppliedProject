@@ -14,6 +14,7 @@ export class ListItemComponent implements OnInit {
    public plist = [];
    public plistId = [];
    public id: String;
+   public plistIdString: String;
 
    constructor(private http: HttpClient, private route: ActivatedRoute) { }
 
@@ -30,7 +31,10 @@ export class ListItemComponent implements OnInit {
                //console.log(res['data'][i]['listname']);
                this.listname = res['data'][i]['listname'];
                this.listtype = res['data'][i]['listtype'];
-               this.plistId = ['productCard_title__00062639316211','20083526001_KG','productCard_title__4069'];
+               this.plistIdString = res['data'][i]['items']
+               this.plistId = this.plistIdString.split(",");
+               console.log(this.plistId);
+               //this.plistId = ['productCard_title__00062639316211','20083526001_KG','productCard_title__4069'];
             }
          }
       })
