@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
    selector: 'app-list-item',
@@ -15,13 +15,35 @@ export class ListItemComponent implements OnInit {
    public plistId = [];
    public id: String;
    public plistIdString: String;
+   public errorMessage = "";
+   public successMessage = "";
 
-   constructor(private http: HttpClient, private route: ActivatedRoute) { }
+   constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { }
 
    ngOnInit() {
+      this.DisplayList();
+   }
+
+   public DeleteShoppingListItem(pid: string) {
+      const obj = {
+         id: this.id,
+         pid: pid
+       };
+      //const obj = JSON.parse(text);
+      this.http.post<any>("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/shoppinglists/deleteItem/", obj)
+         .subscribe(res => {
+            this.successMessage = "Delete successful!"
+            this.router.navigate(['/single-page/']);
+         }, err => {
+            this.errorMessage = err.error.message
+            // console.log(err);
+         }
+         )
+   }
+
+   public DisplayList(){
       this.route.paramMap.subscribe(params => {
-         const listId = params.get('id');
-         this.id = listId;
+         this.id = params.get('id');
        });
       this.GetAllShoppingLists().subscribe(res => {
          this.listData = res['data'];
