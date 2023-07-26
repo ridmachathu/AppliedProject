@@ -72,7 +72,7 @@
                           <div class="file-bottom">
                             <a [routerLink]="['/single-page/listitem', list.id]" class="ms-2"><h6>{{ list.listname }}</h6></a>
                             <!-- <p class="mb-1">0.90 KB</p> -->
-                            <p><b>last open : </b>1 hour ago</p>
+                            <p><b>Created Date : </b>{{ list.createDateTime }}</p>
                           </div>
                         </li>
                         <!-- <li class="file-box me-1" *ngFor="let wlist of wishListData">
@@ -142,9 +142,9 @@
                         <li class="file-box me-1" *ngFor="let slist of shoppingListData">
                           <div class="file-top"><i class="fa fa-file-text-o txt-info"></i><i class="fa fa-ellipsis-v f-14 ellips"></i></div>
                           <div class="file-bottom">
-                            <a [routerLink]="'/single-page/listitem'" class="ms-2"><h6>{{ slist.listname }}</h6></a>
+                            <a [routerLink]="['/single-page/listitem', slist.id]" class="ms-2"><h6>{{ slist.listname }}</h6></a>
                             <!-- <p class="mb-1">0.90 KB</p> -->
-                            <p><b>last open : </b>1 hour ago</p>
+                            <p><b>Created Date : </b>{{ slist.createDateTime }}</p>
                           </div>
                         </li>
                       </ul>
@@ -190,9 +190,9 @@
                         <li class="file-box me-1" *ngFor="let wlist of wishListData">
                           <div class="file-top"><i class="fa fa-file-text-o txt-primary"></i><i class="fa fa-ellipsis-v f-14 ellips"></i></div>
                           <div class="file-bottom">
-                            <a [routerLink]="'/single-page/listitem'" class="ms-2"><h6>{{ wlist.listname }}</h6></a>
+                            <a [routerLink]="['/single-page/listitem', wlist.id]" class="ms-2"><h6>{{ wlist.listname }}</h6></a>
                             <!-- <p class="mb-1">2.0 MB</p> -->
-                            <p><b>last open : </b>1 hour ago</p>
+                            <p><b>Created Date : </b>{{ wlist.createDateTime }}</p>
                           </div>
                         </li>
                       </ul>
