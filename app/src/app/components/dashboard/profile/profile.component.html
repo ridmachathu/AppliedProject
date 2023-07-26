@@ -35,7 +35,7 @@
                             <h6 class="mb-0">First Name</h6>
                           </div>
                           <div class="col-sm-6 text-secondary">
-                            <input type="text" class="form-control" value="{{ fname }}" formControlName="firstname">
+                            <input type="text" class="form-control" formControlName="firstname">
                           </div>
                         </div>
                         <!-- <div *ngIf="profileUpdateForm.controls.firstname.touched && profileUpdateForm.controls.firstname.errors?.required"
@@ -47,7 +47,7 @@
                             <h6 class="mb-0">Last Name</h6>
                           </div>
                           <div class="col-sm-6 text-secondary">
-                            <input type="text" class="form-control" value="{{ lname }}" formControlName="lastname">
+                            <input type="text" class="form-control" formControlName="lastname">
                           </div>
                         </div>
                         <!-- <div *ngIf="profileUpdateForm.controls.lastname.touched && profileUpdateForm.controls.lastname.errors?.required"
@@ -59,7 +59,7 @@
                             <h6 class="mb-0">Email</h6>
                           </div>
                           <div class="col-sm-6 text-secondary">
-                            <input type="text" class="form-control" value="{{ useremail }}" formControlName="email" readonly>
+                            <input type="text" class="form-control" formControlName="email" readonly>
                           </div>
                         </div>
                         <!-- <div *ngIf="profileUpdateForm.controls.email.touched && profileUpdateForm.controls.email.errors?.required"
@@ -71,7 +71,7 @@
                             <h6 class="mb-0">Phone</h6>
                           </div>
                           <div class="col-sm-6 text-secondary">
-                            <input type="text" class="form-control" value="{{ phone }}" formControlName="mobile">
+                            <input type="text" class="form-control" formControlName="mobile">
                           </div>
                         </div>
                         <!-- <div *ngIf="profileUpdateForm.controls.mobile.touched && profileUpdateForm.controls.mobile.errors?.required"

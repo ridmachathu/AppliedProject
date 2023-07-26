@@ -246,6 +246,29 @@ Resources:
             Path: /shoppinglists
             Method: GET
   
+  getShoppingListById:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/shopping-list/getShoppingListById.handler
+      Runtime: nodejs18.x
+      Architectures:
+        - x86_64
+      MemorySize: 128
+      Timeout: 100
+      Description: Use this function to get shopping list by id
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ShoppingListsTable
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref ShoppingListsTable
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /shoppinglists/{id}
+            Method: GET
+  
   searchShoppingLists:
     Type: AWS::Serverless::Function
     Properties:
@@ -315,7 +338,7 @@ Resources:
             Path: /users
             Method: POST
 
-  UpdateUser:
+  updateUser:
     Type: AWS::Serverless::Function
     Properties:
       Handler: src/users/updateUser.handler
