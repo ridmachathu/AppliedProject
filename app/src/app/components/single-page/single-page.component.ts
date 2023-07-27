@@ -51,9 +51,6 @@ export class SinglePageComponent {
   }
 
   ngOnInit() {
-    // this.searchForm = this.formBuilder.group({
-    //   searchField: ['']
-    // })
     this.GetAllShoppingLists().subscribe(res => {
       this.listData = res['data'];
       for (let i = 0; i < res['data'].length; i++) {
@@ -65,15 +62,8 @@ export class SinglePageComponent {
         }
       }
       console.log(this.shoppingListData.length);
-      // for (let item in this.listData) {
-      //   if (item.listtype )
-      // }
 
     })
   }
-
-  //  btnnewlist () {
-  //   this.router.navigateByUrl('/single-page/newlist');
-  //  };
 
 }

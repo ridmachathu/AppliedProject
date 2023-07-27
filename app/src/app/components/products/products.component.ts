@@ -17,6 +17,8 @@ export class ProductsComponent {
 
   // public listData = data.product;
   public listData = [];
+  public shoppingListData = [];
+  public wishListData = [];
   openSidebar: boolean = false;
   OpenFilter: Boolean = false;
 
@@ -85,7 +87,7 @@ export class ProductsComponent {
         }
       }
     );
-
+    this.displayAllShoppingListNames()
   }
 
   search(query) {
@@ -114,6 +116,22 @@ export class ProductsComponent {
   }
   openFilter() {
     this.OpenFilter = !this.OpenFilter;
+  }
+
+  displayAllShoppingListNames(){
+    this.productService.GetAllShoppingLists().subscribe(res => {
+      this.listData = res['data'];
+      for (let i = 0; i < res['data'].length; i++) {
+        if(res['data'][i]['listtype'] == 'Shopping List') {
+          this.shoppingListData.push(res['data'][i]);
+        }
+        else{
+          this.wishListData.push(res['data'][i]);
+        }
+      }
+      console.log(this.shoppingListData.length);
+
+    })
   }
 
   gridOpens() {
