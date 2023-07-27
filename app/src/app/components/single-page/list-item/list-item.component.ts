@@ -17,11 +17,42 @@ export class ListItemComponent implements OnInit {
    public plistIdString: String;
    public errorMessage = "";
    public successMessage = "";
+   public totPrice = 0;
 
    constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { }
 
    ngOnInit() {
-      this.DisplayList();
+      this.route.paramMap.subscribe(params => {
+         const id = params.get('id');
+         this.id = id;
+       });
+      this.GetAllShoppingLists().subscribe(res => {
+         this.listData = res['data'];
+         // console.log(this.listData);
+         for (let i = 0; i < res['data'].length; i++) {
+            if (res['data'][i]['id'] == this.id) {
+               //console.log(res['data'][i]['listname']);
+               this.listname = res['data'][i]['listname'];
+               this.listtype = res['data'][i]['listtype'];
+               this.plistIdString = res['data'][i]['items']
+               this.plistId = this.plistIdString.split(",");
+               console.log(this.plistId);
+            }
+         }
+      })
+      this.GetAllProducts().subscribe(res => {
+         this.listData = res['data'];
+         //console.log(this.listData);
+         for (let i = 0; i < res['data'].length; i++) {
+            for(let j = 0; j < this.plistId.length; j++){
+               if (res['data'][i]['id'] == this.plistId[j]) {
+                  this.plist.push(res['data'][i]);
+                  this.totPrice = this.totPrice + parseFloat(res['data'][i]['price'])
+               }
+            }
+         }
+         // console.log(this.plist);
+      })
    }
 
    public DeleteShoppingListItem(pid: string) {
@@ -39,42 +70,6 @@ export class ListItemComponent implements OnInit {
             // console.log(err);
          }
          )
-   }
-
-   public DisplayList(){
-      this.route.paramMap.subscribe(params => {
-         this.id = params.get('id');
-       });
-      this.GetAllShoppingLists().subscribe(res => {
-         this.listData = res['data'];
-         // console.log(this.listData);
-         for (let i = 0; i < res['data'].length; i++) {
-            if (res['data'][i]['id'] == this.id) {
-               //console.log(res['data'][i]['listname']);
-               this.listname = res['data'][i]['listname'];
-               this.listtype = res['data'][i]['listtype'];
-               this.plistIdString = res['data'][i]['items']
-               this.plistId = this.plistIdString.split(",");
-               console.log(this.plistId);
-               //this.plistId = ['productCard_title__00062639316211','20083526001_KG','productCard_title__4069'];
-            }
-         }
-      })
-      this.GetAllProducts().subscribe(res => {
-         this.listData = res['data'];
-         // console.log(this.listData);
-         let j = 0;
-         for (let i = 0; i < res['data'].length; i++) {
-            if (res['data'][i]['id'] == this.plistId[j]) {
-               this.plist.push(res['data'][i]);
-               j = j + 1;
-               if (j == this.plistId.length){
-                  break;
-               }
-            }
-         }
-         console.log(this.plist);
-      })
    }
 
    public GetAllShoppingLists() {

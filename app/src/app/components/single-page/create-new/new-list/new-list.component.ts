@@ -46,7 +46,7 @@ export class NewListComponent implements OnInit{
       // alert("SignUp Successfully");
       this.successMessage = "Shopping list creation is successful!"
       this.newListForm.reset();
-      this.router.navigate(['single-page']);
+      //this.router.navigate(['single-page']);
     },err=>{
       this.errorMessage = err.error.message
       console.log(err);
