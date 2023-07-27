@@ -1,3 +1,4 @@
+import { HttpClient } from "@angular/common/http";
 import { Component, Input, OnInit, TemplateRef, ViewChild } from "@angular/core";
 import { NavigationEnd, Router } from "@angular/router";
 import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
@@ -9,10 +10,15 @@ import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 })
 export class QuickViewComponent implements OnInit {
   public counter: number = 1;
+  public errorMessage = "";
+  public successMessage = "";
+  public closeResult = '';
+  public listData = [];
+  public shoppingListData = [];
 
   @Input() productDetail: any;
 
-  constructor(private router: Router, private ngb: NgbModal) {
+  constructor(private router: Router, private ngb: NgbModal, private modalService: NgbModal, private http: HttpClient) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.ngb.dismissAll();
@@ -20,7 +26,9 @@ export class QuickViewComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.displayAllShoppingListNames();
+  }
 
   public increment() {
     this.counter += 1;
@@ -31,4 +39,66 @@ export class QuickViewComponent implements OnInit {
       this.counter -= 1;
     }
   }
+
+  public GetAllShoppingLists() {
+    return this.http.get("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/shoppinglists");
+  }
+
+  displayAllShoppingListNames(){
+    this.GetAllShoppingLists().subscribe(res => {
+      this.listData = res['data'];
+      for (let i = 0; i < res['data'].length; i++) {
+        // if(res['data'][i]['listtype'] == 'Shopping List') {
+          this.shoppingListData.push(res['data'][i]);
+        // }
+        // else{
+        //   this.wishListData.push(res['data'][i]);
+        // }
+      }
+      console.log(this.shoppingListData);
+
+    })
+  }
+
+  public UpdateShoppingListItem(id: string, items: string) {
+    console.log(id);
+    const obj = {
+       id: id,
+       items: items
+     };
+    //const obj = JSON.parse(text);
+    this.http.post<any>("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/shoppinglists/update/", obj)
+       .subscribe(res => {
+          this.successMessage = "One item successfully added!"
+          //this.router.navigate(['/comparison']);
+       }, err => {
+          this.errorMessage = err.error.message
+          // console.log(err);
+       }
+    )
+  }
+
+  open(content,id) {
+    console.log(id);
+    this.errorMessage = "";
+    this.successMessage = "";
+		this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
+			(result) => {
+				this.closeResult = `Closed with: ${result}`;
+			},
+			(reason) => {
+				this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+			},
+		);
+	}
+
+	private getDismissReason(reason: any): string {
+		if (reason === ModalDismissReasons.ESC) {
+			return 'by pressing ESC';
+		} else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+			return 'by clicking on a backdrop';
+		} else {
+			return `with: ${reason}`;
+		}
+	}
 }
