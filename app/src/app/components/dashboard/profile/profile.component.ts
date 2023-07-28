@@ -41,13 +41,12 @@ export class ProfileComponent implements OnInit {
     }
     this.http.post<any>("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/users/update",this.profileUpdateForm.value)
     .subscribe(res=>{
-      // alert("SignUp Successfully");
-      console.log(res);
-      // localStorage.clear();
-      // localStorage.setItem('userName', res.data.user.firstname);
-      // localStorage.setItem('role', res.data.user.role);
-      // localStorage.setItem('authUser', JSON.stringify(res.data.user));
-      this.successMessage = "Successful!"
+      //console.log(res['data']['firstname']);
+      localStorage.setItem('userName', res['data']['firstname']);
+      localStorage.setItem('role', res['data']['role']);
+      localStorage.setItem('authUser', JSON.stringify(res['data']));
+      //console.log(localStorage.getItem("authUser"));
+      this.successMessage = "Profile update successful!"
       //this.profileUpdateForm.reset();
       this.router.navigate(['/dashboard/profile']);
     },err=>{
