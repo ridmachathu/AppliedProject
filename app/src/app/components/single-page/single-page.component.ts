@@ -17,6 +17,8 @@ export class SinglePageComponent {
   public searchForm: FormGroup;
   public listDataBackup = [];
   public listData = [];
+  // timestamps: number[] = [1689462588665, 1689462592000, 1689462595000];
+  // convertedDateTimes: string[] = [];
 
 
   constructor(public config: NgbRatingConfig, private http: HttpClient, private formBuilder: FormBuilder,) {
@@ -51,29 +53,34 @@ export class SinglePageComponent {
   }
 
   ngOnInit() {
-    // this.searchForm = this.formBuilder.group({
-    //   searchField: ['']
-    // })
     this.GetAllShoppingLists().subscribe(res => {
       this.listData = res['data'];
       for (let i = 0; i < res['data'].length; i++) {
         if(res['data'][i]['listtype'] == 'Shopping List') {
           this.shoppingListData.push(res['data'][i]);
+          // this.shoppingListData[i].createDateTime = this.convertTimestamps(this.shoppingListData[i].createDateTime);
         }
         else{
           this.wishListData.push(res['data'][i]);
+          // this.wishListData[i].createDateTime = this.convertTimestamps(this.wishListData[i].createDateTime)
         }
       }
       console.log(this.shoppingListData.length);
-      // for (let item in this.listData) {
-      //   if (item.listtype )
-      // }
-
     })
   }
 
-  //  btnnewlist () {
-  //   this.router.navigateByUrl('/single-page/newlist');
-  //  };
+  // convertTimestamps(timestamp) {
+  //   //for (const timestamp of this.timestamps) {
+  //     // Create a new Date object using the timestamp
+  //     console.log(timestamp);
+  //     const date = new Date(timestamp);
+
+  //     // Format the date and time as a string
+  //     const convertedDateTime = `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+
+  //     // Add the converted date and time to the array
+  //     this.convertedDateTimes.push(convertedDateTime);
+  //     //}
+  // }
 
 }

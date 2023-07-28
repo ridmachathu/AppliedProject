@@ -47,6 +47,9 @@
                         <td class="subtotal">
                           <h5 class="mb-0">Price</h5>
                         </td>
+                        <td class="subtotal">
+                          <h5 class="mb-0">Action</h5>
+                        </td>
                       </tr>
                       <ng-container *ngFor="let i of plist">
                         <tr>
@@ -60,6 +63,19 @@
                           <td>
                             <p class="itemtext">${{ i.price }}</p>
                           </td>
+                          <td>
+                            <svg xmlns="http://www.w3.org/2000/svg" (click)="DeleteShoppingListItem(i.id)" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle" _ngcontent-nvk-c156="">
+                              <circle cx="12" cy="12" r="10"></circle>
+                              <line x1="15" y1="9" x2="9" y2="15"></line>
+                              <line x1="9" y1="9" x2="15" y2="15"></line>
+                            </svg>
+                            <ngb-alert class="login-alert" *ngIf="errorMessage !== ''" [type]="'danger'" [dismissible]="false">
+                              {{ errorMessage }}
+                            </ngb-alert>
+                            <ngb-alert class="login-alert" *ngIf="successMessage !== ''" [type]="'success'" [dismissible]="false">
+                              {{ successMessage }}
+                            </ngb-alert>
+                          </td>
                         </tr>
                       </ng-container>
                       <tr>
@@ -69,6 +85,7 @@
                         </td>
                         <td class="payment">
                           <!-- <h6 class="mb-0 p-2">$14.11</h6> -->
+                          ${{ totPrice }}
                         </td>
                       </tr>
                     </tbody>
@@ -81,7 +98,8 @@
             <div class="col-sm-12 text-center mt-3">
               <button class="btn btn btn-primary me-2" [printStyle]="{ h1: { color: 'red' }, h2: { border: 'solid 1px' } }" printSectionId="print-section" ngxPrint>print</button>
               <!-- <button class="btn btn btn-primary me-2" type="button" onclick="myFunction()">Print</button> -->
-              <button class="btn btn-secondary" type="button">Cancel</button>
+              <!-- <button class="btn btn-secondary" type="submit" href="/single-page">Cancel</button> -->
+              <a class="btn btn-danger" href="/single-page">Cancel</a>
             </div>
             <!-- End Invoice-->
             <!-- End Invoice Holder-->

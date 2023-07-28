@@ -97,6 +97,12 @@
                   </div>
                 </div>
               </div>
+              <ngb-alert class="login-alert" *ngIf="errorMessage !== ''" [type]="'danger'" [dismissible]="false">
+                {{ errorMessage }}
+              </ngb-alert>
+              <ngb-alert class="login-alert" *ngIf="successMessage !== ''" [type]="'success'" [dismissible]="false">
+                {{ successMessage }}
+              </ngb-alert>
             </form>
           </div>
         </div>
