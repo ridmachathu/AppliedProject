@@ -17,10 +17,12 @@ export class MyAccountComponent implements OnInit {
     // } else {
     //   console.log("NO ");
     // }
-    this.setCurrentUser();
+    
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.setCurrentUser();
+  }
 
   logoutFunc() {
     localStorage.clear();
