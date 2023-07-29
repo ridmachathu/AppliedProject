@@ -64,7 +64,7 @@ export class ListItemComponent implements OnInit {
       this.http.post<any>("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/shoppinglists/deleteItem/", obj)
          .subscribe(res => {
             this.successMessage = "Delete successful!"
-            this.router.navigate(['/single-page/']);
+            //this.router.navigate(['/single-page/']);
          }, err => {
             this.errorMessage = err.error.message
             // console.log(err);
