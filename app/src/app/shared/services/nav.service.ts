@@ -16,6 +16,7 @@ export interface Menu {
   badgeValue?: string;
   active?: boolean;
   bookmark?: boolean;
+  isLoading?: boolean;
   children?: Menu[];
 }
 
@@ -90,7 +91,8 @@ export class NavService implements OnDestroy {
       icon: "ecommerce",
       type: "sub",
       active: false,
-      children: []
+      children: [],
+      isLoading: false
     }
   }
 
@@ -102,7 +104,8 @@ export class NavService implements OnDestroy {
       icon: "file-text",
       type: "sub",
       active: false,
-      children: []
+      children: [],
+      isLoading: false
     }
   }
 
@@ -132,6 +135,7 @@ export class NavService implements OnDestroy {
         productTypes.forEach(productType => {
           if (menuItem.title === productClass && menuItem.children.length !== productTypes.length) {
             menuItem.children.push(this.getTypeMenuItem(productType))
+            menuItem.isLoading = false;
           }
         });
       });
@@ -147,6 +151,7 @@ export class NavService implements OnDestroy {
             productCategories.forEach(productCategory => {
               if (childMenuItem.title === productType && childMenuItem.children.length !== productCategories.length) {
                 childMenuItem.children.push(this.getCategoryMenuItem(productCategory))
+                childMenuItem.isLoading = false;
               }
             });
           });

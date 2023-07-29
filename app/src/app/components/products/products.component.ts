@@ -65,16 +65,14 @@ export class ProductsComponent {
 
     this.route.params.subscribe(
       (params: { category: string }) => {
+        // since this page is used for other purposes but we still need to display products, therefore reusing this page
         if (params.category) {
+          debugger
           this.productService.GetProductsByCategory(params.category).subscribe(res => {
             this.listData = res['data'];
           });
         } else {
-          // implement logic to decide if to load all or product deals
-          // debugger
-          // console.log(window.location.href);
-          // console.log(this.router.url); 
-
+          // logic to decide if to load all or product deals
           if (this.router.url==="/products/deals") {
             this.productService.GetProductsDeals().subscribe(res => {
               this.listData = res['data'];
@@ -120,7 +118,7 @@ export class ProductsComponent {
 
   displayAllShoppingListNames(){
     this.productService.GetAllShoppingLists().subscribe(res => {
-      this.listData = res['data'];
+      // this.listData = res['data'];
       for (let i = 0; i < res['data'].length; i++) {
         if(res['data'][i]['listtype'] == 'Shopping List') {
           this.shoppingListData.push(res['data'][i]);
