@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import * as data from "../../shared/data/dashboard/default";
+import { DashboardService } from 'src/app/shared/services/dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,7 +10,7 @@ export class DashboardComponent {
 
   public purchase = {
     icon: "cart",
-    counter: "2,524",
+    counter: "Loading...",
     name: "Products to compare with",
     font: "secondary",
     pr: "-20",
@@ -18,10 +18,22 @@ export class DashboardComponent {
 
   public sales = {
     icon: "tag",
-    counter: "52",
-    name: "Items in lists",
+    counter: "Loading...",
+    name: "Current Deals",
     font: "primary",
     pr: "+70",
   };
+
+  constructor(
+    private dashboardService: DashboardService,
+  ) { }
+
+  ngOnInit() {
+    this.dashboardService.GetDashboardStats().subscribe(res => {
+      const data = res['data'];
+      this.purchase.counter = data.total_number_of_products.toLocaleString("en-US");
+      this.sales.counter = data.total_number_of_products_with_deals.toLocaleString("en-US");
+    })
+  }
 
 }

@@ -15,7 +15,7 @@ export interface Balance {
   styleUrls: ["./inflation-tracker.component.scss"],
 })
 export class InflationTrackerComponent {
-  public overallBalance = chartData.overallBalance;
+  // public overallBalance = chartData.overallBalance;
   public splineArea1 = chartData.splineArea1;
 
   constructor() {}
