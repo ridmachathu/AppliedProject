@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 import { AdminGuard } from './shared/guard/admin.guard';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 // // for HttpClient import:
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
@@ -74,3 +75,6 @@ export function HttpLoaderFactory(http: HttpClient) {
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
+// {provide: LocationStrategy, useClass: HashLocationStrategy}
