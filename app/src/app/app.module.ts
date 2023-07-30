@@ -28,6 +28,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { SignupComponent } from './auth/signup/signup.component';
 
 import { ProductService } from './shared/services/product.service';
+import { DashboardService } from './shared/services/dashboard.service'
 // import { NewListComponent } from './components/single-page/create-new/new-list/new-list.component';
 // import { NgxDropzoneModule } from 'ngx-dropzone';
 // import { ProfileComponent } from './components/profile/profile.component';
@@ -71,7 +72,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 //     // for Core use:
     LoadingBarModule
   ],
-  providers: [CookieService, AdminGuard, ProductService],
+  providers: [CookieService, AdminGuard, ProductService, DashboardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

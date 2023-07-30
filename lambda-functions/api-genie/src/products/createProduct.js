@@ -79,7 +79,7 @@ exports.handler = async (event) => {
             date: date,
             product_id: body.id,
             price: body.price,
-            createDateTime: Date.now(),
+            createDateTime: new Date(new Date().setHours(0,0,0,0)).getTime(),
             store: body.store,
             year: year,
             month: month,

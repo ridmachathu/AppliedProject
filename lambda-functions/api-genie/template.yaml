@@ -39,6 +39,55 @@ Resources:
             Path: /products
             Method: GET
 
+  GetDashboardStats:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/dashboard/getStats.handler
+      Runtime: nodejs18.x
+      Architectures:
+        - x86_64
+      MemorySize: 128
+      Timeout: 100
+      Description: Use this function to get products saved in the DB
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ProductsTable
+      Environment:
+        Variables:
+          PRODUCTS_TABLE_NAME: !Ref ProductsTable
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /dashboard/stats
+            Method: GET
+
+  GetPriceHistoryChartData:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/dashboard/getPriceHistoryChartData.handler
+      Runtime: nodejs18.x
+      Architectures:
+        - x86_64
+      MemorySize: 128
+      Timeout: 100
+      Description: Use this function to get products by id
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ProductPriceHistoryTable
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ProductsTable
+      Environment:
+        Variables:
+          PRODUCT_PRICE_HISTORY_TABLE_NAME: !Ref ProductPriceHistoryTable
+          PRODUCTS_TABLE_NAME: !Ref ProductsTable
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /dashboard/price-history/{id}
+            Method: GET
+
   GetAllDeals:
     Type: AWS::Serverless::Function
     Properties:
