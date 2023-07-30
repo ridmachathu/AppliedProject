@@ -17,6 +17,8 @@ export class NewListComponent implements OnInit{
   public newListForm : FormGroup;
   public errorMessage = "";
   public successMessage = "";
+  public userInfo: string;
+  public obj: any;
 
   onSelect(event) {
     this.files.push(...event.addedFiles);
@@ -29,7 +31,10 @@ export class NewListComponent implements OnInit{
   constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router) { }
 
   ngOnInit() : void {
+    this.userInfo = localStorage.getItem("authUser");
+    this.obj = JSON.parse(this.userInfo);
     this.newListForm = this.formBuilder.group({
+      uId:[this.obj.id],
       listtype:['', Validators.required],
       listname:['', Validators.required]
     })

@@ -298,10 +298,10 @@ Resources:
             Path: /shoppinglists
             Method: GET
   
-  getShoppingListById:
+  getAllShoppingListsByuId:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: src/shopping-list/getShoppingListById.handler
+      Handler: src/shopping-list/getAllShoppingListsByuId.handler
       Runtime: nodejs18.x
       Architectures:
         - x86_64
@@ -318,7 +318,7 @@ Resources:
         Api:
           Type: Api
           Properties:
-            Path: /shoppinglists/{id}
+            Path: /shoppinglists/getByUId
             Method: GET
   
   searchShoppingLists:
