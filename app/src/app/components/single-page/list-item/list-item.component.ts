@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
    selector: 'app-list-item',
@@ -9,6 +10,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ListItemComponent implements OnInit {
    public listData = [];
+   public alllistData = [];
+   public shoppingListData = [];
    public listname : string;
    public listtype : string;
    public plist = [];
@@ -17,11 +20,13 @@ export class ListItemComponent implements OnInit {
    public plistIdString: String;
    public errorMessage = "";
    public successMessage = "";
+   public closeResult = '';
    public totPrice = 0;
 
-   constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { }
+   constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router, private modalService: NgbModal,) { }
 
    ngOnInit() {
+      this.displayAllShoppingListNames();
       this.route.paramMap.subscribe(params => {
          const id = params.get('id');
          this.id = id;
@@ -47,13 +52,29 @@ export class ListItemComponent implements OnInit {
             for(let j = 0; j < this.plistId.length; j++){
                if (res['data'][i]['id'] == this.plistId[j]) {
                   this.plist.push(res['data'][i]);
-                  this.totPrice = this.totPrice + parseFloat(res['data'][i]['price'])
+                  this.totPrice = this.totPrice + parseFloat(res['data'][i]['price'].toFixed(2))
                }
             }
          }
          // console.log(this.plist);
       })
    }
+
+   displayAllShoppingListNames(){
+      this.GetAllShoppingLists().subscribe(res => {
+        //this.alllistData = res['data'];
+        for (let i = 0; i < res['data'].length; i++) {
+          // if(res['data'][i]['listtype'] == 'Shopping List') {
+            this.shoppingListData.push(res['data'][i]);
+          // }
+          // else{
+          //   this.wishListData.push(res['data'][i]);
+          // }
+        }
+        console.log(this.shoppingListData);
+  
+      })
+    }
 
    public DeleteShoppingListItem(pid: string) {
       const obj = {
@@ -71,6 +92,48 @@ export class ListItemComponent implements OnInit {
          }
          )
    }
+
+   public UpdateShoppingListItem(id: string, items: string) {
+      console.log(id);
+      const obj = {
+         id: id,
+         items: items
+       };
+      //const obj = JSON.parse(text);
+      this.http.post<any>("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/shoppinglists/update/", obj)
+         .subscribe(res => {
+            this.successMessage = "One item successfully added!"
+            //this.router.navigate(['/comparison']);
+         }, err => {
+            this.errorMessage = err.error.message
+            // console.log(err);
+         }
+      )
+    }
+
+    open(content,id) {
+      console.log(id);
+      this.errorMessage = "";
+      this.successMessage = "";
+        this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
+           (result) => {
+              this.closeResult = `Closed with: ${result}`;
+           },
+           (reason) => {
+              this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+           },
+        );
+     }
+
+     private getDismissReason(reason: any): string {
+		if (reason === ModalDismissReasons.ESC) {
+			return 'by pressing ESC';
+		} else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+			return 'by clicking on a backdrop';
+		} else {
+			return `with: ${reason}`;
+		}
+	}
 
    public GetAllShoppingLists() {
       return this.http.get("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/shoppinglists");
