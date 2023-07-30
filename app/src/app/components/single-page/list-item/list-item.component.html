@@ -150,7 +150,7 @@
               <button class="btn btn btn-primary me-2" [printStyle]="{ h1: { color: 'red' }, h2: { border: 'solid 1px' } }" printSectionId="print-section" ngxPrint>print</button>
               <!-- <button class="btn btn btn-primary me-2" type="button" onclick="myFunction()">Print</button> -->
               <!-- <button class="btn btn-secondary" type="submit" href="/single-page">Cancel</button> -->
-              <a class="btn btn-danger" href="/single-page">Cancel</a>
+              <a class="btn btn-danger" [routerLink]="'/single-page/'">Cancel</a>
             </div>
             <!-- End Invoice-->
             <!-- End Invoice Holder-->
