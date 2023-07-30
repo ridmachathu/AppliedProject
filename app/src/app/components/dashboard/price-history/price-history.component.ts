@@ -24,7 +24,7 @@ export class PriceHistoryComponent {
   ) {}
 
   ngOnInit(): void {
-    this.dashboardService.GetProductPriceHistoryForId("20070132001_EA").subscribe(res => {
+    this.dashboardService.GetProductPriceHistoryForId("20738571_EA").subscribe(res => {
       const data = res['data'];
       this.splineArea2.labels = data.labels;
       this.splineArea2.series = data.series;
