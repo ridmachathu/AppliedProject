@@ -26,6 +26,7 @@ exports.handler = async (event) => {
 
         const payload = {
             id: uuid(),
+            userId : body.uId,
             listtype: body.listtype,
             listname: body.listname,
             items: "",

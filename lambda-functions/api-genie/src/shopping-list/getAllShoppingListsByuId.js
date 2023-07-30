@@ -17,18 +17,19 @@ exports.handler = async (event) => {
             throw new Error(`getShoppingListById only accept GET method, you tried: ${event.httpMethod}`);
         }
         // All log statements are written to CloudWatch
-        console.info('received:', event);
+        console.info('received:', event.body);
+        const body = JSON.parse(event.body);
 
-        const id = event.pathParameters.id;
+        //const id = event.pathParameters.id;
 
         const params = {
             TableName: tableName,
-            Key: { id: id },
+            Key: { userId: body.uId },
         };
         const data = await docClient.get(params).promise();
         const item = data.Item;
 
-        return common.getAPIResponseObj(event, item, "Get shopping list by ID is success", 200);
+        return common.getAPIResponseObj(event, item, "Get all shopping list by user ID is success", 200);
     } catch (error) {
         console.info(`error: `, error);
         return common.getAPIResponseObj(event, error, error.message, 400);
