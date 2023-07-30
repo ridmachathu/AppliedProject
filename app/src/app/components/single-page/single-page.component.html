@@ -72,7 +72,7 @@
                           <div class="file-bottom">
                             <a [routerLink]="['/single-page/listitem', list.id]" class="ms-2"><h6>{{ list.listname }}</h6></a>
                             <!-- <p class="mb-1">0.90 KB</p> -->
-                            <p><b>Created Date : </b>{{ list.createDateTime }}</p>
+                            <p><b>Created Date : </b>{{ getFormattedDate(list.createDateTime) }}</p>
                           </div>
                         </li>
                         <!-- <li class="file-box me-1" *ngFor="let wlist of wishListData">
@@ -144,7 +144,7 @@
                           <div class="file-bottom">
                             <a [routerLink]="['/single-page/listitem', slist.id]" class="ms-2"><h6>{{ slist.listname }}</h6></a>
                             <!-- <p class="mb-1">0.90 KB</p> -->
-                            <p><b>Created Date : </b>{{ slist.createDateTime }}</p>
+                            <p><b>Created Date : </b>{{ getFormattedDate(slist.createDateTime) }}</p>
                           </div>
                         </li>
                       </ul>
@@ -192,7 +192,7 @@
                           <div class="file-bottom">
                             <a [routerLink]="['/single-page/listitem', wlist.id]" class="ms-2"><h6>{{ wlist.listname }}</h6></a>
                             <!-- <p class="mb-1">2.0 MB</p> -->
-                            <p><b>Created Date : </b>{{ wlist.createDateTime }}</p>
+                            <p><b>Created Date : </b>{{ getFormattedDate(wlist.createDateTime) }}</p>
                           </div>
                         </li>
                       </ul>
