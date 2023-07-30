@@ -1,8 +1,8 @@
 <!-- Page Sidebar Start-->
 <div class="logo-wrapper">
   <a routerLink="/">
-    <img class="img-fluid for-light" src="assets/images/logo/GENIE_LIGHT.png" alt="" />
-    <img class="img-fluid for-dark" src="assets/images/logo/GENIE_DARK.png" alt="" />
+    <img class="img-fluid for-light" src="./assets/images/logo/GENIE_LIGHT.png" alt="" />
+    <img class="img-fluid for-dark" src="./assets/images/logo/GENIE_DARK.png" alt="" />
   </a>
   <div class="back-btn" (click)="sidebarToggle()">
     <i class="fa fa-angle-left"></i>
@@ -14,7 +14,7 @@
 </div>
 <div class="logo-icon-wrapper">
   <a href="javascript:void(0)">
-    <img class="img-fluid" src="assets/images/logo/GENIE_LOGO.png" alt="" />
+    <img class="img-fluid" src="./assets/images/logo/GENIE_LOGO.png" alt="" />
   </a>
 </div>
 <nav class="sidebar-main">
@@ -31,7 +31,7 @@
               <div class="simplebar-content">
                 <li class="back-btn">
                   <a href="javascript:void(0)">
-                    <img class="img-fluid" src="assets/images/logo/GENIE_LOGO.png" alt="" />
+                    <img class="img-fluid" src="./assets/images/logo/GENIE_LOGO.png" alt="" />
                   </a>
                   <div class="mobile-back text-end" (click)="sidebarToggle()">
                     <span>Back</span>
@@ -41,7 +41,7 @@
 
                 <li [class]="menuItem.headTitle1 ? 'sidebar-main-title' : 'sidebar-list'" *ngFor="let menuItem of menuItems" [ngClass]="{ active: menuItem.active }">
                   <div *ngIf="menuItem.headTitle1">
-                    <h6 class="lan-1">{{ menuItem.headTitle1 | translate }}</h6>
+                    <h6 class="lan-1">{{ menuItem.headTitle1 | translate }} </h6>
                     <!-- <p class="lan-2">{{ menuItem.headTitle2 | translate }}</p> -->
                   </div>
 
@@ -49,7 +49,7 @@
                   <!-- Sub -->
                   <a href="javascript:void(0)" class="sidebar-link sidebar-title" [class.link-nav]="!menuItem.children" [ngClass]="{ active: menuItem.active }" *ngIf="menuItem.type === 'sub'" (click)="toggletNavActive(menuItem)">
                     <app-svg-icon [icon]="menuItem.icon"></app-svg-icon>
-                    <span>{{ menuItem.title | translate }}</span>
+                    <span>{{ menuItem.title | translate }} <img *ngIf="menuItem.isLoading" src="assets/spinner.svg" alt="" height="25px"></span>
                     <div class="according-menu">
                       <i class="fa fa-angle-{{ menuItem.active ? 'down' : 'right' }} pull-right" *ngIf="menuItem.children"></i>
                     </div>
@@ -82,7 +82,7 @@
                     <li *ngFor="let childrenItem of menuItem.children" [ngClass]="{ active: childrenItem.active }">
                       <!-- Sub -->
                       <a class="submenu-title" href="javascript:void(0)" *ngIf="childrenItem.type === 'sub'" (click)="toggletNavActive(childrenItem, menuItem)">
-                        <span> {{ childrenItem.title | translate }}</span>
+                        <span> {{ childrenItem.title | translate }} <img *ngIf="childrenItem.isLoading" src="assets/spinner.svg" alt="" height="25px"></span>
                         <div class="according-menu">
                           <i class="fa fa-angle-{{ childrenItem.active ? 'down' : 'right' }} pull-right" *ngIf="childrenItem.children"></i>
                         </div>

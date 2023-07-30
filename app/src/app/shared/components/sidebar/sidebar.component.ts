@@ -83,6 +83,7 @@ export class SidebarComponent {
   // Click Toggle menu
   toggletNavActive(item, parentItem) {
     if (!item.active) {
+      
       this.menuItems.forEach(a => {
         if (this.menuItems.includes(item)) {
           a.active = false;
@@ -94,7 +95,10 @@ export class SidebarComponent {
           }
         });
       });
-      this.loadTypesForClass(item, parentItem);
+      if(item.children.length === 0){
+        item.isLoading = true;
+        this.loadTypesForClass(item, parentItem);
+      }
     }
     item.active = !item.active;
   }
