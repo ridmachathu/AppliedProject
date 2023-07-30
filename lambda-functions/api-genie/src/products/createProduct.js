@@ -7,8 +7,8 @@ const { v4: uuid } = require('uuid');
 const common = require('../../common/common');
 
 // Get the DynamoDB table name from environment variables
-const tableName = process.env.TABLE_NAME;
-
+const tableName = process.env.PRODUCTS_TABLE_NAME;
+const productPriceHistoryTableName = process.env.PRODUCT_PRICE_HISTORY_TABLE_NAME;
 /**
  * A simple example includes a HTTP post method to add one item to a DynamoDB table.
  */
@@ -42,6 +42,7 @@ exports.handler = async (event) => {
         // removed duplicates on tags
         tags = [...new Set(tags)]
 
+        // record to update the current product details
         const payload = {
             id: body.id,
             title: body.title,
@@ -63,6 +64,33 @@ exports.handler = async (event) => {
             Item: payload
         };
         const result = await docClient.put(params).promise();
+
+        // record to update the historical data in the price history table
+        const now = new Date();
+        // getting the date for the format of YYYYMMDD
+        const year = now.getFullYear().toString();
+        const month = ("0" + (now.getMonth() + 1)).slice(-2);
+        const day = ("0" + now.getDate()).slice(-2);
+        const date = `${year}${month}${day}`;
+        
+        const historyRecordId = body.id + ":" + date;
+        const priceHistoryRecord = {
+            id: historyRecordId,
+            date: date,
+            product_id: body.id,
+            price: body.price,
+            createDateTime: Date.now(),
+            store: body.store,
+            year: year,
+            month: month,
+            day: day
+        }
+        const historyParams = {
+            TableName: productPriceHistoryTableName,
+            Item: priceHistoryRecord
+        };
+        const result2 = await docClient.put(historyParams).promise();
+
 
         return common.getAPIResponseObj(event, payload, "Product creation success", 200);
     } catch (error) {

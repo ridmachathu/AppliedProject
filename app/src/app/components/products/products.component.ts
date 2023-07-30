@@ -67,7 +67,6 @@ export class ProductsComponent {
       (params: { category: string }) => {
         // since this page is used for other purposes but we still need to display products, therefore reusing this page
         if (params.category) {
-          debugger
           this.productService.GetProductsByCategory(params.category).subscribe(res => {
             this.listData = res['data'];
           });

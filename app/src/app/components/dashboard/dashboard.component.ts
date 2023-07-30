@@ -19,7 +19,7 @@ export class DashboardComponent {
   public sales = {
     icon: "tag",
     counter: "52",
-    name: "Items in lists",
+    name: "Current Deals",
     font: "primary",
     pr: "+70",
   };
