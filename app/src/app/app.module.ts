@@ -11,6 +11,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 import { AdminGuard } from './shared/guard/admin.guard';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 // // for HttpClient import:
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
@@ -55,6 +56,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
+    NgSelectModule,
     // NgxDropzoneModule,
     ToastrModule.forRoot(),
     TranslateModule.forRoot({

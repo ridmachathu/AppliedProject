@@ -1,6 +1,6 @@
 <div class="card height-equal">
   <div class="card-header card-no-border">
-    <h5>Price History</h5>
+    <h5>Price Tracker</h5>
   </div>
   <div class="card-body pt-0">
     <div class="row m-0 overall-card">
@@ -10,8 +10,8 @@
             <div class="col-xl-12">
               <div class="card-body p-0">
                 <ul class="balance-data">
-                  <li><span class="circle bg-warning"> </span><span class="f-light ms-1">Earning</span></li>
-                  <li><span class="circle bg-primary"> </span><span class="f-light ms-1">Expense</span></li>
+                  <li><span class="f-light ms-1">Featured Products</span></li>
+                  <li><ng-select [items]="options" [(ngModel)]="selectedProduct" (change)="changeProduct($event)" [clearable]="false" [multiple]="false" placeholder="Select" class="btn-square"> </ng-select></li>
                 </ul>
                 <div class="current-sale-container">
                   <div id="chart-currently">

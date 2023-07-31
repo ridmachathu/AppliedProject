@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgApexchartsModule } from "ng-apexcharts";
+import { NgSelectModule } from '@ng-select/ng-select';
+import { FormsModule } from '@angular/forms';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
@@ -29,7 +31,9 @@ import { InflationTrackerComponent } from './inflation-tracker/inflation-tracker
     CommonModule,
     DashboardRoutingModule,
     SharedModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    NgSelectModule,
+    FormsModule
   ]
 })
 export class DashboardModule { }
