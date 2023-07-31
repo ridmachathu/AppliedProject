@@ -138,6 +138,9 @@
                         </li>
                       </ul> -->
                       <h6>All shopping lists</h6>
+                      <div *ngIf="shoppingListData.length == 0" class="card no-products">
+                        <h6>No lists found for your search</h6>
+                      </div>
                       <ul class="files">
                         <li class="file-box me-1" *ngFor="let slist of shoppingListData">
                           <div class="file-top"><i class="fa fa-file-text-o txt-info"></i><i class="fa fa-ellipsis-v f-14 ellips"></i></div>
@@ -186,6 +189,9 @@
                         </li>
                       </ul> -->
                       <h6>All wish lists</h6>
+                      <div *ngIf="wishListData.length == 0" class="card no-products">
+                        <h6>No lists found for your search</h6>
+                      </div>
                       <ul class="files">
                         <li class="file-box me-1" *ngFor="let wlist of wishListData">
                           <div class="file-top"><i class="fa fa-file-text-o txt-primary"></i><i class="fa fa-ellipsis-v f-14 ellips"></i></div>

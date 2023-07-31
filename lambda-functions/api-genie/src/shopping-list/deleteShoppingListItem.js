@@ -50,6 +50,7 @@ exports.handler = async (event) => {
 
         const payload = {
             id: item.id,
+            userId: item.userId,
             listtype: item.listtype,
             listname: item.listname,
             items: item.items,
