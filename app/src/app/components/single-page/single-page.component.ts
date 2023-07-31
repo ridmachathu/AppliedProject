@@ -18,13 +18,11 @@ export class SinglePageComponent {
   public searchForm: FormGroup;
   public listDataBackup = [];
   public listData = [];
-  // timestamps: number[] = [1689462588665, 1689462592000, 1689462595000];
-  // convertedDateTimes: string[] = [];
-
+  public uId;
+  public Message = "";
 
   constructor(public config: NgbRatingConfig, private http: HttpClient, private formBuilder: FormBuilder) {
-    // config.max = 5;
-		// config.readonly = true;
+    
    }
 
   public GetAllShoppingLists() {
@@ -49,8 +47,17 @@ export class SinglePageComponent {
       this.listDataBackup = this.listData;
       this.SearchShoppingLists(query).subscribe(res => {
         // this.areSearchResults = true;
-        this.listData = res['data'];
-        console.log(this.listData);
+        console.log(res['data']);
+        for (let i = 0; i < res['data'].length; i++) {
+          if((res['data'][i]['userId'] == this.uId)) {
+            this.listData = res['data'];
+          }
+          else{
+            this.listData = [];
+          }
+        }
+        // this.listData = res['data'];
+        //console.log(this.listData);
       });
     }
   }
@@ -64,33 +71,20 @@ export class SinglePageComponent {
 
   ngOnInit() {
     this.GetAllShoppingLists().subscribe(res => {
-      this.listData = res['data'];
+      this.uId = localStorage.getItem('userId');
       for (let i = 0; i < res['data'].length; i++) {
-        if(res['data'][i]['listtype'] == 'Shopping List') {
-          this.shoppingListData.push(res['data'][i]);
-          // this.shoppingListData[i].createDateTime = this.convertTimestamps(this.shoppingListData[i].createDateTime);
-        }
-        else{
-          this.wishListData.push(res['data'][i]);
-          // this.wishListData[i].createDateTime = this.convertTimestamps(this.wishListData[i].createDateTime)
+        if((res['data'][i]['userId'] == this.uId)) {
+          this.listData.push(res['data'][i]);
+          if((res['data'][i]['listtype'] == 'Shopping List')){
+            this.shoppingListData.push(res['data'][i]);
+          }
+          else{
+            this.wishListData.push(res['data'][i]);
+          }
         }
       }
-      console.log(this.shoppingListData.length);
+      //console.log(this.shoppingListData);
     })
   }
-
-  // convertTimestamps(timestamp) {
-  //   //for (const timestamp of this.timestamps) {
-  //     // Create a new Date object using the timestamp
-  //     console.log(timestamp);
-  //     const date = new Date(timestamp);
-
-  //     // Format the date and time as a string
-  //     const convertedDateTime = `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
-
-  //     // Add the converted date and time to the array
-  //     this.convertedDateTimes.push(convertedDateTime);
-  //     //}
-  // }
 
 }

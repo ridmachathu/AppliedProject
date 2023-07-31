@@ -22,6 +22,7 @@ export class ListItemComponent implements OnInit {
    public successMessage = "";
    public closeResult = '';
    public totPrice = 0;
+   public uId;
 
    constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router, private modalService: NgbModal,) { }
 
@@ -62,17 +63,13 @@ export class ListItemComponent implements OnInit {
 
    displayAllShoppingListNames(){
       this.GetAllShoppingLists().subscribe(res => {
-        //this.alllistData = res['data'];
-        for (let i = 0; i < res['data'].length; i++) {
-          // if(res['data'][i]['listtype'] == 'Shopping List') {
-            this.shoppingListData.push(res['data'][i]);
-          // }
-          // else{
-          //   this.wishListData.push(res['data'][i]);
-          // }
-        }
-        console.log(this.shoppingListData);
-  
+         this.uId = localStorage.getItem('userId');
+         for (let i = 0; i < res['data'].length; i++) {
+           if((res['data'][i]['userId'] == this.uId)) {
+             this.shoppingListData.push(res['data'][i]);
+           }
+         }
+         //console.log(this.shoppingListData);
       })
     }
 
@@ -93,7 +90,8 @@ export class ListItemComponent implements OnInit {
          )
    }
 
-   public UpdateShoppingListItem(id: string, items: string) {
+   public moveShoppingListItem(id: string, items: string) {
+      //this.DeleteShoppingListItem(id);
       console.log(id);
       const obj = {
          id: id,
@@ -102,7 +100,7 @@ export class ListItemComponent implements OnInit {
       //const obj = JSON.parse(text);
       this.http.post<any>("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/shoppinglists/update/", obj)
          .subscribe(res => {
-            this.successMessage = "One item successfully added!"
+            this.successMessage = "The item successfully moved!"
             //this.router.navigate(['/comparison']);
          }, err => {
             this.errorMessage = err.error.message

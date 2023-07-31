@@ -46,14 +46,11 @@ export class QuickViewComponent implements OnInit {
 
   displayAllShoppingListNames(){
     this.GetAllShoppingLists().subscribe(res => {
-      this.listData = res['data'];
+      let uId = localStorage.getItem('userId');
       for (let i = 0; i < res['data'].length; i++) {
-        // if(res['data'][i]['listtype'] == 'Shopping List') {
+        if((res['data'][i]['userId'] == uId)) {
           this.shoppingListData.push(res['data'][i]);
-        // }
-        // else{
-        //   this.wishListData.push(res['data'][i]);
-        // }
+        }
       }
       console.log(this.shoppingListData);
 
