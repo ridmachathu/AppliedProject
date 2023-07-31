@@ -274,7 +274,30 @@ Resources:
           Properties:
             Path: /products
             Method: POST
-  
+
+  CreateDashboardStat:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/dashboard/createStatRecord.handler
+      Runtime: nodejs18.x
+      Architectures:
+        - x86_64
+      MemorySize: 128
+      Timeout: 100
+      Description: Use this function to create new stat record
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ProductPriceHistoryTable
+      Environment:
+        Variables:
+          PRODUCT_PRICE_HISTORY_TABLE_NAME: !Ref ProductPriceHistoryTable
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /dashboard/stat
+            Method: POST
+
   getAllShoppingLists:
     Type: AWS::Serverless::Function
     Properties:
