@@ -1,4 +1,4 @@
-<app-breadcrumb [title]="'Shopping List'" [items]="['Apps', 'Shopping List']" [active_item]="'List Item'"></app-breadcrumb>
+<app-breadcrumb [title]="'Shopping List'" [items]="['Shopping List']" [active_item]="'List Item'"></app-breadcrumb>
 <div class="container">
   <div class="row">
     <div class="col-sm-12">
@@ -124,13 +124,26 @@
                       <tr>
                         <td></td>
                         <td class="Rate">
-                          <h6 class="mb-0 p-2">Total</h6>
+                          <h6 class="mb-0 p-2">Total Price</h6>
                         </td>
                         <td class="payment">
                           <!-- <h6 class="mb-0 p-2">$14.11</h6> -->
                           ${{ totPrice | number:'1.2-2' }}
                         </td>
                         <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                        <td class="Rate">
+                          <h6 class="mb-0 p-2">Total Savings</h6>
+                        </td>
+                        <td></td>
+                        <td class="payment">
+                          <!-- <h6 class="mb-0 p-2">$14.11</h6> -->
+                          ${{ totPriceSaving | number:'1.2-2' }}
+                        </td>
                         <td></td>
                         <td></td>
                       </tr>

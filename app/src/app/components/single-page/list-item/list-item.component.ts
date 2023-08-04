@@ -22,6 +22,7 @@ export class ListItemComponent implements OnInit {
    public successMessage = "";
    public closeResult = '';
    public totPrice = 0;
+   public totPriceSaving = 0;
    public uId;
 
    constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router, private modalService: NgbModal,) { }
@@ -54,6 +55,10 @@ export class ListItemComponent implements OnInit {
                if (res['data'][i]['id'] == this.plistId[j]) {
                   this.plist.push(res['data'][i]);
                   this.totPrice = this.totPrice + parseFloat(res['data'][i]['price'].toFixed(2))
+                  if(res['data'][i]['priceBefore'] != 0){
+                     let deal = parseFloat(res['data'][i]['priceBefore'].toFixed(2)) - parseFloat(res['data'][i]['price'].toFixed(2));
+                     this.totPriceSaving = this.totPriceSaving + deal;
+                  }
                }
             }
          }
@@ -82,6 +87,7 @@ export class ListItemComponent implements OnInit {
       this.http.post<any>("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/shoppinglists/deleteItem/", obj)
          .subscribe(res => {
             this.successMessage = "Delete successful!"
+            window.location.reload();
             //this.router.navigate(['/single-page/']);
          }, err => {
             this.errorMessage = err.error.message
