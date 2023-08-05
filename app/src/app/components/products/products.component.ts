@@ -1,10 +1,11 @@
 import { Component, Input, Output, ViewChild } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProductService } from "../../shared/services/product.service";
 import * as feather from "feather-icons";
 import { QuickViewComponent } from './quick-view/quick-view.component';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-products',
@@ -18,7 +19,9 @@ export class ProductsComponent {
   // public listData = data.product;
   public listData = [];
   public shoppingListData = [];
-  public wishListData = [];
+  public errorMessage = "";
+  public successMessage = "";
+  public closeResult = '';
   openSidebar: boolean = false;
   OpenFilter: Boolean = false;
 
@@ -50,7 +53,8 @@ export class ProductsComponent {
     private productService: ProductService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private http: HttpClient
   ) { }
 
   ngOnInit() {
@@ -117,19 +121,58 @@ export class ProductsComponent {
 
   displayAllShoppingListNames(){
     this.productService.GetAllShoppingLists().subscribe(res => {
-      // this.listData = res['data'];
+      let uId = localStorage.getItem('userId');
       for (let i = 0; i < res['data'].length; i++) {
-        if(res['data'][i]['listtype'] == 'Shopping List') {
+        if((res['data'][i]['userId'] == uId)) {
           this.shoppingListData.push(res['data'][i]);
         }
-        else{
-          this.wishListData.push(res['data'][i]);
-        }
       }
-      console.log(this.shoppingListData.length);
+      console.log(this.shoppingListData);
 
     })
   }
+
+  public UpdateShoppingListItem(id: string, items: string) {
+    console.log(id);
+    const obj = {
+       id: id,
+       items: items
+     };
+    //const obj = JSON.parse(text);
+    this.http.post<any>("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/shoppinglists/update/", obj)
+       .subscribe(res => {
+          this.successMessage = "One item successfully added!"
+          //this.router.navigate(['/comparison']);
+       }, err => {
+          this.errorMessage = err.error.message
+          // console.log(err);
+       }
+    )
+  }
+
+  openListPage(content,id) {
+    console.log(id);
+    this.errorMessage = "";
+    this.successMessage = "";
+		this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
+			(result) => {
+				this.closeResult = `Closed with: ${result}`;
+			},
+			(reason) => {
+				this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+			},
+		);
+	}
+
+	private getDismissReason(reason: any): string {
+		if (reason === ModalDismissReasons.ESC) {
+			return 'by pressing ESC';
+		} else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+			return 'by clicking on a backdrop';
+		} else {
+			return `with: ${reason}`;
+		}
+	}
 
   gridOpens() {
     this.listView = false;
