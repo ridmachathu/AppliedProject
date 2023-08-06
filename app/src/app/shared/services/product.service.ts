@@ -19,6 +19,7 @@ export class ProductService {
   }
 
   public SearchProducts(query, store, onlyDeals) {
+    query = query.toLowerCase();
     return this.http.get("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/products/search?query=" + query + "&store=" + store + "&onlyDeals=" + onlyDeals);
   }
 
