@@ -222,7 +222,8 @@ const weblinks = [
     "type":"natural foods",
     "category":"oil and vinegar",
     "links":[
-      "https://www.realcanadiansuperstore.ca/food/natural-foods/oil-vinegar/c/29926"
+      "https://www.realcanadiansuperstore.ca/food/natural-foods/oil-vinegar/c/29926",
+      "https://www.realcanadiansuperstore.ca/food/natural-foods/baking/c/29924"
     ]
   },
   {
