@@ -1,4 +1,36 @@
-.no-products{
+.no-products {
     padding: 20px;
     text-align: center;
 }
+
+.store-radio {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+    align-items: flex-start;
+}
+
+.store-radio-button {
+    margin: 5px;
+}
+
+#mat-radio-3 > label > span.mat-radio-container > span.mat-radio-inner-circle{
+
+}
+::ng-deep .mat-radio-checked .mat-radio-inner-circle {
+    background-color: black !important;
+}
+
+// ::ng-deep .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+//     background-color: blue !important;
+// }
+
+// ::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
+//     background-color: blue !important;
+//     /*inner circle color change*/
+// }
+
+// ::ng-deep.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+//     border-color: blue !important;
+//     /*outer ring color change*/
+// }

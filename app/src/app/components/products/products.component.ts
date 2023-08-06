@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss']
+  styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent {
   @Input("icon") public icon;
@@ -47,6 +47,12 @@ export class ProductsComponent {
   public listDataBackup = [];
   areSearchResults: boolean = false;
 
+  pageType: string;
+  filterOptions: any;
+  selectedStore: string = "";
+  isLoading: boolean = true;
+  @Input() form!: FormGroup;
+
   @ViewChild("quickView") QuickView: QuickViewComponent;
   constructor(
     private modalService: NgbModal,
@@ -71,34 +77,52 @@ export class ProductsComponent {
       (params: { category: string }) => {
         // since this page is used for other purposes but we still need to display products, therefore reusing this page
         if (params.category) {
+          this.pageType = 'category';
           this.productService.GetProductsByCategory(params.category).subscribe(res => {
             this.listData = res['data'];
+            this.listDataBackup = this.listData;
           });
         } else {
           // logic to decide if to load all or product deals
-          if (this.router.url==="/products/deals") {
+          if (this.router.url === "/products/deals") {
+            this.pageType = 'deals';
             this.productService.GetProductsDeals().subscribe(res => {
               this.listData = res['data'];
+              this.listDataBackup = this.listData;
             })
-          }else{
+          } else {
+            this.pageType = 'all';
             this.productService.GetAllProducts().subscribe(res => {
               this.listData = res['data'];
+              this.listDataBackup = this.listData;
             })
           }
         }
       }
     );
-    this.displayAllShoppingListNames()
+    this.displayAllShoppingListNames();
+    this.getProductFilters();
+  }
+
+  getProductFilters() {
+    this.filterOptions = this.productService.GetProductFilters();
   }
 
   search(query) {
     if (query !== "") {
-      this.listDataBackup = this.listData;
-      this.productService.SearchProducts(query).subscribe(res => {
+      this.isLoading = true;
+      const searchDeals = this.pageType === 'deals' ? true : false;
+      this.productService.SearchProducts(query, this.selectedStore, searchDeals).subscribe(res => {
         this.areSearchResults = true;
         this.listData = res['data'];
+        this.isLoading = false;
       });
     }
+  }
+
+  changeStore(event) {
+    this.selectedStore = event.value;
+    this.search(this.searchQuery);
   }
 
   onSearchChange(event: any) {
@@ -119,11 +143,11 @@ export class ProductsComponent {
     this.OpenFilter = !this.OpenFilter;
   }
 
-  displayAllShoppingListNames(){
+  displayAllShoppingListNames() {
     this.productService.GetAllShoppingLists().subscribe(res => {
       let uId = localStorage.getItem('userId');
       for (let i = 0; i < res['data'].length; i++) {
-        if((res['data'][i]['userId'] == uId)) {
+        if ((res['data'][i]['userId'] == uId)) {
           this.shoppingListData.push(res['data'][i]);
         }
       }
@@ -135,44 +159,44 @@ export class ProductsComponent {
   public UpdateShoppingListItem(id: string, items: string) {
     console.log(id);
     const obj = {
-       id: id,
-       items: items
-     };
+      id: id,
+      items: items
+    };
     //const obj = JSON.parse(text);
     this.http.post<any>("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/shoppinglists/update/", obj)
-       .subscribe(res => {
-          this.successMessage = "One item successfully added!"
-          //this.router.navigate(['/comparison']);
-       }, err => {
-          this.errorMessage = err.error.message
-          // console.log(err);
-       }
-    )
+      .subscribe(res => {
+        this.successMessage = "One item successfully added!"
+        //this.router.navigate(['/comparison']);
+      }, err => {
+        this.errorMessage = err.error.message
+        // console.log(err);
+      }
+      )
   }
 
-  openListPage(content,id) {
+  openListPage(content, id) {
     console.log(id);
     this.errorMessage = "";
     this.successMessage = "";
-		this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
-			(result) => {
-				this.closeResult = `Closed with: ${result}`;
-			},
-			(reason) => {
-				this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-			},
-		);
-	}
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
+      (result) => {
+        this.closeResult = `Closed with: ${result}`;
+      },
+      (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      },
+    );
+  }
 
-	private getDismissReason(reason: any): string {
-		if (reason === ModalDismissReasons.ESC) {
-			return 'by pressing ESC';
-		} else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-			return 'by clicking on a backdrop';
-		} else {
-			return `with: ${reason}`;
-		}
-	}
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
 
   gridOpens() {
     this.listView = false;
