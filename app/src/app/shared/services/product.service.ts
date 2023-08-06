@@ -18,8 +18,8 @@ export class ProductService {
     return this.http.get("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/products/deals");
   }
 
-  public SearchProducts(query, store, searchDeals) {
-    return this.http.get("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/products/search?query=" + query + "&store=" + store + "&deals=" + searchDeals);
+  public SearchProducts(query, store, onlyDeals) {
+    return this.http.get("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/products/search?query=" + query + "&store=" + store + "&onlyDeals=" + onlyDeals);
   }
 
   public GetProductsByCategory(category) {

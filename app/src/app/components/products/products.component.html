@@ -130,7 +130,8 @@
       <div class="row">
 
         <div *ngIf="listData.length == 0" class="card no-products">
-          <h6> <img src="assets/spinner.svg" alt="" height="50px"> Loading Products... Please hold on a second !</h6>
+          <h6 *ngIf="isLoading"> <img src="assets/spinner.svg" alt="" height="50px"> Loading {{ pageType === 'deals' ? "Deals" : "Products"}}... Please hold on a second !</h6>
+          <h6 *ngIf="!isLoading">No {{ pageType === 'deals' ? "Deals" : "Products"}} found... Please try with something else !</h6>
         </div>
 
         <div [class.col-xl-3]="col_xl_3" [class.col-xl-4]="xl_4" [class.col-sm-3]="col_sm_3" [class.col-xl-4]="col_xl_4"
