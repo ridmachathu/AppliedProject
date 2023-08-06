@@ -3,7 +3,7 @@
     <div class="media">
       <div class="media-body">
         <div class="greeting-user">
-          <h4 class="f-w-600">Welcome to GENIE</h4>
+          <h4 class="f-w-600">Welcome {{ userName ? userName + "!" : " to GENIE" }}</h4>
           <p>Let's save some money from your groceries today!</p>
           <div class="whatsnew-btn"><a class="btn btn-outline-white" [routerLink]="['/products/deals']">Latest Deals !</a></div>
         </div>

@@ -47,6 +47,8 @@ export class ProductsComponent {
   public listDataBackup = [];
   areSearchResults: boolean = false;
 
+  pageType: string;
+
   @ViewChild("quickView") QuickView: QuickViewComponent;
   constructor(
     private modalService: NgbModal,
@@ -71,16 +73,19 @@ export class ProductsComponent {
       (params: { category: string }) => {
         // since this page is used for other purposes but we still need to display products, therefore reusing this page
         if (params.category) {
+          this.pageType = 'category';
           this.productService.GetProductsByCategory(params.category).subscribe(res => {
             this.listData = res['data'];
           });
         } else {
           // logic to decide if to load all or product deals
           if (this.router.url==="/products/deals") {
+            this.pageType = 'deals';
             this.productService.GetProductsDeals().subscribe(res => {
               this.listData = res['data'];
             })
           }else{
+            this.pageType = 'all';
             this.productService.GetAllProducts().subscribe(res => {
               this.listData = res['data'];
             })

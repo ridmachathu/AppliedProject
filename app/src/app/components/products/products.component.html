@@ -1,4 +1,6 @@
-<app-breadcrumb [title]="'Product'" [items]="['Apps', 'Ecommerce']" [active_item]="'Product'"></app-breadcrumb>
+<app-breadcrumb *ngIf="pageType === 'deals'" [title]="'Product Deals'" [items]="['General', 'Products']" [active_item]="'Deals'"></app-breadcrumb>
+<app-breadcrumb *ngIf="pageType === 'category'" [title]="'Product Category'" [items]="['General', 'Products']" [active_item]="'Category'"></app-breadcrumb>
+<app-breadcrumb *ngIf="pageType === 'all'" [title]="'All Products'" [items]="['General', 'Products']" [active_item]="'All'"></app-breadcrumb>
 <!-- Container-fluid starts-->
 <div class="container-fluid product-wrapper" [class.sidebaron]="openSidebar">
   <div class="product-grid">
