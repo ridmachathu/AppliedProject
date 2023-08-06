@@ -48,6 +48,27 @@ exports.handler = async (event) => {
 
 }
 
+function getQuery(query) {
+    let singular = "";
+    let plural = "";
+
+    // check if ending with s
+    const isPlural = query.charAt(query.length - 1) === "s" ? true : false;
+
+    if (isPlural === true) {
+        singular = query.substring(0, query.length - 1);
+        plural = query;
+    } else {
+        singular = query;
+        plural = query + "s";
+    }
+
+    return {
+        singular: singular,
+        plural: plural
+    }
+}
+
 function getQueryParams(querystring, storename, onlyDeals) {
     onlyDeals = (onlyDeals === 'true');
 
@@ -56,24 +77,28 @@ function getQueryParams(querystring, storename, onlyDeals) {
     console.info('storename: ', storename, typeof storename);
     console.info('onlyDeals: ', onlyDeals, typeof onlyDeals);
 
+    let query = getQuery(querystring)
+
     let defaultFilter = "";
     let defaultAttributes = {}
     let defaultAttributeNames = {}
 
     if (storename === '' && onlyDeals === false) {
         console.log("Scenario 1");
-        defaultFilter = "contains (#tags, :query)";
+        defaultFilter = "contains (#tags, :query) OR contains (#tags, :queryplural)";
         defaultAttributes = {
-            ':query': querystring
+            ':query': query.singular,
+            ':queryplural': query.plural
         }
         defaultAttributeNames = {
             '#tags': 'tags'
         }
     } else if (storename !== '' && onlyDeals === false) {
         console.log("Scenario 2");
-        defaultFilter = "contains (#tags, :query) AND #storeName = :store";
+        defaultFilter = "contains (#tags, :query) OR contains (#tags, :queryplural) AND #storeName = :store";
         defaultAttributes = {
-            ':query': querystring,
+            ':query': query.singular,
+            ':queryplural': query.plural,
             ':store': storename
         }
         defaultAttributeNames = {
@@ -82,9 +107,10 @@ function getQueryParams(querystring, storename, onlyDeals) {
         }
     } else if (storename === '' && onlyDeals === true) {
         console.log("Scenario 3");
-        defaultFilter = "contains (#tags, :query) AND #priceBefore <> :zero";
+        defaultFilter = "contains (#tags, :query) OR contains (#tags, :queryplural) AND #priceBefore <> :zero";
         defaultAttributes = {
-            ':query': querystring,
+            ':query': query.singular,
+            ':queryplural': query.plural,
             ':zero': 0
         }
         defaultAttributeNames = {
@@ -93,9 +119,10 @@ function getQueryParams(querystring, storename, onlyDeals) {
         }
     } else if (storename !== '' && onlyDeals === true) {
         console.log("Scenario 4");
-        defaultFilter = "contains (#tags, :query) AND #storeName = :store AND #priceBefore <> :zero";
+        defaultFilter = "contains (#tags, :query) OR contains (#tags, :queryplural) AND #storeName = :store AND #priceBefore <> :zero";
         defaultAttributes = {
-            ':query': querystring,
+            ':query': query.singular,
+            ':queryplural': query.plural,
             ':store': storename,
             ':zero': 0
         }
