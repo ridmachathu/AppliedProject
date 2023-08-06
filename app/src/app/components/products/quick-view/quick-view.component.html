@@ -40,7 +40,7 @@
           <!-- <a class="btn btn-primary me-3" [routerLink]="['/ecommerce/cart']">Add to List</a> -->
           <!-- <a class="btn btn-primary" [routerLink]="['/products/details', productDetail.id]">View Details</a> -->
           <a class="btn btn-primary" type="button" [routerLink]="['/products/details', productDetail.id]"><i class="fa fa-shopping-basket me-1"></i>View Details</a>
-          <a class="btn btn-secondary" (click)="open(content,productDetail.id)"> <i class="fa fa-heart me-1"></i>Add To Shopping List/Wish List</a>
+          <a class="btn btn-secondary" (click)="open(content,productDetail.id)"> <i class="fa fa-heart me-1"></i>Add to Lists</a>
           <ng-template #content let-modal>
             <div class="modal-header">
               <h6 class="modal-title" id="modal-basic-title">Add the item into existing Shopping List/Wish List</h6>
