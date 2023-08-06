@@ -85,7 +85,7 @@ function getQueryParams(querystring, storename, onlyDeals) {
 
     if (storename === '' && onlyDeals === false) {
         console.log("Scenario 1");
-        defaultFilter = "contains (#tags, :query) OR contains (#tags, :queryplural)";
+        defaultFilter = "contains (#tags, :query) AND contains (#tags, :queryplural)";
         defaultAttributes = {
             ':query': query.singular,
             ':queryplural': query.plural
@@ -95,7 +95,7 @@ function getQueryParams(querystring, storename, onlyDeals) {
         }
     } else if (storename !== '' && onlyDeals === false) {
         console.log("Scenario 2");
-        defaultFilter = "contains (#tags, :query) OR contains (#tags, :queryplural) AND #storeName = :store";
+        defaultFilter = "contains (#tags, :query) AND contains (#tags, :queryplural) AND #storeName = :store";
         defaultAttributes = {
             ':query': query.singular,
             ':queryplural': query.plural,
@@ -107,7 +107,7 @@ function getQueryParams(querystring, storename, onlyDeals) {
         }
     } else if (storename === '' && onlyDeals === true) {
         console.log("Scenario 3");
-        defaultFilter = "contains (#tags, :query) OR contains (#tags, :queryplural) AND #priceBefore <> :zero";
+        defaultFilter = "contains (#tags, :query) AND contains (#tags, :queryplural) AND #priceBefore <> :zero";
         defaultAttributes = {
             ':query': query.singular,
             ':queryplural': query.plural,
@@ -119,7 +119,7 @@ function getQueryParams(querystring, storename, onlyDeals) {
         }
     } else if (storename !== '' && onlyDeals === true) {
         console.log("Scenario 4");
-        defaultFilter = "contains (#tags, :query) OR contains (#tags, :queryplural) AND #storeName = :store AND #priceBefore <> :zero";
+        defaultFilter = "contains (#tags, :query) AND contains (#tags, :queryplural) AND #storeName = :store AND #priceBefore <> :zero";
         defaultAttributes = {
             ':query': query.singular,
             ':queryplural': query.plural,
