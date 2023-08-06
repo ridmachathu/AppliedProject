@@ -38,6 +38,8 @@ exports.handler = async (event) => {
         item.firstname = body.firstname;
         item.lastname = body.lastname;
         item.mobile = body.mobile;
+        item.latitude = body.latitude;
+        item.longitude = body.longitude;
 
         const payload = {
             id: item.id,
@@ -47,6 +49,8 @@ exports.handler = async (event) => {
             mobile: item.mobile,
             password: item.password,
             role: "user",
+            latitude : item.latitude,
+            longitude : item.longitude,
             createDateTime: item.createDateTime
         }
 

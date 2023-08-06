@@ -29,7 +29,9 @@ export class ProfileComponent implements OnInit {
       lastname:[this.obj.lastname, Validators.required],
       email:[this.obj.email, Validators.required],
       mobile:[this.obj.mobile, Validators.required],
-      id:[this.obj.id]
+      id:[this.obj.id],
+      latitude:[this.obj.latitude],
+      longitude:[this.obj.longitude] 
     })
   }
 

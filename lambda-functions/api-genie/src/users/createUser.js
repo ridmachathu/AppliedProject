@@ -45,6 +45,8 @@ exports.handler = async (event) => {
             mobile: body.mobile,
             password: hashedPassword,
             role: "user",
+            latitude : "",
+            longitude : "",
             createDateTime: Date.now()
         }
 
