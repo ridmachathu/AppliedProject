@@ -51,7 +51,7 @@ export class PriceComparisonComponent {
   search(query){
     if(query !== ""){
       this.listDataBackup = this.listData;
-      this.productService.SearchProducts(query).subscribe(res => {
+      this.productService.SearchProducts(query, "", false).subscribe(res => {
         //console.log(res['data'][0])
         this.listData = res['data'];
         this.isDivVisible = true;

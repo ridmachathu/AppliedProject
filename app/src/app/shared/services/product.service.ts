@@ -18,11 +18,11 @@ export class ProductService {
     return this.http.get("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/products/deals");
   }
 
-  public SearchProducts(query) {
-    return this.http.get("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/products/search?query=" + query);
+  public SearchProducts(query, store, searchDeals) {
+    return this.http.get("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/products/search?query=" + query + "&store=" + store + "&deals=" + searchDeals);
   }
 
-  public GetProductsByCategory(category){
+  public GetProductsByCategory(category) {
     return this.http.get("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/products/category/" + category);
   }
 
@@ -44,6 +44,25 @@ export class ProductService {
 
   public GetAllShoppingLists() {
     return this.http.get("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/shoppinglists");
+  }
+
+  public GetProductFilters() {
+    return {
+      stores: [
+        {
+          code: "",
+          displayName: "Any"
+        },
+        {
+          code: "superstore",
+          displayName: "Canadian Superstore"
+        },
+        {
+          code: "saveonfoods",
+          displayName: "Save On Foods"
+        }
+      ]
+    }
   }
 
   // public post(url: string, data: any, options?: any) {

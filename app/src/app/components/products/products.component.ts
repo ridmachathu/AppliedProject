@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss']
+  styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent {
   @Input("icon") public icon;
@@ -48,6 +48,9 @@ export class ProductsComponent {
   areSearchResults: boolean = false;
 
   pageType: string;
+  filterOptions: any;
+  selectedStore: string = "";
+  @Input() form!: FormGroup;
 
   @ViewChild("quickView") QuickView: QuickViewComponent;
   constructor(
@@ -93,17 +96,30 @@ export class ProductsComponent {
         }
       }
     );
-    this.displayAllShoppingListNames()
+    this.displayAllShoppingListNames();
+    this.getProductFilters();
+  }
+
+  getProductFilters(){
+    this.filterOptions = this.productService.GetProductFilters();
   }
 
   search(query) {
     if (query !== "") {
+      let searchOnlyDeals = false;
+      if(this.pageType === 'deals'){
+        searchOnlyDeals = true;
+      }
       this.listDataBackup = this.listData;
-      this.productService.SearchProducts(query).subscribe(res => {
+      this.productService.SearchProducts(query, this.selectedStore, searchOnlyDeals).subscribe(res => {
         this.areSearchResults = true;
         this.listData = res['data'];
       });
     }
+  }
+
+  changeStore(event){
+    this.search(this.searchQuery);
   }
 
   onSearchChange(event: any) {

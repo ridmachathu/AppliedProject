@@ -1,6 +1,9 @@
-<app-breadcrumb *ngIf="pageType === 'deals'" [title]="'Product Deals'" [items]="['General', 'Products']" [active_item]="'Deals'"></app-breadcrumb>
-<app-breadcrumb *ngIf="pageType === 'category'" [title]="'Product Category'" [items]="['General', 'Products']" [active_item]="'Category'"></app-breadcrumb>
-<app-breadcrumb *ngIf="pageType === 'all'" [title]="'All Products'" [items]="['General', 'Products']" [active_item]="'All'"></app-breadcrumb>
+<app-breadcrumb *ngIf="pageType === 'deals'" [title]="'Product Deals'" [items]="['General', 'Products']"
+  [active_item]="'Deals'"></app-breadcrumb>
+<app-breadcrumb *ngIf="pageType === 'category'" [title]="'Product Category'" [items]="['General', 'Products']"
+  [active_item]="'Category'"></app-breadcrumb>
+<app-breadcrumb *ngIf="pageType === 'all'" [title]="'All Products'" [items]="['General', 'Products']"
+  [active_item]="'All'"></app-breadcrumb>
 <!-- Container-fluid starts-->
 <div class="container-fluid product-wrapper" [class.sidebaron]="openSidebar">
   <div class="product-grid">
@@ -26,19 +29,31 @@
           <div class="grid-options d-inline-block">
             <ul>
               <li (click)="grid2s()">
-                <a class="product-2-layout-view" href="javascript:void(0);"><span class="line-grid line-grid-1 bg-primary"></span><span class="line-grid line-grid-2 bg-primary"></span></a>
+                <a class="product-2-layout-view" href="javascript:void(0);"><span
+                    class="line-grid line-grid-1 bg-primary"></span><span
+                    class="line-grid line-grid-2 bg-primary"></span></a>
               </li>
               <li (click)="grid3s()">
-                <a class="product-3-layout-view" href="javascript:void(0);"><span class="line-grid line-grid-3 bg-primary"></span><span class="line-grid line-grid-4 bg-primary"></span><span class="line-grid line-grid-5 bg-primary"></span></a>
+                <a class="product-3-layout-view" href="javascript:void(0);"><span
+                    class="line-grid line-grid-3 bg-primary"></span><span
+                    class="line-grid line-grid-4 bg-primary"></span><span
+                    class="line-grid line-grid-5 bg-primary"></span></a>
               </li>
               <li (click)="gridOpens()">
-                <a class="product-4-layout-view" href="javascript:void(0);"><span class="line-grid line-grid-6 bg-primary"></span><span class="line-grid line-grid-7 bg-primary"></span><span class="line-grid line-grid-8 bg-primary"></span><span class="line-grid line-grid-9 bg-primary"></span></a>
+                <a class="product-4-layout-view" href="javascript:void(0);"><span
+                    class="line-grid line-grid-6 bg-primary"></span><span
+                    class="line-grid line-grid-7 bg-primary"></span><span
+                    class="line-grid line-grid-8 bg-primary"></span><span
+                    class="line-grid line-grid-9 bg-primary"></span></a>
               </li>
               <li (click)="grid6s()">
-                <a class="product-6-layout-view" href="javascript:void(0);"
-                  ><span class="line-grid line-grid-10 bg-primary"></span><span class="line-grid line-grid-11 bg-primary"></span><span class="line-grid line-grid-12 bg-primary"></span><span class="line-grid line-grid-13 bg-primary"></span><span class="line-grid line-grid-14 bg-primary"></span
-                  ><span class="line-grid line-grid-15 bg-primary"></span
-                ></a>
+                <a class="product-6-layout-view" href="javascript:void(0);"><span
+                    class="line-grid line-grid-10 bg-primary"></span><span
+                    class="line-grid line-grid-11 bg-primary"></span><span
+                    class="line-grid line-grid-12 bg-primary"></span><span
+                    class="line-grid line-grid-13 bg-primary"></span><span
+                    class="line-grid line-grid-14 bg-primary"></span><span
+                    class="line-grid line-grid-15 bg-primary"></span></a>
               </li>
             </ul>
           </div>
@@ -67,43 +82,35 @@
                 <div class="left-filter">
                   <div class="card-body filter-cards-view animate-chk">
                     <div class="product-filter">
-                      <h6 class="f-w-600">Category</h6>
+                      <h6 class="f-w-600">Store</h6>
+
+                      <mat-radio-group aria-labelledby="store-radio" class="store-radio"
+                        [(ngModel)]="selectedStore">
+                        <mat-radio-button color="primary" class="store-radio-button" *ngFor="let store of filterOptions.stores"
+                          [value]="store.code" (change)="changeStore($event)">
+                          {{store.displayName}}
+                        </mat-radio-button>
+                      </mat-radio-group>
+
+                    </div>
+                    <!-- <div class="product-filter">
+                      <h6 class="f-w-600">Categories</h6>
                       <div class="checkbox-animated mt-0">
-                        <label class="d-block" for="edo-ani5"> <input class="radio_animated" id="edo-ani5" type="radio" data-original-title="" title="" />Man Shirt </label>
-                        <label class="d-block" for="edo-ani6"> <input class="radio_animated" id="edo-ani6" type="radio" data-original-title="" title="" />Man Jeans </label>
-                        <label class="d-block" for="edo-ani7"> <input class="radio_animated" id="edo-ani7" type="radio" data-original-title="" title="" />Woman Top </label>
-                        <label class="d-block" for="edo-ani8"> <input class="radio_animated" id="edo-ani8" type="radio" data-original-title="" title="" />Woman Jeans </label>
-                        <label class="d-block" for="edo-ani9"> <input class="radio_animated" id="edo-ani9" type="radio" data-original-title="" title="" />Man T-shirt </label>
+                        <label class="d-block" for="chk-ani"> <input class="checkbox_animated" id="chk-ani"
+                            type="checkbox" data-original-title="" title="" /> Levi's </label>
+                        <label class="d-block" for="chk-ani1"> <input class="checkbox_animated" id="chk-ani1"
+                            type="checkbox" data-original-title="" title="" />Diesel </label>
+                        <label class="d-block" for="chk-ani2"> <input class="checkbox_animated" id="chk-ani2"
+                            type="checkbox" data-original-title="" title="" />Lee </label>
+                        <label class="d-block" for="chk-ani3"> <input class="checkbox_animated" id="chk-ani3"
+                            type="checkbox" data-original-title="" title="" />Hudson </label>
+                        <label class="d-block" for="chk-ani4"> <input class="checkbox_animated" id="chk-ani4"
+                            type="checkbox" data-original-title="" title="" />Denizen </label>
+                        <label class="d-block" for="chk-ani5"> <input class="checkbox_animated" id="chk-ani5"
+                            type="checkbox" data-original-title="" title="" />Spykar </label>
                       </div>
-                    </div>
-                    <div class="product-filter">
-                      <h6 class="f-w-600">Brand</h6>
-                      <div class="checkbox-animated mt-0">
-                        <label class="d-block" for="chk-ani"> <input class="checkbox_animated" id="chk-ani" type="checkbox" data-original-title="" title="" /> Levi's </label>
-                        <label class="d-block" for="chk-ani1"> <input class="checkbox_animated" id="chk-ani1" type="checkbox" data-original-title="" title="" />Diesel </label>
-                        <label class="d-block" for="chk-ani2"> <input class="checkbox_animated" id="chk-ani2" type="checkbox" data-original-title="" title="" />Lee </label>
-                        <label class="d-block" for="chk-ani3"> <input class="checkbox_animated" id="chk-ani3" type="checkbox" data-original-title="" title="" />Hudson </label>
-                        <label class="d-block" for="chk-ani4"> <input class="checkbox_animated" id="chk-ani4" type="checkbox" data-original-title="" title="" />Denizen </label>
-                        <label class="d-block" for="chk-ani5"> <input class="checkbox_animated" id="chk-ani5" type="checkbox" data-original-title="" title="" />Spykar </label>
-                      </div>
-                    </div>
-                    <div class="product-filter slider-product">
-                      <h6 class="f-w-600">Colors</h6>
-                      <div class="color-selector">
-                        <ul>
-                          <li class="white"></li>
-                          <li class="gray"></li>
-                          <li class="black"></li>
-                          <li class="orange"></li>
-                          <li class="green"></li>
-                          <li class="pink"></li>
-                          <li class="yellow"></li>
-                          <li class="blue"></li>
-                          <li class="red"></li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="product-filter text-center"><img class="img-fluid banner-product" src="assets/images/ecommerce/banner.jpg" alt="" data-original-title="" title="" /></div>
+                    </div> -->
+
                   </div>
                 </div>
               </div>
@@ -112,7 +119,9 @@
         </div>
         <div class="col-xl-9 col-md-8">
           <form (ngSubmit)="search(searchQuery)">
-            <div class="form-group m-0"><input class="form-control" type="search" placeholder="Search.." data-original-title="" title="" [(ngModel)]="searchQuery" (change)="onSearchChange($event)" /><i class="fa fa-search"></i></div>
+            <div class="form-group m-0"><input class="form-control" type="search" placeholder="Search.."
+                data-original-title="" title="" [(ngModel)]="searchQuery" (change)="onSearchChange($event)" /><i
+                class="fa fa-search"></i></div>
           </form>
         </div>
       </div>
@@ -124,13 +133,16 @@
           <h6> <img src="assets/spinner.svg" alt="" height="50px"> Loading Products... Please hold on a second !</h6>
         </div>
 
-        <div [class.col-xl-3]="col_xl_3" [class.col-xl-4]="xl_4" [class.col-sm-3]="col_sm_3" [class.col-xl-4]="col_xl_4" [class.col-sm-4]="col_sm_4" [class.col-xl-6]="col_xl_6" [class.col-sm-6]="col_sm_6" [class.col-xl-12]="col_xl_12" [class.col-xl-2]="col_xl_2" *ngFor="let product of listData">
-          
+        <div [class.col-xl-3]="col_xl_3" [class.col-xl-4]="xl_4" [class.col-sm-3]="col_sm_3" [class.col-xl-4]="col_xl_4"
+          [class.col-sm-4]="col_sm_4" [class.col-xl-6]="col_xl_6" [class.col-sm-6]="col_sm_6"
+          [class.col-xl-12]="col_xl_12" [class.col-xl-2]="col_xl_2" *ngFor="let product of listData">
+
           <div class="card">
             <div class="product-box">
               <div class="product-img">
                 <div *ngIf="areSearchResults" class="ribbon ribbon-bookmark ribbon-primary">{{ product.store }}</div>
-                <div class="ribbon ribbon-success ribbon-right" *ngIf="product.priceBefore > 0">${{ product.priceBefore - product.price | number : '1.2-2' }} off</div>
+                <div class="ribbon ribbon-success ribbon-right" *ngIf="product.priceBefore > 0">${{ product.priceBefore
+                  - product.price | number : '1.2-2' }} off</div>
                 <img class="img-fluid" src="{{ product.imageUrl }}" alt="" />
                 <div class="product-hover">
                   <ul>
@@ -139,36 +151,44 @@
                     </li>
                     <ng-template #contentList let-modal>
                       <div class="modal-header">
-                        <h6 class="modal-title" id="modal-basic-title">Add the item into existing Shopping List/Wish List</h6>
-                        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+                        <h6 class="modal-title" id="modal-basic-title">Add the item into existing Shopping List/Wish
+                          List</h6>
+                        <button type="button" class="btn-close" aria-label="Close"
+                          (click)="modal.dismiss('Cross click')"></button>
                       </div>
                       <div class="modal-body">
                         <form>
                           <div class="mb-3">
                             <div class="col">
                               <div ngbDropdown class="d-inline-block">
-                                <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+                                <button type="button" class="btn btn-outline-primary" id="dropdownBasic1"
+                                  ngbDropdownToggle>
                                   Select
                                 </button>
                                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                                  <button *ngFor="let item of shoppingListData; index as i" ngbDropdownItem (click)="UpdateShoppingListItem(item.id,product.id)">{{ item.listname }}</button>
+                                  <button *ngFor="let item of shoppingListData; index as i" ngbDropdownItem
+                                    (click)="UpdateShoppingListItem(item.id,product.id)">{{ item.listname }}</button>
                                   <!-- <button ngbDropdownItem>Another Action</button>
                                   <button ngbDropdownItem>Something else is here</button> -->
                                 </div>
                               </div>
                             </div>
                           </div>
-                          <ngb-alert class="login-alert" *ngIf="errorMessage !== ''" [type]="'danger'" [dismissible]="false">
+                          <ngb-alert class="login-alert" *ngIf="errorMessage !== ''" [type]="'danger'"
+                            [dismissible]="false">
                             {{ errorMessage }}
                           </ngb-alert>
-                          <ngb-alert class="login-alert" *ngIf="successMessage !== ''" [type]="'success'" [dismissible]="false">
+                          <ngb-alert class="login-alert" *ngIf="successMessage !== ''" [type]="'success'"
+                            [dismissible]="false">
                             {{ successMessage }}
                           </ngb-alert>
                         </form>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark" [routerLink]="'/single-page/newlist'" (click)="modal.close('Save click')">Create new list</button>
-                        <button type="button" class="btn btn-outline-dark" [routerLink]="'/single-page/'" (click)="modal.close('Save click')">View all lists</button>
+                        <button type="button" class="btn btn-outline-dark" [routerLink]="'/single-page/newlist'"
+                          (click)="modal.close('Save click')">Create new list</button>
+                        <button type="button" class="btn btn-outline-dark" [routerLink]="'/single-page/'"
+                          (click)="modal.close('Save click')">View all lists</button>
                       </div>
                     </ng-template>
                     <li>
@@ -177,7 +197,8 @@
                     <ng-template #content let-modal>
                       <div class="modal-body" style="padding: 0%">
                         <app-quick-view [productDetail]="productDetail"></app-quick-view>
-                        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+                        <button type="button" class="btn-close" aria-label="Close"
+                          (click)="modal.dismiss('Cross click')"></button>
                       </div>
                     </ng-template>
                   </ul>
@@ -190,8 +211,8 @@
                 </div>
                 <p>{{ product.brand }}</p>
                 <a [routerLink]="['/products/details', product.id]">
-                  <h4>{{ product.title }}</h4></a
-                >
+                  <h4>{{ product.title }}</h4>
+                </a>
                 <span>{{product.packageSize}}</span>
               </div>
             </div>
