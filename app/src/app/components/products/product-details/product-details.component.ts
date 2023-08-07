@@ -74,7 +74,7 @@ export class ProductDetailsComponent implements OnInit {
   openCompare(content) {
     this.errorMessage = "";
     this.successMessage = "";
-		this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
+		this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', size: 'xl' }).result.then(
 			(result) => {
 				this.closeResult = `Closed with: ${result}`;
 			},
