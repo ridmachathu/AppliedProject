@@ -30,12 +30,12 @@ export type ChartOptions = {
 export let overallBalance: ChartOptions | any = {
   series: [
     {
-      name: "Earning",
-      data: [200, 200, 350, 400, 200, 250, 250, 350, 350, 500, 500, 700, 850, 700, 400, 400, 250, 250, 400, 350, 400],
+      name: "Expenses",
+      data: [22.98, 43.46, 34.48, 7.04],
     },
     {
-      name: "Expense",
-      data: [400, 600, 700, 400, 700, 800, 800, 850, 850, 900, 900, 700, 600, 500, 800, 800, 800, 800, 400, 700, 800],
+      name: "Saving from deals",
+      data: [3, 5.9, 14.98, 0],
     },
   ],
   chart: {
@@ -88,7 +88,7 @@ export let overallBalance: ChartOptions | any = {
       },
     },
   },
-  colors: [primary_color, "#AAAFCB"],
+  colors: [primary_color, secondary_color],
   yaxis: {
     tickAmount: 3,
     labels: {
@@ -105,7 +105,7 @@ export let overallBalance: ChartOptions | any = {
     },
   },
   xaxis: {
-    categories: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21"],
+    categories: ["Winter wish list", "Weekly list", "Pet items list", "Fruit items list"],
     labels: {
       style: {
         fontFamily: "Rubik, sans-serif",
