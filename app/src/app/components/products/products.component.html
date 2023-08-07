@@ -168,7 +168,7 @@
                                 </button>
                                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                                   <button *ngFor="let item of shoppingListData; index as i" ngbDropdownItem
-                                    (click)="UpdateShoppingListItem(item.id,product.id)">{{ item.listname }}</button>
+                                    (click)="UpdateShoppingListItem(item.id,product.id,product.price,product.priceBefore)">{{ item.listname }}</button>
                                   <!-- <button ngbDropdownItem>Another Action</button>
                                   <button ngbDropdownItem>Something else is here</button> -->
                                 </div>

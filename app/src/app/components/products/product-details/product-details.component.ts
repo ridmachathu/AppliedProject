@@ -97,11 +97,17 @@ export class ProductDetailsComponent implements OnInit {
     })
   }
 
-  public UpdateShoppingListItem(id: string, items: string) {
+  public UpdateShoppingListItem(id: string, items: string, price, priceBefore) {
     console.log(id);
+    let dealval = 0;
+    if(priceBefore != 0){
+      dealval = priceBefore - price;
+    }
     const obj = {
        id: id,
-       items: items
+       items: items,
+       price: price,
+       deal: dealval
      };
     //const obj = JSON.parse(text);
     this.http.post<any>("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/shoppinglists/update/", obj)

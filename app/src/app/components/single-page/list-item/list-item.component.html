@@ -91,7 +91,7 @@
                                 <p>Are you sure you want to delete?</p>
                               </div>
                               <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" (click)="DeleteShoppingListItem(i.id)">Yes</button>
+                                <button type="button" class="btn btn-danger" (click)="DeleteShoppingListItem(i.id,i.price,i.priceBefore)">Yes</button>
                                 <button type="button" class="btn btn btn-primary me-2" (click)="modal.close('Save click')" id="close-modal">No</button>
                                </div>
                             </ng-template> 
@@ -113,7 +113,7 @@
                                           Select
                                         </button>
                                         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                                          <button *ngFor="let item of shoppingListData;" ngbDropdownItem (click)="moveShoppingListItem(item.id,i.id)">{{ item.listname }}</button>
+                                          <button *ngFor="let item of shoppingListData;" ngbDropdownItem (click)="moveShoppingListItem(item.id,i.id,i.price,i.priceBefore)">{{ item.listname }}</button>
                                           <!-- <button ngbDropdownItem>Another Action</button>
                                           <button ngbDropdownItem>Something else is here</button> -->
                                         </div>
