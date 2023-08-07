@@ -55,7 +55,7 @@
                         Select
                       </button>
                       <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                        <button *ngFor="let item of shoppingListData; index as i" ngbDropdownItem (click)="UpdateShoppingListItem(item.id,productDetail.id)">{{ item.listname }}</button>
+                        <button *ngFor="let item of shoppingListData; index as i" ngbDropdownItem (click)="UpdateShoppingListItem(item.id,productDetail.id,productDetail.price,productDetail.priceBefore)">{{ item.listname }}</button>
                         <!-- <button ngbDropdownItem>Another Action</button>
                         <button ngbDropdownItem>Something else is here</button> -->
                       </div>

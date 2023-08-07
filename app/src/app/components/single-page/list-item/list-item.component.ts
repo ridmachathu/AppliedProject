@@ -78,10 +78,16 @@ export class ListItemComponent implements OnInit {
       })
     }
 
-   public DeleteShoppingListItem(pid: string) {
+   public DeleteShoppingListItem(pid: string, price, priceBefore) {
+      let dealval = 0;
+      if(priceBefore != 0){
+         dealval = priceBefore - price;
+      }
       const obj = {
          id: this.id,
-         pid: pid
+         pid: pid,
+         price: price,
+         deal: dealval
        };
       //const obj = JSON.parse(text);
       this.http.post<any>("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/shoppinglists/deleteItem/", obj)
@@ -96,12 +102,18 @@ export class ListItemComponent implements OnInit {
          )
    }
 
-   public moveShoppingListItem(id: string, items: string) {
+   public moveShoppingListItem(id: string, items: string, price, priceBefore) {
+      let dealval = 0;
+      if(priceBefore != 0){
+         dealval = priceBefore - price;
+      }
       //this.DeleteShoppingListItem(id);
       console.log(id);
       const obj = {
          id: id,
-         items: items
+         items: items,
+         price: price,
+         deal: dealval
        };
       //const obj = JSON.parse(text);
       this.http.post<any>("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/shoppinglists/update/", obj)
