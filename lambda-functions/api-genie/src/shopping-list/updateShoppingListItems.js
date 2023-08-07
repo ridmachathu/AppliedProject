@@ -40,12 +40,17 @@ exports.handler = async (event) => {
             item.items = item.items + "," + body.items;
         }
 
+        item.totalPrice = item.totalPrice + body.price; 
+        item.totalSaving = item.totalSaving + body.deal;
+
         const payload = {
             id: item.id,
             userId: item.userId,
             listtype: item.listtype,
             listname: item.listname,
             items: item.items,
+            totalPrice: item.totalPrice, 
+            totalSaving: item.totalSaving,
             createDateTime: item.createDateTime
         }
 
