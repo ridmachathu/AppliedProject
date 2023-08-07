@@ -17,25 +17,58 @@ export interface Balance {
   styleUrls: ["./overall-balance.component.scss"],
 })
 export class OverallBalanceComponent {
-   public shoppingListData = [];
+   public shoppingListNames = [];
+   public shoppingListExpenses = [];
+   public shoppingListSavings = [];
    public listname : string;
-   public listtype : string;
-   public errorMessage = "";
-   public successMessage = "";
-   public closeResult = '';
    public uId;
    public overallBalance = chartData.overallBalance;
    public total = 0;
    public savings = 0;
-   public icon1: "income";
-   public icon2: "expense"
+   public splineArea1 = chartData.overallBalance;
 
   constructor(private http: HttpClient,private route: ActivatedRoute) {
     
   }
 
   ngOnInit(): void {
+    
+  }
+
+  ngAfterContentInit() {
+    this.getoverallBalanceChart();
+  }
+
+  getoverallBalanceChart(){
     this.displayAllShoppingListNames();
+    console.log(this.shoppingListNames);
+    let series = [
+      {
+        name: "Expenses",
+        data: this.shoppingListExpenses,
+      },
+      {
+        name: "Savings from deals",
+        data: this.shoppingListSavings,
+      },
+    ];
+  let xaxis = {
+      categories: this.shoppingListNames,
+      labels: {
+        style: {
+          fontFamily: "Rubik, sans-serif",
+        },
+      },
+      axisBorder: {
+        show: false,
+      },
+      axisTicks: {
+        show: false,
+      },
+    };
+      
+    this.splineArea1.xaxis = xaxis;
+    this.splineArea1.series = series;
   }
 
   toggle(item: Balance) {
@@ -47,13 +80,15 @@ export class OverallBalanceComponent {
        this.uId = localStorage.getItem('userId');
        for (let i = 0; i < res['data'].length; i++) {
          if((res['data'][i]['userId'] == this.uId)) {
-           this.shoppingListData.push(res['data'][i]);
+           this.shoppingListNames.push(res['data'][i]['listname']);
+           this.shoppingListExpenses.push(parseFloat(res['data'][i]['totalPrice']).toFixed(2));
+           this.shoppingListSavings.push(parseFloat(res['data'][i]['totalSaving']).toFixed(2));
            this.total = this.total + res['data'][i]['totalPrice'];
            this.savings = this.savings + res['data'][i]['totalSaving'];
          }
        }
-       console.log(this.total);
-       console.log(this.savings);
+       console.log(this.shoppingListExpenses);
+       console.log(this.shoppingListSavings);
     })
     
   }

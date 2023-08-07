@@ -13,6 +13,9 @@
                   <li><span class="circle bg-secondary"> </span><span class="f-light ms-1">Savings</span></li>
                   <li><span class="circle bg-primary"> </span><span class="f-light ms-1">Expenses</span></li>
                 </ul>
+                <ul><div *ngIf="shoppingListNames.length === 0;">
+                  <p>No lists found to compare!</p>
+                </div></ul>
                 <div class="current-sale-container">
                   <div id="chart-currently">
                     <apx-chart

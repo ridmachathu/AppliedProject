@@ -34,7 +34,7 @@ export let overallBalance: ChartOptions | any = {
       data: [22.98, 43.46, 34.48, 7.04],
     },
     {
-      name: "Saving from deals",
+      name: "Savings from deals",
       data: [3, 5.9, 14.98, 0],
     },
   ],
