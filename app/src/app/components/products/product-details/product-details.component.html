@@ -51,7 +51,16 @@
             </div>
             <hr />
             <div class="m-t-15 btn-showcase">
-              <a class="btn btn-primary" type="button" title=""><i class="fa fa-shopping-basket me-1"></i>Compare</a>
+              <a class="btn btn-primary" (click)="openCompare(contentCompare)" type="button" title=""><i class="fa fa-shopping-basket me-1"></i>Compare</a>
+              <ng-template #contentCompare let-modal>
+                <div class="modal-header">
+                  <h6 class="modal-title" id="modal-basic-title">Quick product comparison</h6>
+                  <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+                </div>
+                <div class="modal-body" style="padding: 0%">
+                  <app-price-comparison></app-price-comparison>
+                </div>
+              </ng-template>
               <a class="btn btn-secondary" type="button" (click)="open(content,product?.id)"> <i class="fa fa-heart me-1"></i>Add To List</a>
               <ng-template #content let-modal>
                 <div class="modal-header">
