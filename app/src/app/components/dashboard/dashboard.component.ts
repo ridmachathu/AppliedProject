@@ -29,6 +29,10 @@ export class DashboardComponent {
   ) { }
 
   ngOnInit() {
+
+  }
+
+  ngAfterContentInit() {
     this.dashboardService.GetDashboardStats().subscribe(res => {
       const data = res['data'];
       this.purchase.counter = data.total_number_of_products.toLocaleString("en-US");

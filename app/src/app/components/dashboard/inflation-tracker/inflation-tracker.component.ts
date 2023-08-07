@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import * as chartData from "../../../shared/data/dashboard/default";
+import { DashboardService } from "src/app/shared/services/dashboard.service";
 
 export interface Balance {
   icon: string;
@@ -16,11 +17,27 @@ export interface Balance {
 })
 export class InflationTrackerComponent {
   // public overallBalance = chartData.overallBalance;
-  public splineArea1 = chartData.splineArea1;
+  public splineArea1 = chartData.inflationTracker;
 
-  constructor() {}
+  constructor(
+    private dashboardService: DashboardService,
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    
+  }
+
+  ngAfterContentInit() {
+    this.getInflationTrackerChart();
+  }
+
+  getInflationTrackerChart(){
+    this.dashboardService.GetInflationTrackerChart().subscribe(res => {
+      const data = res['data'];
+      this.splineArea1.labels = data.labels;
+      this.splineArea1.series = data.series;
+    })
+  }
 
   toggle(item: Balance) {
     item.show = !item.show;

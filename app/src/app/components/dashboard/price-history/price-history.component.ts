@@ -34,6 +34,10 @@ export class PriceHistoryComponent {
   }
 
   ngOnInit(): void {
+    
+  }
+
+  ngAfterContentInit() {
     this.getProductChart(this.selectedProduct.value);
   }
 
