@@ -30,6 +30,8 @@ exports.handler = async (event) => {
             listtype: body.listtype,
             listname: body.listname,
             items: "",
+            totalPrice: 0,
+            totalSaving: 0,
             createDateTime: Date.now()
         }
 
