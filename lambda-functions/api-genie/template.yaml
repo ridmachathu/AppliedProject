@@ -88,6 +88,58 @@ Resources:
             Path: /dashboard/price-history/{id}
             Method: GET
 
+  GetInflationTrackerData:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/dashboard/getInflationTrackerData.handler
+      Runtime: nodejs18.x
+      Architectures:
+        - x86_64
+      MemorySize: 128
+      Timeout: 100
+      Description: Use this function to get inflation tracker chart data
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ProductPriceHistoryTable
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ProductsTable
+      Environment:
+        Variables:
+          PRODUCT_PRICE_HISTORY_TABLE_NAME: !Ref ProductPriceHistoryTable
+          PRODUCTS_TABLE_NAME: !Ref ProductsTable
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /dashboard/inflation-tracker-chart
+            Method: GET
+
+  CreateInflationTrackerRecord:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/dashboard/createInflationTrackerRecord.handler
+      Runtime: nodejs18.x
+      Architectures:
+        - x86_64
+      MemorySize: 128
+      Timeout: 100
+      Description: Use this function to create a inflation tracker record
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ProductPriceHistoryTable
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ProductsTable
+      Environment:
+        Variables:
+          PRODUCT_PRICE_HISTORY_TABLE_NAME: !Ref ProductPriceHistoryTable
+          PRODUCTS_TABLE_NAME: !Ref ProductsTable
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /dashboard/track-inflation
+            Method: GET
+
   GetAllDeals:
     Type: AWS::Serverless::Function
     Properties:

@@ -20,39 +20,39 @@ exports.handler = async (event) => {
         // All log statements are written to CloudWatch
         console.info('received:', event);
 
-        const productId = event.pathParameters.id;
+        // const productId = event.pathParameters.id;
 
-        const daysToCheck = 30;
-        const today = new Date(new Date().setHours(0, 0, 0, 0));
-        const now = today.getTime();
-        const thirty_days_back = today.setDate(today.getDate() - daysToCheck);
+        // const daysToCheck = 30;
+        // const today = new Date(new Date().setHours(0, 0, 0, 0));
+        // const now = today.getTime();
+        // const thirty_days_back = today.setDate(today.getDate() - daysToCheck);
 
-        let retrivedItems = [];
-        let lastEvaluatedKey = "";
-        let lastCosmosResult;
+        // let retrivedItems = [];
+        // let lastEvaluatedKey = "";
+        // let lastCosmosResult;
 
-        while (lastEvaluatedKey !== undefined) {
-            console.log("LastEvaluatedKey: ",lastEvaluatedKey, typeof lastEvaluatedKey);
+        // while (lastEvaluatedKey !== undefined) {
+        //     console.log("LastEvaluatedKey: ",lastEvaluatedKey, typeof lastEvaluatedKey);
             
-            let params = {
-                TableName: PRODUCT_PRICE_HISTORY_TABLE_NAME,
-                FilterExpression: 'product_id = :product_id AND createDateTime >= :thirtyDaysBack AND createDateTime <= :today',
-                ExpressionAttributeValues: {
-                    ':product_id': productId,
-                    ':thirtyDaysBack': thirty_days_back,
-                    ':today': now
-                },
-                ExclusiveStartKey: lastEvaluatedKey === "" ? null : lastEvaluatedKey
-            };
-            console.log("DynamoDB params: ", params);
-            lastCosmosResult = await docClient.scan(params).promise();
-            retrivedItems = retrivedItems.concat(lastCosmosResult.Items);
+        //     let params = {
+        //         TableName: PRODUCT_PRICE_HISTORY_TABLE_NAME,
+        //         FilterExpression: 'product_id = :product_id AND createDateTime >= :thirtyDaysBack AND createDateTime <= :today',
+        //         ExpressionAttributeValues: {
+        //             ':product_id': productId,
+        //             ':thirtyDaysBack': thirty_days_back,
+        //             ':today': now
+        //         },
+        //         ExclusiveStartKey: lastEvaluatedKey === "" ? null : lastEvaluatedKey
+        //     };
+        //     console.log("DynamoDB params: ", params);
+        //     lastCosmosResult = await docClient.scan(params).promise();
+        //     retrivedItems = retrivedItems.concat(lastCosmosResult.Items);
 
-            console.log("Items received: ",retrivedItems.length);
-            console.log("LastEvaluatedKey: ",lastCosmosResult.LastEvaluatedKey, typeof lastCosmosResult.LastEvaluatedKey);
-            lastEvaluatedKey = lastCosmosResult.LastEvaluatedKey;
-        }
-        console.log("Continuing further...");
+        //     console.log("Items received: ",retrivedItems.length);
+        //     console.log("LastEvaluatedKey: ",lastCosmosResult.LastEvaluatedKey, typeof lastCosmosResult.LastEvaluatedKey);
+        //     lastEvaluatedKey = lastCosmosResult.LastEvaluatedKey;
+        // }
+        // console.log("Continuing further...");
 
         // get product object to get the title
         const params2 = {
