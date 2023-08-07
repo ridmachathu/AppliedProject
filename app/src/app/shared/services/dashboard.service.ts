@@ -20,6 +20,10 @@ export class DashboardService {
     return this.http.get("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/dashboard/price-history/"+productId);
   }
 
+  public GetInflationTrackerChart() {
+    return this.http.get("https://5ju7e1jmij.execute-api.ca-central-1.amazonaws.com/Prod/dashboard/inflation-tracker-chart");
+  }
+
   // public post(url: string, data: any, options?: any) {
   //   return this.http.post(url, data, options);
   // }

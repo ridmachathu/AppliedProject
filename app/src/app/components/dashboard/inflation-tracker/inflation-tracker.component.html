@@ -10,8 +10,7 @@
             <div class="col-xl-12">
               <div class="card-body p-0">
                 <ul class="balance-data">
-                  <li><span class="circle bg-warning"> </span><span class="f-light ms-1">Earning</span></li>
-                  <li><span class="circle bg-primary"> </span><span class="f-light ms-1">Expense</span></li>
+                  <li><span class="f-light ms-1">Expense in CAD</span></li>
                 </ul>
                 <div class="current-sale-container">
                   <div id="chart-currently">
@@ -31,9 +30,12 @@
                       [states]="overallBalance.states"
                       [responsive]="overallBalance.responsive"
                     ></apx-chart> -->
-                    <apx-chart [series]="splineArea1.series" [chart]="splineArea1.chart" [xaxis]="splineArea1.xaxis"
+                    <!-- <apx-chart [series]="splineArea1.series" [chart]="splineArea1.chart" [xaxis]="splineArea1.xaxis"
                     [stroke]="splineArea1.stroke" [tooltip]="splineArea1.tooltip" [dataLabels]="splineArea1.dataLabels"
-                    [colors]="splineArea1.colors">
+                    [colors]="splineArea1.colors"> -->
+                    <apx-chart [series]="splineArea1.series" [chart]="splineArea1.chart" [xaxis]="splineArea1.xaxis"
+                    [stroke]="splineArea1.stroke" [dataLabels]="splineArea1.dataLabels" [yaxis]="splineArea1.yaxis"
+                    [labels]="splineArea1.labels" [legend]="splineArea1.legend" [colors]="splineArea1.colors">
                   </apx-chart>
                   </div>
                 </div>

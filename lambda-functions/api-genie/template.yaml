@@ -100,13 +100,10 @@ Resources:
       Description: Use this function to get inflation tracker chart data
       Policies:
         - DynamoDBCrudPolicy:
-            TableName: !Ref ProductPriceHistoryTable
-        - DynamoDBCrudPolicy:
-            TableName: !Ref ProductsTable
+            TableName: !Ref InflationTrackerTable
       Environment:
         Variables:
-          PRODUCT_PRICE_HISTORY_TABLE_NAME: !Ref ProductPriceHistoryTable
-          PRODUCTS_TABLE_NAME: !Ref ProductsTable
+          INFLATION_TRACKER_TABLE_NAME: !Ref InflationTrackerTable
       Events:
         Api:
           Type: Api
@@ -126,12 +123,12 @@ Resources:
       Description: Use this function to create a inflation tracker record
       Policies:
         - DynamoDBCrudPolicy:
-            TableName: !Ref ProductPriceHistoryTable
+            TableName: !Ref InflationTrackerTable
         - DynamoDBCrudPolicy:
             TableName: !Ref ProductsTable
       Environment:
         Variables:
-          PRODUCT_PRICE_HISTORY_TABLE_NAME: !Ref ProductPriceHistoryTable
+          INFLATION_TRACKER_TABLE_NAME: !Ref InflationTrackerTable
           PRODUCTS_TABLE_NAME: !Ref ProductsTable
       Events:
         Api:
@@ -546,6 +543,16 @@ Resources:
         WriteCapacityUnits: 2
 
   ProductPriceHistoryTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      PrimaryKey:
+        Name: id
+        Type: String
+      ProvisionedThroughput:
+        ReadCapacityUnits: 2
+        WriteCapacityUnits: 2
+
+  InflationTrackerTable:
     Type: AWS::Serverless::SimpleTable
     Properties:
       PrimaryKey:

@@ -14,4 +14,16 @@ const getAPIResponseObj = (event, data, message, status) => {
     return response;
 }
 
+const getFormattedDateForToday = () => {
+    const now = new Date();
+    // getting the date for the format of YYYYMMDD
+    const year = now.getFullYear().toString();
+    const month = ("0" + (now.getMonth() + 1)).slice(-2);
+    const day = ("0" + now.getDate()).slice(-2);
+    const date = `${year}${month}${day}`;
+
+    return date;
+}
+
 exports.getAPIResponseObj = getAPIResponseObj;
+exports.getFormattedDateForToday = getFormattedDateForToday;

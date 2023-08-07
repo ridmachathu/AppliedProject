@@ -166,50 +166,79 @@ export let overallBalance: ChartOptions | any = {
   ],
 };
 
-export let splineArea1: ChartOptions = {
+export let inflationTracker: ChartOptions = {
   series: [
-      {
-          name: "series1",
-          data: [31, 40, 28, 51, 42, 109, 100]
-      },
-      {
-          name: "series2",
-          data: [11, 32, 45, 32, 34, 52, 41]
-      }
+    {
+      name: "STOCK ABC",
+      data: [8107.85, 8128.0, 8122.9, 8165.5, 8340.7, 8423.7, 8423.5, 8514.3, 8481.85, 8487.7, 8506.9, 8626.2, 8668.95, 8602.3, 8607.55, 8512.9, 8496.25, 8600.65, 8881.1, 9340.85],
+    }
   ],
   colors: [primary_color, secondary_color],
   chart: {
-      height: 350,
-      type: "area",
-      toolbar: {
-          show: false
-      }
+    type: "line",
+    height: 350,
+    zoom: {
+      enabled: false
+    },
+    toolbar: {
+      show: false
+    }
   },
   dataLabels: {
-      enabled: false
+    enabled: false
   },
   stroke: {
-      curve: "smooth"
+    curve: "smooth"
   },
+  labels: ["13 Nov 2022", "14 Nov 2022", "15 Nov 2022", "16 Nov 2022", "17 Nov 2022", "20 Nov 2022", "21 Nov 2022", "22 Nov 2022", "23 Nov 2022", "24 Nov 2022", "27 Nov 2022", "28 Nov 2022", "29 Nov 2022", "30 Nov 2022", "01 Dec 2022", "04 Dec 2022", "05 Dec 2022", "06 Dec 2022", "07 Dec 2022", "08 Dec 2022"
+  ],
   xaxis: {
-      type: "datetime",
-      categories: [
-          "2022-09-19T00:00:00.000Z",
-          "2022-09-19T01:30:00.000Z",
-          "2022-09-19T02:30:00.000Z",
-          "2022-09-19T03:30:00.000Z",
-          "2022-09-19T04:30:00.000Z",
-          "2022-09-19T05:30:00.000Z",
-          "2022-09-19T06:30:00.000Z"
-      ]
+    type: "datetime"
   },
-  tooltip: {
-      x: {
-          format: "dd/MM/yy HH:mm"
-      }
+  yaxis: {
+    opposite: true
+  },
+  legend: {
+    horizontalAlign: "left"
   }
 };
 
+export let splineArea2: ChartOptions = {
+  series: [
+    {
+      name: "STOCK ABC",
+      data: [8107.85, 8128.0, 8122.9, 8165.5, 8340.7, 8423.7, 8423.5, 8514.3, 8481.85, 8487.7, 8506.9, 8626.2, 8668.95, 8602.3, 8607.55, 8512.9, 8496.25, 8600.65, 8881.1, 9340.85],
+    }
+  ],
+  colors: [primary_color],
+  chart: {
+    type: "area",
+    height: 350,
+    zoom: {
+      enabled: false
+    },
+    toolbar: {
+      show: false
+    }
+  },
+  dataLabels: {
+    enabled: false
+  },
+  stroke: {
+    curve: "smooth"
+  },
+  labels: ["13 Nov 2022", "14 Nov 2022", "15 Nov 2022", "16 Nov 2022", "17 Nov 2022", "20 Nov 2022", "21 Nov 2022", "22 Nov 2022", "23 Nov 2022", "24 Nov 2022", "27 Nov 2022", "28 Nov 2022", "29 Nov 2022", "30 Nov 2022", "01 Dec 2022", "04 Dec 2022", "05 Dec 2022", "06 Dec 2022", "07 Dec 2022", "08 Dec 2022"
+  ],
+  xaxis: {
+    type: "datetime"
+  },
+  yaxis: {
+    opposite: true
+  },
+  legend: {
+    horizontalAlign: "left"
+  }
+};
 
 // Recent Orders
 
@@ -388,42 +417,7 @@ export let recentOrders: ChartOptions | any = {
   ],
 };
 
-export let splineArea2: ChartOptions = {
-  series: [
-      {
-          name: "STOCK ABC",
-          data: [8107.85, 8128.0, 8122.9, 8165.5, 8340.7, 8423.7, 8423.5, 8514.3, 8481.85, 8487.7, 8506.9, 8626.2, 8668.95, 8602.3, 8607.55, 8512.9, 8496.25, 8600.65, 8881.1, 9340.85],
-      }
-  ],
-  colors: [primary_color],
-  chart: {
-      type: "area",
-      height: 350,
-      zoom: {
-          enabled: false
-      },
-      toolbar: {
-          show: false
-      }
-  },
-  dataLabels: {
-      enabled: false
-  },
-  stroke: {
-      curve: "smooth"
-  },
-  labels: ["13 Nov 2022", "14 Nov 2022", "15 Nov 2022", "16 Nov 2022", "17 Nov 2022", "20 Nov 2022", "21 Nov 2022", "22 Nov 2022", "23 Nov 2022", "24 Nov 2022", "27 Nov 2022", "28 Nov 2022", "29 Nov 2022", "30 Nov 2022", "01 Dec 2022", "04 Dec 2022", "05 Dec 2022", "06 Dec 2022", "07 Dec 2022", "08 Dec 2022"
-  ],
-  xaxis: {
-      type: "datetime"
-  },
-  yaxis: {
-      opposite: true
-  },
-  legend: {
-      horizontalAlign: "left"
-  }
-};
+
 
 //Time Line
 
